@@ -54,7 +54,7 @@ export const AdminPanel = () => {
     };
 
     try {
-      await fetchItem<ErrorFromServerProps>(`/card-set/${cardSetId}`, options);
+      await fetchItem<ErrorFromServerProps>(`/card-sets/${cardSetId}`, options);
       await fetchCardSets();
     } catch (error) {
       validateError(error);
@@ -83,7 +83,7 @@ export const AdminPanel = () => {
 
       try {
         console.log(cardId);
-        const response = await fetchItem<CardSetNameProp>(`/card-set/${cardId}`, requestOptions);
+        const response = await fetchItem<CardSetNameProp>(`/card-sets/${cardId}`, requestOptions);
         console.log(response);
         await fetchCardSets();
       } catch (error) {
@@ -96,7 +96,6 @@ export const AdminPanel = () => {
   /* TODO/ IN GENERAL: FIRSTLY, WHEN PATCH IT SHOULD CHECK BY MODEL MY TYPES AND REQUEST IF I'M WRONG. THEN I HAVE PATCH METHOD FOR CARD SET IT WILL BE FOR
   TODO/ CHANGING NAME OF CARD SET. I SHOULD ABANDON CHANGING CARD BY THIS METHOD BECAUSE IT WILL ERASE ALL CARDS EXCEPT NEW DATA.
   TODO/ THEN I NEED TO CREATE METHOD TO CHANGE DATA FOR SINGLE SPECIFIED CARD */
-  // Maybe allow to change cardSetName in code and if there was specified another property - throw new Error;
   /* JOIN SOMEHOW. MAYBE HOOK */
 
   useEffect(() => {
