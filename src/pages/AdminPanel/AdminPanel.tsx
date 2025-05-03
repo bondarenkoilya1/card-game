@@ -18,6 +18,8 @@ import { validateError } from "src/utils";
 
 import { fetchItem } from "src/api";
 
+import { useCardSetsStore } from "src/store";
+
 // In future this will be brought out to different components
 
 type ErrorFromServerProps = {
@@ -27,7 +29,8 @@ type ErrorFromServerProps = {
 const AdminPanelButtonStyled = styled(Button)(AdminPanelButtonStyles);
 
 export const AdminPanel = () => {
-  const [cardSets, setCardSets] = useState<CardSets>([]);
+  const cardSets = useCardSetsStore((state) => state.cardSets);
+  const setCardSets = useCardSetsStore((state) => state.setCardSets);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -37,8 +40,9 @@ export const AdminPanel = () => {
     setError(null);
 
     try {
+      // (JSON.stringify(prev) === JSON.stringify(sets) ? prev : sets));
       const sets: CardSets = await fetchItem<CardSets>("/card-sets");
-      setCardSets((prev) => (JSON.stringify(prev) === JSON.stringify(sets) ? prev : sets));
+      setCardSets(sets);
     } catch (error) {
       validateError(error);
     } finally {
