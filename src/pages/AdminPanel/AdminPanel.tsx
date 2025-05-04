@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import {
   AdminPanelButtonStyles,
@@ -29,10 +29,7 @@ type ErrorFromServerProps = {
 const AdminPanelButtonStyled = styled(Button)(AdminPanelButtonStyles);
 
 export const AdminPanel = () => {
-  const cardSets = useCardSetsStore((state) => state.cardSets);
-  const setCardSets = useCardSetsStore((state) => state.setCardSets);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const { cardSets, isLoading, error, setCardSets, setIsLoading, setError } = useCardSetsStore();
 
   /* JOIN SOMEHOW. MAYBE HOOK */
   const fetchCardSets = async () => {
@@ -44,7 +41,8 @@ export const AdminPanel = () => {
       const sets: CardSets = await fetchItem<CardSets>("/card-sets");
       setCardSets(sets);
     } catch (error) {
-      validateError(error);
+      const errorMessage = validateError(error);
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }
@@ -61,7 +59,8 @@ export const AdminPanel = () => {
       await fetchItem<ErrorFromServerProps>(`/card-sets/${cardSetId}`, options);
       await fetchCardSets();
     } catch (error) {
-      validateError(error);
+      const errorMessage = validateError(error);
+      setError(errorMessage);
     }
   };
 
@@ -91,7 +90,8 @@ export const AdminPanel = () => {
         console.log(response);
         await fetchCardSets();
       } catch (error) {
-        validateError(error);
+        const errorMessage = validateError(error);
+        setError(errorMessage);
       }
 
       return;
