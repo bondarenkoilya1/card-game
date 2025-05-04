@@ -49,6 +49,7 @@ export const AdminPanel = () => {
   };
 
   const deleteCardSet = async (cardSetId: string) => {
+    setIsLoading(true);
     setError(null);
 
     const options = {
@@ -61,6 +62,8 @@ export const AdminPanel = () => {
     } catch (error) {
       const errorMessage = validateError(error);
       setError(errorMessage);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -69,9 +72,24 @@ export const AdminPanel = () => {
     nameOfItemToUpdate: "cardSetName" | "cardData",
     newCardSetName?: string | undefined
   ) => {
+    // maybe create separate functions to update each item (set, its data)
     if (nameOfItemToUpdate === "cardSetName") {
+      setIsLoading(true);
+      setError(null);
+
+      // When I press cancel in my prompt window it doesn't work as expected
+      if (newCardSetName === null || newCardSetName?.trim() === "") {
+        const errorMessage = "You didn't enter any card set name. It will remain as it was";
+        setError(errorMessage);
+        setIsLoading(false);
+        return;
+      }
+
       if (newCardSetName && newCardSetName.length > 30) {
-        console.error("Card set name shouldn't be so long");
+        const errorMessage =
+          "Card set name shouldn't be so long. Try something less than 30 characters";
+        setError(errorMessage);
+        setIsLoading(false);
         return;
       }
 
@@ -85,21 +103,23 @@ export const AdminPanel = () => {
       };
 
       try {
-        console.log(cardId);
-        const response = await fetchItem<CardSetNameProp>(`/card-sets/${cardId}`, requestOptions);
-        console.log(response);
+        // If it has completed, I should show its response as a notification to the user
+        await fetchItem<CardSetNameProp>(`/card-sets/${cardId}`, requestOptions);
         await fetchCardSets();
       } catch (error) {
         const errorMessage = validateError(error);
         setError(errorMessage);
+      } finally {
+        setIsLoading(false);
       }
 
       return;
     }
   };
-  /* TODO/ IN GENERAL: FIRSTLY, WHEN PATCH IT SHOULD CHECK BY MODEL MY TYPES AND REQUEST IF I'M WRONG. THEN I HAVE PATCH METHOD FOR CARD SET IT WILL BE FOR
-  TODO/ CHANGING NAME OF CARD SET. I SHOULD ABANDON CHANGING CARD BY THIS METHOD BECAUSE IT WILL ERASE ALL CARDS EXCEPT NEW DATA.
-  TODO/ THEN I NEED TO CREATE METHOD TO CHANGE DATA FOR SINGLE SPECIFIED CARD */
+  // When I use PATCH it should ensure that the data matches the model and types. If invalid - reject
+  // Card Set Patch: This method should only update card set name. Abandon updating cards[] to prevent an erasing data
+  // Create a new method to change data for a single specific card
+
   /* JOIN SOMEHOW. MAYBE HOOK */
 
   useEffect(() => {
