@@ -1,4 +1,24 @@
+import { css } from "@emotion/react";
+
 import styled from "@emotion/styled";
+
+const FilledButtonStyles = css`
+  background-color: #667cf8;
+  color: #fff;
+  border: 1px solid #1b39d7;
+`;
+
+const OutlinedButtonStyles = css`
+  background-color: transparent;
+  border: 1px solid #000;
+  color: #000;
+`;
+
+const LinkedButtonStyles = css`
+  background-color: transparent;
+  border: 0;
+  color: #1930b2;
+`;
 
 export const ButtonStyled = styled.button<{ variant: "primary" | "secondary" | "tertiary" }>`
   outline: 1px solid transparent;
@@ -10,8 +30,12 @@ export const ButtonStyled = styled.button<{ variant: "primary" | "secondary" | "
   font-size: 18px;
   display: flex;
   align-items: center;
+  margin: 20px 0;
 
-  &:hover {
+  ${({ variant }) => variant === "primary" && FilledButtonStyles}
+  ${({ variant }) => variant === "secondary" && OutlinedButtonStyles}
+  ${({ variant }) => variant === "tertiary" && LinkedButtonStyles}
+    &:hover {
     cursor: pointer;
   }
 `;
