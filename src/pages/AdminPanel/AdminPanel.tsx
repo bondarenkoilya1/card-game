@@ -10,7 +10,7 @@ import {
 import styled from "@emotion/styled";
 
 import { Button } from "src/components";
-import { CardSet } from "src/components/CardSet";
+import { CardSet, UploadCardSetForm } from "src/components/CardSet";
 
 import { CardSetNameProp, CardSetProps, CardSets } from "src/types";
 
@@ -134,6 +134,7 @@ export const AdminPanel = () => {
       <AdminPanelTitleStyled>Admin panel</AdminPanelTitleStyled>
       <AdminPanelButtonStyled onClick={fetchCardSets}>Update</AdminPanelButtonStyled>
       {renderError(error)}
+      <UploadCardSetForm />
       {isLoading ? (
         "Loading..."
       ) : (
