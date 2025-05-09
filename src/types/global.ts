@@ -9,3 +9,9 @@ export type Children = {
 export type CSS = CSSObject;
 
 export type JSXElement = React.JSX.Element;
+
+declare global {
+  interface String {
+    toCapitalize(): string;
+  }
+}
