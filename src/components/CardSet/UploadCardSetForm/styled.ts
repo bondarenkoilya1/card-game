@@ -1,15 +1,30 @@
 import styled from "@emotion/styled";
 
 export const UploadCardSetFormContainerStyled = styled.div`
-  padding: 20px;
   border: 2px solid #4b6ef5;
   border-radius: 12px;
-  width: 26%;
+  width: 22%;
+`;
+
+export const UploadCardSetFormMainBlockStyled = styled.div`
+  padding: 20px;
+`;
+export const UploadCardSetFormAdditionalBlockStyled = styled.div`
+  padding: 0 20px 20px 20px;
+  margin-top: 20px;
+  width: 100%;
+  background-color: rgba(75, 110, 245, 0.25);
+  padding: 20px;
+  border-radius: 0 0 12px 12px;
 `;
 
 export const UploadCardSetFormTitleStyled = styled.form`
   font-size: 24px;
   text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 20px 20px 0 20px;
 `;
 
 export const UploadCardSetFormStyled = styled.form``;
@@ -24,16 +39,11 @@ export const UploadCardSetFormOptionBlockStyled = styled.div`
   border-radius: 12px;
   padding: 20px;
   color: #333;
-  max-width: 350px;
   margin-top: 20px;
   text-align: center;
 `;
 
 export const UploadCardSetFormRadioBlock = styled.div``;
-
-export const UploadCardSetFormInitialCardBlockStyled = styled.div`
-  margin-top: 20px;
-`;
 
 export const InputContainerStyled = styled.div`
   display: flex;
@@ -42,6 +52,7 @@ export const InputContainerStyled = styled.div`
 
 export const InputLabelStyled = styled.label`
   font-size: 12px;
+  text-align: left;
 `;
 
 export const InputStyled = styled.input`
