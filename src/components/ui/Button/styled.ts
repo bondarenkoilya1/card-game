@@ -29,14 +29,19 @@ export const ButtonStyled = styled.button<{ variant: "primary" | "secondary" | "
   padding: 10px 20px;
   font-size: 18px;
   display: flex;
+  justify-content: center;
   align-items: center;
-  margin: 20px 0;
+  cursor: pointer;
 
   ${({ variant }) => variant === "primary" && FilledButtonStyles}
   ${({ variant }) => variant === "secondary" && OutlinedButtonStyles}
-  ${({ variant }) => variant === "tertiary" && LinkedButtonStyles}
-    &:hover {
-    cursor: pointer;
+    ${({ variant }) => variant === "tertiary" && LinkedButtonStyles}
+  
+  
+    &[disabled] {
+    background-color: #989898;
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 `;
 

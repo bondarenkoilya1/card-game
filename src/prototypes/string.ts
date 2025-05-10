@@ -1,3 +1,4 @@
+// Capitalize only the first letter of the entire string
 String.prototype.toCapitalize = function () {
   const currentString = this as string;
 

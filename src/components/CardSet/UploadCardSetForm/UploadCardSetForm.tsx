@@ -6,6 +6,7 @@ import {
   InputStyled,
   RadioButtonStyled,
   UploadCardSetFormAdditionalBlockStyled,
+  UploadCardSetFormButtonStyles,
   UploadCardSetFormContainerStyled,
   UploadCardSetFormMainBlockStyled,
   UploadCardSetFormOptionBlockStyled,
@@ -17,15 +18,22 @@ import {
 
 import { CARD_TYPES } from "src/constants";
 
-import { CardType } from "src/types";
+import { CardSets, CardType } from "src/types";
+import { Button } from "src/components";
+import styled from "@emotion/styled";
+import { validateError } from "src/utils";
+import { fetchItem } from "src/api";
 
 type AnswerType = "yes" | "no";
 
 const answers: AnswerType[] = ["yes", "no"];
 
+const UploadCardSetFormButtonStyled = styled(Button)(UploadCardSetFormButtonStyles);
+
 export const UploadCardSetForm = () => {
   const [hasCardsOnStart, setHasCardsOnStart] = useState(true);
   const [selectedCardType, setSelectedCardType] = useState<CardType>("close");
+  const [cardSetName, setCardSetName] = useState<string>("");
 
   const handleSetHasCardsOnStart = (event: React.ChangeEvent<HTMLInputElement>) =>
     setHasCardsOnStart(event.currentTarget.value === "yes");
@@ -33,14 +41,49 @@ export const UploadCardSetForm = () => {
   const handleSetSelectedCardType = (event: React.ChangeEvent<HTMLInputElement>) =>
     setSelectedCardType(event.currentTarget.value as CardType);
 
+  const handleSubmitForm = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!cardSetName) throw new Error("Card set name is required.");
+
+    const dataToSend = {
+      cardSetName: cardSetName,
+      cards: []
+    };
+
+    const requestHeaders = new Headers();
+    requestHeaders.set("Content-Type", "application/json");
+
+    const options = {
+      headers: requestHeaders,
+      method: "POST",
+      body: JSON.stringify(dataToSend)
+    };
+
+    try {
+      await fetchItem("/card-sets", options);
+    } catch (error) {
+      const errorMessage = validateError(error);
+      throw new Error(errorMessage);
+    }
+
+    console.log(cardSetName);
+  };
+
   return (
     <UploadCardSetFormContainerStyled>
       <UploadCardSetFormTitleStyled>Upload card set</UploadCardSetFormTitleStyled>
-      <UploadCardSetFormStyled>
+      <UploadCardSetFormStyled onSubmit={handleSubmitForm}>
         <UploadCardSetFormMainBlockStyled>
           <InputContainerStyled style={{ marginTop: "20px" }}>
             <InputLabelStyled htmlFor="card-set-name__input">Card set name</InputLabelStyled>
-            <InputStyled type="text" id="card-set-name__input" placeholder="Chemicals" />
+            <InputStyled
+              type="text"
+              id="card-set-name__input"
+              placeholder="Chemicals"
+              value={cardSetName}
+              onChange={(event) => setCardSetName(event.currentTarget.value)}
+            />
           </InputContainerStyled>
           <UploadCardSetFormOptionBlockStyled>
             <UploadCardSetFormTextStyled>
@@ -72,48 +115,52 @@ export const UploadCardSetForm = () => {
           </UploadCardSetFormOptionBlockStyled>
         </UploadCardSetFormMainBlockStyled>
 
-        {hasCardsOnStart && (
-          <UploadCardSetFormAdditionalBlockStyled>
-            <UploadCardSetFormTextStyled>
-              I want to add a card with the following properties:
-            </UploadCardSetFormTextStyled>
-            <InputContainerStyled style={{ marginTop: "20px" }}>
-              <InputLabelStyled htmlFor="card-name__input">Card name</InputLabelStyled>
-              <InputStyled type="text" id="card-name__input" placeholder="Zink" />
-            </InputContainerStyled>
-            <UploadCardSetFormTextStyled
-              style={{ marginTop: "20px", display: "flex", justifyContent: "center" }}>
-              Card type
-            </UploadCardSetFormTextStyled>
-            <UploadCardSetFormRadioBlock
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                gap: "24px",
-                marginTop: "12px"
-              }}>
-              {CARD_TYPES.map((cardType) => (
-                <InputContainerStyled key={cardType}>
-                  <InputLabelStyled htmlFor={`card-type__radio--${cardType}`}>
-                    {cardType.toCapitalize()}
-                  </InputLabelStyled>
-                  <RadioButtonStyled
-                    type="radio"
-                    name="cardType"
-                    value={cardType}
-                    id={`card-type__radio--${cardType}`}
-                    checked={selectedCardType === cardType}
-                    onChange={handleSetSelectedCardType}
-                  />
-                </InputContainerStyled>
-              ))}
-            </UploadCardSetFormRadioBlock>
-            <InputContainerStyled style={{ marginTop: "20px" }}>
-              <InputLabelStyled htmlFor="card-name__input">Card points</InputLabelStyled>
-              <InputStyled type="text" id="card-name__input" placeholder="6" />
-            </InputContainerStyled>
-          </UploadCardSetFormAdditionalBlockStyled>
-        )}
+        {/*{hasCardsOnStart && (*/}
+        {/*  <UploadCardSetFormAdditionalBlockStyled>*/}
+        {/*    <UploadCardSetFormTextStyled style={{ textAlign: "center" }}>*/}
+        {/*      I want to add a card with the following properties:*/}
+        {/*    </UploadCardSetFormTextStyled>*/}
+        {/*    <InputContainerStyled style={{ marginTop: "20px" }}>*/}
+        {/*      <InputLabelStyled htmlFor="card-name__input">Card name</InputLabelStyled>*/}
+        {/*      <InputStyled type="text" id="card-name__input" placeholder="Zink" />*/}
+        {/*    </InputContainerStyled>*/}
+        {/*    <UploadCardSetFormTextStyled*/}
+        {/*      style={{ marginTop: "20px", display: "flex", justifyContent: "center" }}>*/}
+        {/*      Card type*/}
+        {/*    </UploadCardSetFormTextStyled>*/}
+        {/*    <UploadCardSetFormRadioBlock*/}
+        {/*      style={{*/}
+        {/*        display: "flex",*/}
+        {/*        justifyContent: "center",*/}
+        {/*        gap: "24px",*/}
+        {/*        marginTop: "12px"*/}
+        {/*      }}>*/}
+        {/*      {CARD_TYPES.map((cardType) => (*/}
+        {/*        <InputContainerStyled key={cardType}>*/}
+        {/*          <InputLabelStyled htmlFor={`card-type__radio--${cardType}`}>*/}
+        {/*            {cardType.toCapitalize()}*/}
+        {/*          </InputLabelStyled>*/}
+        {/*          <RadioButtonStyled*/}
+        {/*            type="radio"*/}
+        {/*            name="cardType"*/}
+        {/*            value={cardType}*/}
+        {/*            id={`card-type__radio--${cardType}`}*/}
+        {/*            checked={selectedCardType === cardType}*/}
+        {/*            onChange={handleSetSelectedCardType}*/}
+        {/*          />*/}
+        {/*        </InputContainerStyled>*/}
+        {/*      ))}*/}
+        {/*    </UploadCardSetFormRadioBlock>*/}
+        {/*    <InputContainerStyled style={{ marginTop: "20px" }}>*/}
+        {/*      <InputLabelStyled htmlFor="card-name__input">Card points</InputLabelStyled>*/}
+        {/*      <InputStyled type="text" id="card-name__input" placeholder="6" />*/}
+        {/*    </InputContainerStyled>*/}
+        {/*    <Button variant="secondary" style={{ width: "100%", marginTop: "12px" }}>*/}
+        {/*      Add new card to this card set*/}
+        {/*    </Button>*/}
+        {/*  </UploadCardSetFormAdditionalBlockStyled>*/}
+        {/*)}*/}
+        <UploadCardSetFormButtonStyled type="submit">Upload card set</UploadCardSetFormButtonStyled>
       </UploadCardSetFormStyled>
     </UploadCardSetFormContainerStyled>
   );
