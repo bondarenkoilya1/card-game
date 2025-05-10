@@ -63,7 +63,7 @@ export const UploadCardSetForm = () => {
                     name="hasCards"
                     value={answer}
                     id={`has-cards__radio--${answer}`}
-                    checked={hasCardsOnStart}
+                    checked={hasCardsOnStart === (answer === "yes")}
                     onChange={handleSetHasCardsOnStart}
                   />
                 </InputContainerStyled>
