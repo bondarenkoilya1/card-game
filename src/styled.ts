@@ -11,7 +11,6 @@ export const GlobalStyle = css`
     box-sizing: border-box;
     height: 100%;
     width: 100%;
-    background-color: #3a3434;
   }
 
   body,
@@ -31,8 +30,6 @@ export const GlobalStyle = css`
     font-family: "Inter", sans-serif;
     color: #fff;
     background-color: #fff;
-    //  temporary until it bothers
-    overflow: hidden;
   }
 
   a {

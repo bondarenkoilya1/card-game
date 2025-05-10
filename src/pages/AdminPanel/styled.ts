@@ -29,10 +29,8 @@ export const AdminPanelErrorStyled = styled.p`
 
 export const AdminPanelCardSetsStyled = styled.ul`
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   margin-top: 20px;
-`;
-
-export const AdminPanelCardSetStyled = styled.li`
-  margin-top: 20px;
+  gap: 25px;
+  flex-wrap: wrap;
 `;

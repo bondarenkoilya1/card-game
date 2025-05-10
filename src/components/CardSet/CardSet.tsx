@@ -19,10 +19,10 @@ export const CardSet: FC<CardSetWrapperProps> = ({ set, deleteCardSet, updateCar
   return (
     <div
       style={{
-        marginBottom: "30px",
         padding: "35px",
         backgroundColor: "rgba(23,98,206,0.2)",
-        borderRadius: "6px"
+        borderRadius: "6px",
+        width: "20%"
       }}>
       <form onSubmit={handleSubmit}>
         <input

@@ -1,9 +1,12 @@
+import { css } from "@emotion/react";
+
 import styled from "@emotion/styled";
 
 export const UploadCardSetFormContainerStyled = styled.div`
   border: 2px solid #4b6ef5;
   border-radius: 12px;
   width: 22%;
+  overflow: hidden;
 `;
 
 export const UploadCardSetFormMainBlockStyled = styled.div`
@@ -15,7 +18,6 @@ export const UploadCardSetFormAdditionalBlockStyled = styled.div`
   width: 100%;
   background-color: rgba(75, 110, 245, 0.25);
   padding: 20px;
-  border-radius: 0 0 12px 12px;
 `;
 
 export const UploadCardSetFormTitleStyled = styled.form`
@@ -44,6 +46,19 @@ export const UploadCardSetFormOptionBlockStyled = styled.div`
 `;
 
 export const UploadCardSetFormRadioBlock = styled.div``;
+
+export const UploadCardSetFormButtonStyles = css`
+  background-color: #5c7aff;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  border: 0;
+  width: 100%;
+  padding: 12px 0;
+  border-radius: 0;
+`;
 
 export const InputContainerStyled = styled.div`
   display: flex;
