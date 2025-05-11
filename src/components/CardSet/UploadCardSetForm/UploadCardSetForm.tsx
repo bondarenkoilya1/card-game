@@ -66,8 +66,6 @@ export const UploadCardSetForm = () => {
       const errorMessage = validateError(error);
       throw new Error(errorMessage);
     }
-
-    console.log(cardSetName);
   };
 
   return (
@@ -160,7 +158,9 @@ export const UploadCardSetForm = () => {
         {/*    </Button>*/}
         {/*  </UploadCardSetFormAdditionalBlockStyled>*/}
         {/*)}*/}
-        <UploadCardSetFormButtonStyled type="submit">Upload card set</UploadCardSetFormButtonStyled>
+        <UploadCardSetFormButtonStyled type="submit" disabled={!cardSetName.trim()}>
+          Upload card set
+        </UploadCardSetFormButtonStyled>
       </UploadCardSetFormStyled>
     </UploadCardSetFormContainerStyled>
   );
