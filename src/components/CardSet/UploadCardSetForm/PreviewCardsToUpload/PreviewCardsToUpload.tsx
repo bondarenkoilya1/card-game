@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 import { CardProps } from "src/types";
 
@@ -27,7 +28,7 @@ export const PreviewCardsToUpload: FC<PreviewCardsToUploadProps> = ({ cardsToUpl
         }}>
         {cardsToUpload.map((card: CardProps) => (
           <li
-            key={card._id}
+            key={uuidv4()}
             style={{
               width: "24%",
               backgroundColor: "#fff",
