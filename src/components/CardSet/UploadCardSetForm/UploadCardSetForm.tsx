@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
 import {
+  BlockWithMarginTopStyled,
   InputContainerStyled,
   InputLabelStyled,
-  InputStyled,
   RadioButtonStyled,
   UploadCardSetFormAdditionalBlockStyled,
   UploadCardSetFormButtonStyles,
@@ -19,7 +19,7 @@ import styled from "@emotion/styled";
 
 import { CARD_TYPES } from "src/constants";
 
-import { Button } from "src/components";
+import { Button, Input } from "src/components";
 import { PreviewCardsToUpload } from "src/components/CardSet/UploadCardSetForm/PreviewCardsToUpload";
 
 import { CardProps, CardType } from "src/types";
@@ -104,16 +104,14 @@ export const UploadCardSetForm = () => {
         <UploadCardSetFormTitleStyled>Upload card set</UploadCardSetFormTitleStyled>
         <UploadCardSetFormStyled onSubmit={handleSubmitForm}>
           <UploadCardSetFormMainBlockStyled>
-            <InputContainerStyled style={{ marginTop: "20px" }}>
-              <InputLabelStyled htmlFor="card-set-name__input">Card set name</InputLabelStyled>
-              <InputStyled
-                type="text"
-                id="card-set-name__input"
-                placeholder="Chemicals"
-                value={cardSetName}
-                onChange={(event) => setCardSetName(event.currentTarget.value)}
-              />
-            </InputContainerStyled>
+            <Input
+              id="card-set-name__input"
+              labelText="Card set name"
+              type="text"
+              placeholder="Chemicals"
+              value={cardSetName}
+              setValue={(event) => setCardSetName(event.currentTarget.value)}
+            />
             <UploadCardSetFormOptionBlockStyled>
               <UploadCardSetFormTextStyled>
                 Do you want to add some cards on start?
@@ -149,16 +147,18 @@ export const UploadCardSetForm = () => {
               <UploadCardSetFormTextStyled style={{ textAlign: "center" }}>
                 I want to add a card with the following properties:
               </UploadCardSetFormTextStyled>
-              <InputContainerStyled style={{ marginTop: "20px" }}>
-                <InputLabelStyled htmlFor="card-name__input">Card name</InputLabelStyled>
-                <InputStyled
-                  type="text"
+              <BlockWithMarginTopStyled marginTop={20}>
+                <Input
                   id="card-name__input"
-                  placeholder="Zinc"
+                  labelText="Card name"
+                  type="text"
+                  placeholder="Zync"
                   value={cardName}
-                  onChange={(event) => setCardName(event.currentTarget.value)}
+                  setValue={(event: React.ChangeEvent<HTMLInputElement>) =>
+                    setCardName(event.currentTarget.value)
+                  }
                 />
-              </InputContainerStyled>
+              </BlockWithMarginTopStyled>
               <UploadCardSetFormTextStyled
                 style={{ marginTop: "20px", display: "flex", justifyContent: "center" }}>
                 Card type
@@ -186,17 +186,17 @@ export const UploadCardSetForm = () => {
                   </InputContainerStyled>
                 ))}
               </UploadCardSetFormRadioBlock>
-              <InputContainerStyled style={{ marginTop: "20px" }}>
-                <InputLabelStyled htmlFor="card-name__input">Card points</InputLabelStyled>
-                <InputStyled
+              <BlockWithMarginTopStyled marginTop={20}>
+                <Input
+                  id="card-points__input"
+                  labelText="Card points"
                   type="number"
-                  id="card-name__input"
                   placeholder="6"
                   min="0"
                   value={cardPoints}
-                  onChange={(event) => setCardPoints(+event.currentTarget.value)}
+                  setValue={(event) => setCardPoints(+event.currentTarget.value)}
                 />
-              </InputContainerStyled>
+              </BlockWithMarginTopStyled>
               <Button
                 variant="secondary"
                 style={{ width: "100%", marginTop: "12px" }}

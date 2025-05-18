@@ -13,7 +13,6 @@ export const UploadCardSetFormMainBlockStyled = styled.div`
   padding: 20px;
 `;
 export const UploadCardSetFormAdditionalBlockStyled = styled.div`
-  padding: 0 20px 20px 20px;
   margin-top: 20px;
   width: 100%;
   background-color: rgba(75, 110, 245, 0.25);
@@ -79,4 +78,8 @@ export const RadioButtonStyled = styled.input`
   accent-color: #4b6ef5;
   cursor: pointer;
   margin-top: 5px;
+`;
+
+export const BlockWithMarginTopStyled = styled.div<{ marginTop: number }>`
+  margin-top: ${({ marginTop }) => `${marginTop}px`};
 `;
