@@ -2,15 +2,11 @@ import React, { useState } from "react";
 
 import {
   BlockWithMarginTopStyled,
-  InputContainerStyled,
-  InputLabelStyled,
-  RadioButtonStyled,
   UploadCardSetFormAdditionalBlockStyled,
   UploadCardSetFormButtonStyles,
   UploadCardSetFormContainerStyled,
   UploadCardSetFormMainBlockStyled,
   UploadCardSetFormOptionBlockStyled,
-  UploadCardSetFormRadioBlock,
   UploadCardSetFormStyled,
   UploadCardSetFormTextStyled,
   UploadCardSetFormTitleStyled
@@ -19,14 +15,16 @@ import styled from "@emotion/styled";
 
 import { CARD_TYPES } from "src/constants";
 
-import { Button, Input } from "src/components";
-import { PreviewCardsToUpload } from "src/components/CardSet/UploadCardSetForm/PreviewCardsToUpload";
+import { Button, RadioButton, TextField } from "src/components";
+import { RadioButtonList } from "src/components/ui/RadioButton/RadioButtonList";
 
 import { CardProps, CardType } from "src/types";
 
 import { validateError } from "src/utils";
 
 import { fetchItem } from "src/api";
+
+import { PreviewCardsToUpload } from "./PreviewCardsToUpload";
 
 type AnswerType = "yes" | "no";
 
@@ -98,47 +96,41 @@ export const UploadCardSetForm = () => {
     resetForm();
   };
 
+  // If I added some cards to preview list
+  // but then click on "Do not want to add some cards on start"
+  // I should create the array of cards to upload
+
   return (
     <div style={{ display: "flex" }}>
       <UploadCardSetFormContainerStyled>
         <UploadCardSetFormTitleStyled>Upload card set</UploadCardSetFormTitleStyled>
         <UploadCardSetFormStyled onSubmit={handleSubmitForm}>
           <UploadCardSetFormMainBlockStyled>
-            <Input
+            <TextField
               id="card-set-name__input"
               labelText="Card set name"
               type="text"
               placeholder="Chemicals"
               value={cardSetName}
-              setValue={(event) => setCardSetName(event.currentTarget.value)}
+              onChange={(event) => setCardSetName(event.currentTarget.value)}
             />
             <UploadCardSetFormOptionBlockStyled>
               <UploadCardSetFormTextStyled>
                 Do you want to add some cards on start?
               </UploadCardSetFormTextStyled>
-              <UploadCardSetFormRadioBlock
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  gap: "24px",
-                  marginTop: "12px"
-                }}>
+              <RadioButtonList>
                 {answers.map((answer) => (
-                  <InputContainerStyled key={answer}>
-                    <InputLabelStyled htmlFor={`has-cards__radio--${answer}`}>
-                      {answer.toCapitalize()}
-                    </InputLabelStyled>
-                    <RadioButtonStyled
-                      type="radio"
-                      name="hasCards"
-                      value={answer}
-                      id={`has-cards__radio--${answer}`}
-                      checked={hasCardsOnStart === (answer === "yes")}
-                      onChange={handleSetHasCardsOnStart}
-                    />
-                  </InputContainerStyled>
+                  <RadioButton
+                    key={answer}
+                    id={`has-cards__radio--${answer}`}
+                    labelText={answer.toCapitalize()}
+                    name="hasCards"
+                    value={answer}
+                    isChecked={hasCardsOnStart === (answer === "yes")}
+                    onChange={handleSetHasCardsOnStart}
+                  />
                 ))}
-              </UploadCardSetFormRadioBlock>
+              </RadioButtonList>
             </UploadCardSetFormOptionBlockStyled>
           </UploadCardSetFormMainBlockStyled>
 
@@ -148,13 +140,13 @@ export const UploadCardSetForm = () => {
                 I want to add a card with the following properties:
               </UploadCardSetFormTextStyled>
               <BlockWithMarginTopStyled marginTop={20}>
-                <Input
+                <TextField
                   id="card-name__input"
                   labelText="Card name"
                   type="text"
                   placeholder="Zync"
                   value={cardName}
-                  setValue={(event: React.ChangeEvent<HTMLInputElement>) =>
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                     setCardName(event.currentTarget.value)
                   }
                 />
@@ -163,38 +155,28 @@ export const UploadCardSetForm = () => {
                 style={{ marginTop: "20px", display: "flex", justifyContent: "center" }}>
                 Card type
               </UploadCardSetFormTextStyled>
-              <UploadCardSetFormRadioBlock
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  gap: "24px",
-                  marginTop: "12px"
-                }}>
+              <RadioButtonList>
                 {CARD_TYPES.map((cardType) => (
-                  <InputContainerStyled key={cardType}>
-                    <InputLabelStyled htmlFor={`card-type__radio--${cardType}`}>
-                      {cardType.toCapitalize()}
-                    </InputLabelStyled>
-                    <RadioButtonStyled
-                      type="radio"
-                      name="cardType"
-                      value={cardType}
-                      id={`card-type__radio--${cardType}`}
-                      checked={selectedCardType === cardType}
-                      onChange={handleSetSelectedCardType}
-                    />
-                  </InputContainerStyled>
+                  <RadioButton
+                    key={cardType}
+                    id={`card-type__radio--${cardType}`}
+                    labelText={cardType.toCapitalize()}
+                    name="cardType"
+                    value={cardType}
+                    isChecked={selectedCardType === cardType}
+                    onChange={handleSetSelectedCardType}
+                  />
                 ))}
-              </UploadCardSetFormRadioBlock>
+              </RadioButtonList>
               <BlockWithMarginTopStyled marginTop={20}>
-                <Input
+                <TextField
                   id="card-points__input"
                   labelText="Card points"
                   type="number"
                   placeholder="6"
                   min="0"
                   value={cardPoints}
-                  setValue={(event) => setCardPoints(+event.currentTarget.value)}
+                  onChange={(event) => setCardPoints(+event.currentTarget.value)}
                 />
               </BlockWithMarginTopStyled>
               <Button
@@ -210,7 +192,7 @@ export const UploadCardSetForm = () => {
           </UploadCardSetFormButtonStyled>
         </UploadCardSetFormStyled>
       </UploadCardSetFormContainerStyled>
-      <PreviewCardsToUpload cardsToUpload={cardsToUpload} />
+      <PreviewCardsToUpload cardsToUpload={cardsToUpload} />;
     </div>
   );
 };
