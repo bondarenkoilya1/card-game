@@ -19,8 +19,8 @@ import styled from "@emotion/styled";
 
 import { CARD_TYPES } from "src/constants";
 
-import { Button, Input } from "src/components";
-import { PreviewCardsToUpload } from "src/components/CardSet/UploadCardSetForm/PreviewCardsToUpload";
+import { Button, TextField } from "src/components";
+import { PreviewCardsToUpload } from "./PreviewCardsToUpload";
 
 import { CardProps, CardType } from "src/types";
 
@@ -104,7 +104,7 @@ export const UploadCardSetForm = () => {
         <UploadCardSetFormTitleStyled>Upload card set</UploadCardSetFormTitleStyled>
         <UploadCardSetFormStyled onSubmit={handleSubmitForm}>
           <UploadCardSetFormMainBlockStyled>
-            <Input
+            <TextField
               id="card-set-name__input"
               labelText="Card set name"
               type="text"
@@ -148,7 +148,7 @@ export const UploadCardSetForm = () => {
                 I want to add a card with the following properties:
               </UploadCardSetFormTextStyled>
               <BlockWithMarginTopStyled marginTop={20}>
-                <Input
+                <TextField
                   id="card-name__input"
                   labelText="Card name"
                   type="text"
@@ -187,7 +187,7 @@ export const UploadCardSetForm = () => {
                 ))}
               </UploadCardSetFormRadioBlock>
               <BlockWithMarginTopStyled marginTop={20}>
-                <Input
+                <TextField
                   id="card-points__input"
                   labelText="Card points"
                   type="number"
