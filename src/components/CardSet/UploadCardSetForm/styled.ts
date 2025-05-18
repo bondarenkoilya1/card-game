@@ -44,8 +44,6 @@ export const UploadCardSetFormOptionBlockStyled = styled.div`
   text-align: center;
 `;
 
-export const UploadCardSetFormRadioBlock = styled.div``;
-
 export const UploadCardSetFormButtonStyles = css`
   background-color: #5c7aff;
   color: #fff;
@@ -57,27 +55,6 @@ export const UploadCardSetFormButtonStyles = css`
   width: 100%;
   padding: 12px 0;
   border-radius: 0;
-`;
-
-export const InputContainerStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-export const InputLabelStyled = styled.label`
-  font-size: 12px;
-  text-align: left;
-`;
-
-export const InputStyled = styled.input`
-  padding: 5px;
-  margin-top: 5px;
-`;
-
-export const RadioButtonStyled = styled.input`
-  accent-color: #4b6ef5;
-  cursor: pointer;
-  margin-top: 5px;
 `;
 
 export const BlockWithMarginTopStyled = styled.div<{ marginTop: number }>`

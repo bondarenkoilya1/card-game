@@ -4,5 +4,5 @@ type DefaultTextFieldProps = React.InputHTMLAttributes<HTMLInputElement>;
 
 export type TextFieldProps = DefaultTextFieldProps & {
   labelText?: string;
-  setValue?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };

@@ -10,7 +10,7 @@ export const TextField: FC<TextFieldProps> = ({
   type = "text",
   placeholder,
   value,
-  setValue,
+  onChange,
   ...attrs
 }) => {
   return (
@@ -21,7 +21,7 @@ export const TextField: FC<TextFieldProps> = ({
         type={type}
         placeholder={placeholder}
         value={value}
-        onChange={setValue}
+        onChange={onChange}
         {...attrs}
       />
     </TextFieldContainerStyled>
