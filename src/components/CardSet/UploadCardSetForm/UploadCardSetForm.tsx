@@ -22,7 +22,7 @@ import { CARD_TYPES } from "src/constants";
 import { Button } from "src/components";
 import { PreviewCardsToUpload } from "src/components/CardSet/UploadCardSetForm/PreviewCardsToUpload";
 
-import { CardProps, CardSets, CardType } from "src/types";
+import { CardProps, CardType } from "src/types";
 
 import { validateError } from "src/utils";
 
@@ -50,6 +50,12 @@ export const UploadCardSetForm = () => {
 
   const handleSetSelectedCardType = (event: React.ChangeEvent<HTMLInputElement>) =>
     setSelectedCardType(event.currentTarget.value as CardType);
+
+  const resetForm = () => {
+    setCardName("");
+    setSelectedCardType("close");
+    setCardPoints(0);
+  };
 
   const handleSubmitForm = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -89,9 +95,7 @@ export const UploadCardSetForm = () => {
     const currentCard = { name: cardName, type: selectedCardType, points: cardPoints };
 
     setCardsToUpload((prev) => [...prev, currentCard]);
-    setCardName("");
-    setSelectedCardType("close");
-    setCardPoints(0);
+    resetForm();
   };
 
   return (
