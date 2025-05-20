@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 
 import styled from "@emotion/styled";
 
-import woodImage from "../../assets/photos/wood.jpg";
+import woodImage from "../../../assets/photos/wood.jpg";
 
 export const GamePageStyled = styled.div`
   background:

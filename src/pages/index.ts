@@ -1,3 +1,2 @@
-export * from "./Main";
-export * from "./Game";
+export * from "./App";
 export * from "./AdminPanel";

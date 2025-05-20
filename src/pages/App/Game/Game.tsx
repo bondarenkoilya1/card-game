@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import { ContainerStyles, GamePageStyled, HandStyles } from "./styled";
-import { ContainerStyled } from "src/styled";
+import { ContainerStyles, GamePageStyled, HandStyles } from "./styled.ts";
+import { ContainerStyled } from "src/styled.ts";
 
 import { Hand, PlayerBoard } from "src/components";
 

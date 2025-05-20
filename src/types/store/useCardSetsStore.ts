@@ -4,7 +4,7 @@ export type CardSetStoreProps = {
   cardSets: CardSets;
   isLoading: boolean;
   error: string | null;
+  setCardSets: (newCardSets: CardSets) => void;
   setIsLoading: (loadingStatus: boolean) => void;
   setError: (errorMessage: string | null) => void;
-  setCardSets: (newCardSets: CardSets) => void;
 };
