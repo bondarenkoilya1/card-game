@@ -33,25 +33,30 @@ const answers: AnswerType[] = ["yes", "no"];
 const UploadCardSetFormButtonStyled = styled(Button)(UploadCardSetFormButtonStyles);
 
 export const UploadCardSetForm = () => {
-  const { cardsToUpload, setCardsToUpload, clearCardsToUpload } = useUploadCardSetStore();
+  const {
+    cardsToUpload,
+    formData,
+    setCardsToUpload,
+    clearCardsToUpload,
+    setSpecificFormDataField,
+    clearSpecificFormDataField
+  } = useUploadCardSetStore();
+
   const [hasCardsOnUpload, setHasCardsOnUpload] = useState(true);
 
-  const [cardSetName, setCardSetName] = useState<string>("");
-
-  const [cardName, setCardName] = useState<string>("");
-  const [selectedCardType, setSelectedCardType] = useState<CardType>("close");
-  const [cardPoints, setCardPoints] = useState<number>(0);
+  const { cardSetName, cardName, cardPoints } = formData;
+  const selectedCardType = formData.cardType;
 
   const handleSetHasCardsOnUpload = (event: React.ChangeEvent<HTMLInputElement>) =>
     setHasCardsOnUpload(event.currentTarget.value === "yes");
 
   const handleSetSelectedCardType = (event: React.ChangeEvent<HTMLInputElement>) =>
-    setSelectedCardType(event.currentTarget.value as CardType);
+    setSpecificFormDataField("cardType", event.currentTarget.value as CardType);
 
-  const resetForm = () => {
-    setCardName("");
-    setSelectedCardType("close");
-    setCardPoints(0);
+  const resetAddCardForm = () => {
+    clearSpecificFormDataField("cardName");
+    clearSpecificFormDataField("cardType");
+    clearSpecificFormDataField("cardPoints");
   };
 
   const handleSubmitForm = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -79,7 +84,7 @@ export const UploadCardSetForm = () => {
       const errorMessage = validateError(error);
       throw new Error(errorMessage);
     } finally {
-      setCardSetName("");
+      clearSpecificFormDataField("cardSetName");
       clearCardsToUpload();
     }
   };
@@ -92,7 +97,7 @@ export const UploadCardSetForm = () => {
     const currentCard = { name: cardName, type: selectedCardType, points: cardPoints };
 
     setCardsToUpload([...cardsToUpload, currentCard]);
-    resetForm();
+    resetAddCardForm();
   };
 
   return (
@@ -106,7 +111,7 @@ export const UploadCardSetForm = () => {
             type="text"
             placeholder="Chemicals"
             value={cardSetName}
-            onChange={(event) => setCardSetName(event.currentTarget.value)}
+            onChange={(event) => setSpecificFormDataField("cardSetName", event.currentTarget.value)}
           />
           <UploadCardSetFormOptionBlockStyled>
             <UploadCardSetFormTextStyled>
@@ -141,7 +146,7 @@ export const UploadCardSetForm = () => {
                 placeholder="Zync"
                 value={cardName}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                  setCardName(event.currentTarget.value)
+                  setSpecificFormDataField("cardName", event.currentTarget.value)
                 }
               />
             </BlockWithMarginTopStyled>
@@ -170,7 +175,9 @@ export const UploadCardSetForm = () => {
                 placeholder="6"
                 min="0"
                 value={cardPoints}
-                onChange={(event) => setCardPoints(+event.currentTarget.value)}
+                onChange={(event) =>
+                  setSpecificFormDataField("cardPoints", +event.currentTarget.value)
+                }
               />
             </BlockWithMarginTopStyled>
             <Button

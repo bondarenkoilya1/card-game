@@ -1,11 +1,25 @@
-import { CardProps } from "src/types";
+import { CardProps, CardType } from "src/types";
+
+// label combine with cardProps
+export type FormDataProps = {
+  cardSetName: string;
+  cardName: string;
+  cardType: CardType;
+  cardPoints: number;
+};
+
+type FieldType = "cardSetName" | "cardName" | "cardType" | "cardPoints";
+type NewValueType = string | number;
 
 export type UploadCardSetStoreProps = {
-  cardsToUpload: CardProps[];
   isLoading: boolean;
   error: string | null;
-  setCardsToUpload: (cards: CardProps[]) => void;
-  clearCardsToUpload: () => void;
+  cardsToUpload: CardProps[];
+  formData: FormDataProps;
   setIsLoading: (loadingStatus: boolean) => void;
   setError: (errorMessage: string | null) => void;
+  setCardsToUpload: (cards: CardProps[]) => void;
+  clearCardsToUpload: () => void;
+  setSpecificFormDataField: (field: FieldType, newValue: NewValueType) => void;
+  clearSpecificFormDataField: (field: FieldType) => void;
 };
