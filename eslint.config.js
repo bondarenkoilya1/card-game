@@ -66,6 +66,7 @@ export default [
             ["src/constants(/.*|$)"],
             ["src/data(/.*|$)"],
             ["src/components(/.*|$)"],
+            ["src/layout(/.*|$)"],
             ["src/import\\s+type"],
             ["src/types", "src/types(/.*|$)"],
             ["src/utils(/.*|$)"],
