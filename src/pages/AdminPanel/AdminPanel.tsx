@@ -10,7 +10,7 @@ import {
 import styled from "@emotion/styled";
 
 import { Button } from "src/components";
-import { CardSet, UploadCardSetForm } from "src/components/CardSet";
+import { CardSet } from "src/components/CardSet";
 
 import { CardSetNameProp, CardSetProps, CardSets } from "src/types";
 
@@ -19,6 +19,8 @@ import { validateError } from "src/utils";
 import { fetchItem } from "src/api";
 
 import { useCardSetsStore } from "src/store";
+
+import { UploadCardSet } from "./UploadCardSet";
 
 // In future this will be brought out to different components
 
@@ -134,7 +136,7 @@ export const AdminPanel = () => {
       <AdminPanelTitleStyled>Admin panel</AdminPanelTitleStyled>
       <AdminPanelButtonStyled onClick={fetchCardSets}>Update</AdminPanelButtonStyled>
       {renderError(error)}
-      <UploadCardSetForm />
+      <UploadCardSet />
       {isLoading ? (
         "Loading..."
       ) : (
