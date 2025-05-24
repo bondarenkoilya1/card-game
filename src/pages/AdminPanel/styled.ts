@@ -26,11 +26,3 @@ export const AdminPanelButtonStyles = css`
 export const AdminPanelErrorStyled = styled.p`
   color: ${({ theme }) => theme.colors.red["400"]};
 `;
-
-export const AdminPanelCardSetsStyled = styled.ul`
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  gap: 25px;
-  flex-wrap: wrap;
-`;
