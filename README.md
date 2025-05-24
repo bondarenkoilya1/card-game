@@ -6,9 +6,6 @@
 > [!IMPORTANT]  
 > Backend for this project takes place in [another repository](https://github.com/bondarenkoilya1/card-game-server)
 
-> [!NOTE]  
-> This project has its own [planning board](https://github.com/users/bondarenkoilya1/projects/4)
-
 > [!TIP]
 > Temporarily this project will not contain such libs as react-query, etc.\
 > The main reason for that is my willing to learn what happens under the hood.\
