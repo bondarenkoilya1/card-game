@@ -1,14 +1,24 @@
-import { AdminPanelStyled, AdminPanelTitleStyled } from "./styled";
+import { Outlet } from "react-router-dom";
 
-import { ManageCardSet } from "./ManageCardSet";
-import { UploadCardSet } from "./UploadCardSet";
+import { Global } from "@emotion/react";
+
+import { AdminPanelStyled, AdminPanelTitleStyled } from "./styled";
+import { GlobalStyle } from "src/styled.ts";
+
+import { NAVIGATION_ITEMS } from "src/constants";
+
+import { Sidebar } from "src/components";
 
 export const AdminPanel = () => {
   return (
-    <AdminPanelStyled>
-      <AdminPanelTitleStyled>Admin panel</AdminPanelTitleStyled>
-      <UploadCardSet />
-      <ManageCardSet />
-    </AdminPanelStyled>
+    <>
+      <Sidebar title="Card game" components={NAVIGATION_ITEMS.adminPanel} />
+      <AdminPanelStyled>
+        <AdminPanelTitleStyled>Admin panel</AdminPanelTitleStyled>
+      </AdminPanelStyled>
+      {/**/}
+      <Global styles={GlobalStyle} />
+      <Outlet />
+    </>
   );
 };
