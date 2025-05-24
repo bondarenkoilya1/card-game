@@ -10,6 +10,10 @@ export type CSS = CSSObject;
 
 export type JSXElement = React.JSX.Element;
 
+export type ServerErrorProps = {
+  message: string;
+};
+
 declare global {
   interface String {
     toCapitalize(): string;
