@@ -4,7 +4,8 @@ import styled from "@emotion/styled";
 
 export const AdminPanelStyled = styled.section`
   color: #000;
-  padding: 20px 0 0 20px;
+  padding-top: 20px;
+  margin-left: 25%;
 `;
 
 export const AdminPanelTitleStyled = styled.h1`
