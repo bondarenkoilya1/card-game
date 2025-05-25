@@ -7,6 +7,7 @@ export const SidebarStyled = styled.aside`
   position: fixed;
   left: 0;
   top: 0;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   color: #000;

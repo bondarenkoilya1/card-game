@@ -1,7 +1,12 @@
 import { BsFillLightningChargeFill as LightningIcon } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-import { LearnButtonStyles, LearnDescriptionStyled, LearnStyled, LearnTitleStyled } from "./styled";
+import {
+  LearnButtonStyles,
+  LearnDescriptionStyled,
+  LearnStyled,
+  LearnTitleStyled
+} from "./styled.ts";
 import styled from "@emotion/styled";
 
 import { Button } from "src/components";
