@@ -1,10 +1,8 @@
 import styled from "@emotion/styled";
 
-import { SIDEBAR_WIDTH } from "src/constants";
-
 export const SidebarStyled = styled.aside`
-  width: ${SIDEBAR_WIDTH}%;
-  height: 100vh;
+  width: ${({ theme }) => theme.elementsSizes.sidebarWidth}%;
+  height: ${({ theme }) => theme.elementsSizes.sidebarHeight}vh;
   background-color: #b7b0b0;
   position: fixed;
   left: 0;

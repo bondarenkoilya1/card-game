@@ -11,5 +11,9 @@ export const defaultTheme: Theme = {
       400: "#f21e1e",
       700: "#d62121"
     }
+  },
+  elementsSizes: {
+    sidebarWidth: 20,
+    sidebarHeight: 100
   }
 };
