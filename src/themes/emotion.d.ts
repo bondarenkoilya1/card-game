@@ -10,5 +10,9 @@ declare module "@emotion/react" {
         700: string;
       };
     };
+    elementsSizes: {
+      sidebarWidth: number;
+      sidebarHeight: number;
+    };
   }
 }

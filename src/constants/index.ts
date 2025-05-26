@@ -18,3 +18,6 @@ export const NAVIGATION_ITEMS: NavigationProps = {
     }
   ]
 };
+
+// temporary here until I find place to store this
+export const SIDEBAR_WIDTH = 20;
