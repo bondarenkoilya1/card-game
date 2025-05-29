@@ -3,7 +3,7 @@ import { CardType, NavigationProps } from "src/types";
 export const CARDS_IN_HAND = 10;
 export const CARD_TYPES: CardType[] = ["close", "range", "siege"];
 
-// temporary as json file, in the future - move to a real database
+// TODO: temporary as json file, in the future - move to a real database
 export const NORTHERN_REALMS_CARDS_ARRAY = "./northernRealms.json";
 
 export const NAVIGATION_ITEMS: NavigationProps = {
@@ -11,13 +11,10 @@ export const NAVIGATION_ITEMS: NavigationProps = {
     {
       title: "Card management",
       items: [
-        // url is temporarily empty
+        // TODO: url is temporarily empty
         { title: "Manage Card Sets", url: "" },
         { title: "Upload Card Sets", url: "upload" }
       ]
     }
   ]
 };
-
-// temporary here until I find place to store this
-export const SIDEBAR_WIDTH = 20;

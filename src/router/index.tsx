@@ -4,7 +4,7 @@ import { App } from "src/App";
 
 import { AdminPanel, Main, ManageCardSet, UploadCardSet } from "src/pages";
 
-// Here will be a few more options such as errorElement, loader
+// TODO: Here will be a few more options such as errorElement, loader
 export const router = createBrowserRouter([
   {
     path: "/",

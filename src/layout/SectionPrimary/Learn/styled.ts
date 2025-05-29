@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 
 import youngManPhoto from "../../../assets/photos/sectionPrimary/young-man.png";
 
-// todo: maybe export to global styles
+// TODO: maybe export to global styles
 export const LearnStyled = styled.div`
   width: 50%;
   height: 100%;

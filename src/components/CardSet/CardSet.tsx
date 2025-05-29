@@ -4,7 +4,7 @@ import { CardList } from "src/components";
 
 import { CardSetWrapperProps } from "src/types";
 
-// This component can even be brought out to the UI folder in the future
+// TODO: This component can even be brought out to the UI folder in the future
 
 export const CardSet: FC<CardSetWrapperProps> = ({ set, deleteCardSet, updateCardSet }) => {
   const [inputValue, setInputValue] = useState("");
