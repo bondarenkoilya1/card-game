@@ -11,3 +11,8 @@ export const AdminPanelTitleStyled = styled.h1`
   font-weight: 700;
   text-align: center;
 `;
+
+export const AdminPanelContainerStyled = styled.div`
+  max-width: 95%;
+  margin: 0 auto;
+`;

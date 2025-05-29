@@ -1,6 +1,16 @@
 import React, { FC, useState } from "react";
 
-import { Button } from "src/components";
+import {
+  CardSetInfoDeleteButtonStyled,
+  CardSetInfoFormStyled,
+  CardSetInfoIDStyled,
+  CardSetInfoNameStyled,
+  CardSetInfoQuantityStyled,
+  CardSetInfoStyled,
+  CardSetInfoTextFieldStyled,
+  CardSetInfoTitleStyled,
+  CardSetInfoUpdateButtonStyled
+} from "./styled";
 
 import { CardSetInfoProps } from "src/types";
 
@@ -21,45 +31,39 @@ export const CardSetInfo: FC<CardSetInfoProps> = ({
   };
 
   return (
-    <div style={{ padding: "20px", background: "#d0e1f5", border: "1px solid #000" }}>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <p>{name}</p>
-        <span
-          style={{
-            fontSize: "10px",
-            textTransform: "uppercase",
-            color: "grey",
-            marginLeft: "10px"
-          }}>
-          {id}
-        </span>
-      </div>
-      <form onSubmit={handleSubmit}>
-        <input
+    <CardSetInfoStyled>
+      <CardSetInfoTitleStyled>
+        <CardSetInfoNameStyled>{name}</CardSetInfoNameStyled>
+        <CardSetInfoIDStyled>{id}</CardSetInfoIDStyled>
+      </CardSetInfoTitleStyled>
+      <CardSetInfoFormStyled onSubmit={handleSubmit}>
+        <CardSetInfoTextFieldStyled
           value={inputValue}
           onChange={(event) => handleInputValueChange(event)}
           type="text"
           placeholder="Avalonians"
+          // labelText="Enter new card set name"
         />
-        <Button variant="secondary" type="submit">
-          Change name
-        </Button>
-      </form>
-      <Button variant="secondary" onClick={deleteCardSet}>
-        Delete card set
-      </Button>
+        <CardSetInfoUpdateButtonStyled variant="secondary" type="submit" disabled={!inputValue}>
+          Change
+        </CardSetInfoUpdateButtonStyled>
+      </CardSetInfoFormStyled>
       {renderCardsQuantity(cardsQuantity)}
-    </div>
+      <CardSetInfoDeleteButtonStyled variant="primary" onClick={deleteCardSet}>
+        Delete card set
+      </CardSetInfoDeleteButtonStyled>
+    </CardSetInfoStyled>
   );
 };
 
 function renderCardsQuantity(cardsQuantity: number) {
-  if (cardsQuantity === 0) return <p>No cards in this set</p>;
+  if (cardsQuantity === 0)
+    return <CardSetInfoQuantityStyled>No cards in this set</CardSetInfoQuantityStyled>;
   const label = cardsQuantity === 1 ? "card" : "cards";
 
   return (
-    <p>
-      {cardsQuantity} {label} in this set
-    </p>
+    <CardSetInfoQuantityStyled>
+      <span>{cardsQuantity}</span> {label} in this set
+    </CardSetInfoQuantityStyled>
   );
 }

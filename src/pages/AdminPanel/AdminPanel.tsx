@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 
 import { Global } from "@emotion/react";
 
-import { AdminPanelStyled, AdminPanelTitleStyled } from "./styled";
+import { AdminPanelContainerStyled, AdminPanelStyled, AdminPanelTitleStyled } from "./styled";
 import { GlobalStyle } from "src/styled";
 
 import { NAVIGATION_ITEMS } from "src/constants";
@@ -17,7 +17,9 @@ export const AdminPanel = () => {
       <Sidebar title="Card game" components={NAVIGATION_ITEMS.adminPanel} />
       <AdminPanelStyled>
         <AdminPanelTitleStyled>Admin panel</AdminPanelTitleStyled>
-        <Outlet />
+        <AdminPanelContainerStyled>
+          <Outlet />
+        </AdminPanelContainerStyled>
       </AdminPanelStyled>
     </>
   );
