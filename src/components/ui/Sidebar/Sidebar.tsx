@@ -10,7 +10,7 @@ import {
   SidebarSectionTitleStyled,
   SidebarStyled,
   SidebarTitleStyled
-} from "src/components/ui/Sidebar/styled.ts";
+} from "src/components/ui/Sidebar/styled";
 
 import { SidebarItemProps, SidebarProps, SidebarSectionProps } from "src/types";
 
@@ -25,7 +25,7 @@ export const Sidebar: FC<SidebarProps> = ({ title, components }) => {
               <SidebarSectionTitleStyled>{section.title}</SidebarSectionTitleStyled>
               <SidebarInternalListStyled>
                 {section.items.map((item: SidebarItemProps) => (
-                  <SidebarInternalListItemStyled>
+                  <SidebarInternalListItemStyled key={uuidv4()}>
                     <NavLink to={item.url} key={uuidv4()}>
                       {item.title}
                     </NavLink>

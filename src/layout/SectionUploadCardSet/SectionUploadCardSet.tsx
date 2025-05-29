@@ -1,6 +1,6 @@
 import { SectionUploadCardSetStyled } from "./styled";
 
-import { PreviewCardsToUpload, UploadCardSetForm } from "src/components/CardSet";
+import { PreviewCardsToUpload, UploadCardSetForm } from "src/components";
 
 import { useUploadCardSetStore } from "src/store";
 

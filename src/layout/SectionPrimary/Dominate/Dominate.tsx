@@ -3,7 +3,7 @@ import {
   DominateDescriptionStyled,
   DominateStyled,
   DominateTitleStyled
-} from "./styled.ts";
+} from "./styled";
 
 export const Dominate = () => {
   return (
