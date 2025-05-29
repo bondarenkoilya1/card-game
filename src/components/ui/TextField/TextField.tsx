@@ -11,10 +11,11 @@ export const TextField: FC<TextFieldProps> = ({
   placeholder,
   value,
   onChange,
+  className,
   ...attrs
 }) => {
   return (
-    <TextFieldContainerStyled>
+    <TextFieldContainerStyled className={className}>
       {labelText && <TextFieldLabelStyled htmlFor={id}>{labelText}</TextFieldLabelStyled>}
       <TextFieldStyled
         id={id}
