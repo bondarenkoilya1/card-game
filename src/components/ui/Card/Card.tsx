@@ -17,7 +17,4 @@ export const Card: FC<CardWrapperProps> = ({ card, location = "board" }) => {
       console.error(`Card has necessary param "location". It was not specified. \n`);
       return <p>Card variant was not specified (e.g "board")</p>;
   }
-
-  // When I return to coding my plan is:
-  // - End this mess with paths. Write aliases
 };

@@ -3,7 +3,7 @@ type Speciality = "multiplier";
 type CardLocation = "hand" | "adminPanel";
 
 export type CardProps = {
-  // todo: fix these mess with ids. I guess i should not set id myself, because i already have _id from mongo
+  // TODO: fix these mess with ids. I guess i should not set id myself, because i already have _id from mongo
   _id?: string;
   id?: string;
   name: string;

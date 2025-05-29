@@ -14,7 +14,6 @@ export const useCardSetHTTPMethod = () => {
     setError(null);
 
     try {
-      // (JSON.stringify(prev) === JSON.stringify(sets) ? prev : sets));
       const sets: CardSets = await fetchItem<CardSets>("/card-sets");
       setCardSets(sets);
     } catch (error) {
@@ -49,12 +48,11 @@ export const useCardSetHTTPMethod = () => {
     nameOfItemToUpdate: "cardSetName" | "cardData",
     newCardSetName?: string | undefined
   ) => {
-    // maybe create separate functions to update each item (set, its data)
+    // TODO: maybe create separate functions to update each item (set, its data)
     if (nameOfItemToUpdate === "cardSetName") {
       setIsLoading(true);
       setError(null);
 
-      // When I press cancel in my prompt window it doesn't work as expected
       if (newCardSetName === null || newCardSetName?.trim() === "") {
         const errorMessage = "You didn't enter any card set name. It will remain as it was";
         setError(errorMessage);
@@ -80,7 +78,7 @@ export const useCardSetHTTPMethod = () => {
       };
 
       try {
-        // If it has completed, I should show its response as a notification to the user
+        // TODO: If it has completed, I should show its response as a notification to the user
         await fetchItem<CardSetNameProp>(`/card-sets/${cardId}`, requestOptions);
         await fetchCardSets();
       } catch (error) {
@@ -93,9 +91,9 @@ export const useCardSetHTTPMethod = () => {
       return;
     }
   };
-  // When I use PATCH it should ensure that the data matches the model and types. If invalid - reject
-  // Card Set Patch: This method should only update card set name. Abandon updating cards[] to prevent an erasing data
-  // Create a new method to change data for a single specific card
+  /* TODO: When I use PATCH it should ensure that the data matches the model and types. If invalid - reject
+     Card Set Patch: This method should only update card set name. Abandon updating cards[] to prevent an erasing data
+     Create a new method to change data for a single specific card */
 
   return { fetchCardSets, deleteCardSet, updateCardSet };
 };

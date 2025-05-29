@@ -1,6 +1,6 @@
 import { CardProps, CardType } from "src/types";
 
-// label combine with cardProps
+// TODO: label combine with cardProps
 export type FormDataProps = {
   cardSetName: string;
   cardName: string;

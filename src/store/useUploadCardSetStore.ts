@@ -10,7 +10,7 @@ const initialFormData: FormDataProps = {
   cardPoints: 0
 };
 
-// todo: bring error and loading functionality to utils to avoid repeating
+// TODO: bring error and loading functionality to utils to avoid repeating
 export const useUploadCardSetStore = create<UploadCardSetStoreProps>()(
   devtools((set) => ({
     isLoading: false,
@@ -21,7 +21,7 @@ export const useUploadCardSetStore = create<UploadCardSetStoreProps>()(
     setError: (errorMessage: string | null) => set({ error: errorMessage }),
     setCardsToUpload: (cards) => set({ cardsToUpload: cards }),
     clearCardsToUpload: () => set({ cardsToUpload: [] }),
-    // todo prevent from wrong types
+    // TODO: prevent from wrong types
     setSpecificFormDataField: (field, newValue) =>
       set((state) => ({
         formData: {
