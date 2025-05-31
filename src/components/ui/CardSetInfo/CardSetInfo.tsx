@@ -14,6 +14,8 @@ import {
 
 import { CardSetInfoProps } from "src/types";
 
+import { copyToClipboard } from "src/utils";
+
 export const CardSetInfo: FC<CardSetInfoProps> = ({
   name,
   id,
@@ -34,7 +36,7 @@ export const CardSetInfo: FC<CardSetInfoProps> = ({
     <CardSetInfoStyled>
       <CardSetInfoTitleStyled>
         <CardSetInfoNameStyled>{name}</CardSetInfoNameStyled>
-        <CardSetInfoIDStyled>{id}</CardSetInfoIDStyled>
+        <CardSetInfoIDStyled onClick={() => copyToClipboard(id)}>{id}</CardSetInfoIDStyled>
       </CardSetInfoTitleStyled>
       <CardSetInfoFormStyled onSubmit={handleSubmit}>
         <CardSetInfoTextFieldStyled

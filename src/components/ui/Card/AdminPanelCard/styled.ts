@@ -1,15 +1,10 @@
 import styled from "@emotion/styled";
 
 export const AdminPanelCardStyled = styled.li`
-  margin-bottom: 10px;
-  max-width: 300px;
+  max-width: 100%;
   border-radius: 6px;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
   padding: 20px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
 `;
 
 export const AdminPanelCardPropertiesStyled = styled.ul``;

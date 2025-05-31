@@ -28,6 +28,7 @@ export const CardSetInfoIDStyled = styled.span`
   text-transform: uppercase;
   color: darkgrey;
   margin-left: 10px;
+  cursor: pointer;
 `;
 
 export const CardSetInfoFormStyled = styled.form`
