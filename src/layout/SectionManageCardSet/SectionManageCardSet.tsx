@@ -5,8 +5,7 @@ import { CardSet } from "src/components/CardSet";
 
 import { ManageCardSetListStyled } from "src/layout/SectionManageCardSet/styled";
 
-import { CardSetProps } from "src/types";
-
+// import { CardSetProps } from "src/types";
 import { useCardSetsStore } from "src/store";
 
 import { useCardSetHTTPMethod } from "src/hooks";
@@ -14,24 +13,32 @@ import { useCardSetHTTPMethod } from "src/hooks";
 export const SectionManageCardSet = () => {
   const { cardSets, isLoading, error } = useCardSetsStore();
   const { fetchCardSets, deleteCardSet, updateCardSet } = useCardSetHTTPMethod();
+  // const [cardSetNames, setCardSetNames] = useState<string[]>([]);
 
   useEffect(() => {
     fetchCardSets();
   }, []);
 
-  const renderCardSetList = () => (
-    <ManageCardSetListStyled>
-      {cardSets &&
-        cardSets.map((set: CardSetProps) => (
-          <CardSet
-            set={set}
-            deleteCardSet={deleteCardSet}
-            updateCardSet={updateCardSet}
-            key={set._id}
-          />
-        ))}
-    </ManageCardSetListStyled>
-  );
+  // useEffect(() => setCardSetNames(cardSets.map((cardSet) => cardSet.cardSetName)), [cardSets]);
+  // console.log(cardSetNames);
+
+  // Here render list by current selected card set name
+
+  const renderCardSetList = () => {
+    const firstSet = cardSets?.[0];
+    if (!firstSet) return <p>No card sets available.</p>;
+
+    return (
+      <ManageCardSetListStyled>
+        <CardSet
+          set={firstSet}
+          deleteCardSet={deleteCardSet}
+          updateCardSet={updateCardSet}
+          key={firstSet._id}
+        />
+      </ManageCardSetListStyled>
+    );
+  };
 
   return (
     <>
