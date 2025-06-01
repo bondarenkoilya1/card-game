@@ -1,9 +1,15 @@
 import { useEffect } from "react";
 
+import {
+  ManageCardSetListStyled,
+  ManageCardSetSupportButtonStyled,
+  ManageCardSetSupportContainerStyled,
+  ManageCardSetSupportTextStyled,
+  SectionManageCardSetStyled
+} from "./styled";
+
 import { Error } from "src/components";
 import { CardSet } from "src/components/CardSet";
-
-import { ManageCardSetListStyled } from "src/layout/SectionManageCardSet/styled";
 
 // import { CardSetProps } from "src/types";
 import { useCardSetsStore } from "src/store";
@@ -40,10 +46,21 @@ export const SectionManageCardSet = () => {
     );
   };
 
+  // TODO: Later make it more noticeable
+  const renderSupportSection = () => (
+    <ManageCardSetSupportContainerStyled>
+      <ManageCardSetSupportTextStyled>Card set did not load?</ManageCardSetSupportTextStyled>
+      <ManageCardSetSupportButtonStyled variant="tertiary" onClick={() => fetchCardSets()}>
+        Try again
+      </ManageCardSetSupportButtonStyled>
+    </ManageCardSetSupportContainerStyled>
+  );
+
   return (
-    <>
-      {error && <Error unspecifiedErrorMessage={`${error} Try again or contact support.`} />}
+    <SectionManageCardSetStyled>
+      {error && renderSupportSection()}
+      {error && <Error unspecifiedErrorMessage={`${error}. Try again or contact support`} />}
       {isLoading ? "Loading..." : renderCardSetList()}
-    </>
+    </SectionManageCardSetStyled>
   );
 };
