@@ -6,6 +6,7 @@ import styled from "@emotion/styled";
 
 import { Button } from "src/components";
 
+// TODO: Transfer this to styled file
 const ButtonStyled = styled(Button)(LearnButtonStyles);
 
 export const Learn = () => {
