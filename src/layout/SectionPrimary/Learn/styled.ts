@@ -11,6 +11,7 @@ export const LearnStyled = styled.div`
   overflow: hidden;
   padding-top: 100px;
   background: url(${youngManPhoto}) no-repeat center right -460px;
+  background-color: #eae4e4;
   background-size: contain;
   border-right: 3px solid #000;
 `;
@@ -32,11 +33,11 @@ export const LearnDescriptionStyled = styled.p`
 `;
 
 export const LearnButtonStyles = (props: { theme: Theme }) => css`
-  border: 4px solid ${props.theme.colors.red["400"]};
+  border: 3px solid #fff;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   text-transform: uppercase;
   padding: 20px;
-  color: ${props.theme.colors.red["400"]};
+  color: #fff;
   font-size: 24px;
   font-weight: 600;
   border-radius: 0;

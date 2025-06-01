@@ -2,7 +2,7 @@ import React from "react";
 
 import { CSS } from "src/types";
 
-import { CardProps, CardType } from "./Card";
+import { CardProps, CardType } from "./ui/Card.ts";
 
 export type RowProps = {
   type: CardType;
