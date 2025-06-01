@@ -14,58 +14,47 @@ import { CardSet } from "src/components/CardSet";
 import { useCardSetsStore } from "src/store";
 
 import { useCardSetHTTPMethod } from "src/hooks";
+import { CardSetProps } from "src/types";
 
 export const SectionManageCardSet = () => {
   const { cardSets, isLoading, error } = useCardSetsStore();
   const { fetchCardSets, deleteCardSet, updateCardSet } = useCardSetHTTPMethod();
   const [cardSetNames, setCardSetNames] = useState<string[]>([]);
-  const [currentCardSet, setCurrentCardSet] = useState<string>(cardSetNames[0]);
+  const [selectedCardSet, setSelectedCardSet] = useState<CardSetProps | null>(null);
 
   useEffect(() => {
     fetchCardSets();
   }, []);
 
-  useEffect(() => setCardSetNames(cardSets.map((cardSet) => cardSet.cardSetName)), [cardSets]);
-
-  // console.log(cardSets.filter((cardSet) => cardSet.cardSetName === "xcv"));
+  useEffect(() => {
+    const allCardSetNames = cardSets.map((cardSet) => cardSet.cardSetName);
+    setCardSetNames(allCardSetNames);
+    setSelectedCardSet(cardSets[0] || null);
+  }, [cardSets]);
 
   const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setCurrentCardSet(event.target.value || cardSetNames[0]);
+    const matchingCardSet = cardSets.find((cardSet) => cardSet.cardSetName === event.target.value);
+    setSelectedCardSet(matchingCardSet || null);
   };
 
-  const renderCardSetList = () => {
-    /* Here we will render _currentSet;
-    We will set _currentSet when select has changed
-    And filter cardSets to find set with the identical name with selected option */
-    const firstSet = cardSets?.[0];
-    if (!firstSet) return <p>No card sets available.</p>;
+  if (isLoading) return <p>Loading...</p>;
 
+  if (error || !selectedCardSet)
     return (
-      <ManageCardSetListStyled>
-        <CardSet
-          set={firstSet}
-          deleteCardSet={deleteCardSet}
-          updateCardSet={updateCardSet}
-          key={firstSet._id}
-        />
-      </ManageCardSetListStyled>
+      <>
+        {/* TODO: Later make its UI more noticeable  TODO: Change Support to Retry*/}
+        <ManageCardSetSupportContainerStyled>
+          <ManageCardSetSupportTextStyled>Card set did not load?</ManageCardSetSupportTextStyled>
+          <ManageCardSetSupportButtonStyled variant="tertiary" onClick={() => fetchCardSets()}>
+            Try again
+          </ManageCardSetSupportButtonStyled>
+        </ManageCardSetSupportContainerStyled>
+        <Error unspecifiedErrorMessage={`${error}. Try again or contact support`} />
+      </>
     );
-  };
-
-  // TODO: Later make it more noticeable
-  const renderSupportSection = () => (
-    <ManageCardSetSupportContainerStyled>
-      <ManageCardSetSupportTextStyled>Card set did not load?</ManageCardSetSupportTextStyled>
-      <ManageCardSetSupportButtonStyled variant="tertiary" onClick={() => fetchCardSets()}>
-        Try again
-      </ManageCardSetSupportButtonStyled>
-    </ManageCardSetSupportContainerStyled>
-  );
 
   return (
     <SectionManageCardSetStyled>
-      {error && renderSupportSection()}
-
       <div style={{ display: "flex", flexDirection: "column" }}>
         <label htmlFor="select_card-sets">Select card set</label>
         <select
@@ -80,9 +69,14 @@ export const SectionManageCardSet = () => {
           ))}
         </select>
       </div>
-
-      {error && <Error unspecifiedErrorMessage={`${error}. Try again or contact support`} />}
-      {isLoading ? "Loading..." : renderCardSetList()}
+      <ManageCardSetListStyled>
+        <CardSet
+          set={selectedCardSet}
+          deleteCardSet={deleteCardSet}
+          updateCardSet={updateCardSet}
+          key={selectedCardSet._id}
+        />
+      </ManageCardSetListStyled>
     </SectionManageCardSetStyled>
   );
 };
