@@ -7,9 +7,13 @@ export const AdminPanelStyled = styled.section`
 `;
 
 export const AdminPanelTitleStyled = styled.h1`
-  font-size: 42px;
+  font-size: 18px;
   font-weight: 700;
-  text-align: center;
+  border-bottom: 1px solid lightgray;
+  width: 500px;
+  padding-bottom: 6px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
 `;
 
 export const AdminPanelContainerStyled = styled.div`

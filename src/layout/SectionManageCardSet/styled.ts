@@ -23,3 +23,8 @@ export const ManageCardSetSupportButtonStyled = styled(Button)`
   padding: 5px;
   font-size: 18px;
 `;
+
+export const ManageCardSetSwitchButtonStyled = styled(Button)`
+  padding: 5px;
+  font-size: 14px;
+`;
