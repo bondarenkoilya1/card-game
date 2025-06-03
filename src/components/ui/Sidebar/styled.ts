@@ -15,7 +15,7 @@ export const SidebarStyled = styled.aside`
 `;
 
 export const SidebarTitleStyled = styled.h2`
-  font-size: 48px;
+  font-size: 28px;
   text-transform: uppercase;
   text-align: center;
   font-weight: 700;

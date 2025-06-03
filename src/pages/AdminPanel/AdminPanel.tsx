@@ -16,8 +16,8 @@ export const AdminPanel = () => {
       {/**/}
       <Sidebar title="Card game" components={NAVIGATION_ITEMS.adminPanel} />
       <AdminPanelStyled>
-        <AdminPanelTitleStyled>Admin panel</AdminPanelTitleStyled>
         <AdminPanelContainerStyled>
+          <AdminPanelTitleStyled>Admin panel</AdminPanelTitleStyled>
           <Outlet />
         </AdminPanelContainerStyled>
       </AdminPanelStyled>
