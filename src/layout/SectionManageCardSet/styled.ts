@@ -4,22 +4,22 @@ import { Button } from "src/components";
 
 export const SectionManageCardSetStyled = styled.section``;
 
-export const ManageCardSetListStyled = styled.ul`
+export const ManageCardSetStyled = styled.div`
   margin-top: 20px;
 `;
 
-export const ManageCardSetSupportContainerStyled = styled.div`
+export const ManageCardSetRetryContainerStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 20px;
 `;
 
-export const ManageCardSetSupportTextStyled = styled.span`
+export const ManageCardSetRetryTextStyled = styled.span`
   font-size: 16px;
 `;
 
-export const ManageCardSetSupportButtonStyled = styled(Button)`
+export const ManageCardSetRetryButtonStyled = styled(Button)`
   padding: 5px;
   font-size: 18px;
 `;
