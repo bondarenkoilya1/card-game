@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 
 import {
-  ManageCardSetListStyled,
-  ManageCardSetSupportButtonStyled,
-  ManageCardSetSupportContainerStyled,
-  ManageCardSetSupportTextStyled,
+  ManageCardSetStyled,
+  ManageCardSetRetryButtonStyled,
+  ManageCardSetRetryContainerStyled,
+  ManageCardSetRetryTextStyled,
   ManageCardSetSwitchButtonStyled,
   SectionManageCardSetStyled
 } from "./styled";
@@ -52,13 +52,13 @@ export const SectionManageCardSet = () => {
   if (error || !selectedCardSet)
     return (
       <>
-        {/* TODO: Later make its UI more noticeable  TODO: Change Support to Retry*/}
-        <ManageCardSetSupportContainerStyled>
-          <ManageCardSetSupportTextStyled>Card set did not load?</ManageCardSetSupportTextStyled>
-          <ManageCardSetSupportButtonStyled variant="tertiary" onClick={fetchCardSets}>
+        {/* TODO: Later make its UI more noticeable  */}
+        <ManageCardSetRetryContainerStyled>
+          <ManageCardSetRetryTextStyled>Card set did not load?</ManageCardSetRetryTextStyled>
+          <ManageCardSetRetryButtonStyled variant="tertiary" onClick={fetchCardSets}>
             Try again
-          </ManageCardSetSupportButtonStyled>
-        </ManageCardSetSupportContainerStyled>
+          </ManageCardSetRetryButtonStyled>
+        </ManageCardSetRetryContainerStyled>
         <ErrorComponent unspecifiedErrorMessage={`${error}. Try again or contact support`} />
       </>
     );
@@ -94,14 +94,14 @@ export const SectionManageCardSet = () => {
           Next {">"}
         </ManageCardSetSwitchButtonStyled>
       </div>
-      <ManageCardSetListStyled>
+      <ManageCardSetStyled>
         <CardSet
           set={selectedCardSet}
           deleteCardSet={deleteCardSet}
           updateCardSet={updateCardSet}
           key={selectedCardSet._id}
         />
-      </ManageCardSetListStyled>
+      </ManageCardSetStyled>
     </SectionManageCardSetStyled>
   );
 };
