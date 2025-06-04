@@ -8,3 +8,4 @@ export * from "./Image";
 export * from "./TextField";
 export * from "./Sidebar";
 export * from "./Error";
+export * from "./Dropdown";
