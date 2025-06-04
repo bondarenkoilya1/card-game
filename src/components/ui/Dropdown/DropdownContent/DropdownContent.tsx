@@ -1,7 +1,9 @@
 import { FC } from "react";
 
-import { Children } from "src/types";
+import { DropdownContentStyled } from "./styled";
 
-export const DropdownContent: FC<Children> = ({ children }) => {
-  return <div>{children}</div>;
+import { DropdownDefaultProps } from "src/types";
+
+export const DropdownContent: FC<DropdownDefaultProps> = ({ children, isOpen }) => {
+  return <DropdownContentStyled isOpen={isOpen}>{children}</DropdownContentStyled>;
 };
