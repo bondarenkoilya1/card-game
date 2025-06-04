@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 
 import { DropdownStyled } from "./styled";
 
@@ -9,10 +9,22 @@ import { DropdownProps } from "src/types";
 export const Dropdown: FC<DropdownProps> = ({ buttonText, children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
   const toggleDropdown = () => setIsOpen((isOpen) => !isOpen);
 
+  useEffect(() => {
+    const handler = (event: any) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) setIsOpen(false);
+    };
+
+    document.addEventListener("click", handler);
+
+    return () => document.removeEventListener("click", handler);
+  }, [dropdownRef]);
+
   return (
-    <DropdownStyled>
+    <DropdownStyled ref={dropdownRef}>
       <DropdownButton isOpen={isOpen} onClick={toggleDropdown}>
         {buttonText}
       </DropdownButton>
