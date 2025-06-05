@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
-  ManageCardSetStyled,
   ManageCardSetRetryButtonStyled,
   ManageCardSetRetryContainerStyled,
   ManageCardSetRetryTextStyled,
+  ManageCardSetStyled,
   ManageCardSetSwitchButtonStyled,
   SectionManageCardSetStyled
 } from "./styled";
 
-import { Error as ErrorComponent } from "src/components";
+import { Dropdown, DropdownItem, Error as ErrorComponent } from "src/components";
 import { CardSet } from "src/components/CardSet";
 
 import { CardSetProps } from "src/types";
@@ -29,8 +29,8 @@ export const SectionManageCardSet = () => {
 
   useEffect(() => setSelectedCardSet(cardSets[0] || null), [cardSets]);
 
-  const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const matchingCardSet = cardSets.find((cardSet) => cardSet.cardSetName === event.target.value);
+  const handleSelect = (cardSetName: string) => {
+    const matchingCardSet = cardSets.find((cardSet) => cardSet.cardSetName === cardSetName);
     setSelectedCardSet(matchingCardSet || null);
   };
 
@@ -66,23 +66,16 @@ export const SectionManageCardSet = () => {
   return (
     <SectionManageCardSetStyled>
       <div style={{ display: "flex", alignItems: "center" }}>
-        <div style={{ display: "flex", flexDirection: "column", marginRight: "40px" }}>
-          <label htmlFor="select_card-sets">Select card set</label>
-          <select
-            name="card-sets"
-            id="select_card-sets"
-            style={{ width: "fit-content" }}
-            onChange={handleSelect}>
-            {cardSets.map(({ cardSetName }) => (
-              <option key={cardSetName} value={cardSetName}>
-                {cardSetName}
-              </option>
-            ))}
-          </select>
-        </div>
+        <Dropdown buttonText="Select card set">
+          {cardSets.map(({ cardSetName }) => (
+            <DropdownItem key={cardSetName} onClick={() => handleSelect(cardSetName)}>
+              {cardSetName}
+            </DropdownItem>
+          ))}
+        </Dropdown>
         <ManageCardSetSwitchButtonStyled
           variant="tertiary"
-          style={{ marginRight: "20px" }}
+          style={{ margin: "0 20px" }}
           onClick={() => switchCardSet("prev")}
           disabled={isPrevButtonDisabled}>
           {"<"} Previous

@@ -10,8 +10,6 @@ export const Dropdown: FC<DropdownProps> = ({ buttonText, children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef(null);
-  const contentRef = useRef(null);
 
   const toggleDropdown = () => setIsOpen((isOpen) => !isOpen);
 
@@ -28,16 +26,10 @@ export const Dropdown: FC<DropdownProps> = ({ buttonText, children }) => {
 
   return (
     <DropdownStyled ref={dropdownRef}>
-      <DropdownButtonStyled
-        variant="secondary"
-        isOpen={isOpen}
-        onClick={toggleDropdown}
-        ref={buttonRef}>
+      <DropdownButtonStyled variant="secondary" isOpen={isOpen} onClick={toggleDropdown}>
         {buttonText}
       </DropdownButtonStyled>
-      <DropdownContent isOpen={isOpen} ref={contentRef}>
-        {children}
-      </DropdownContent>
+      <DropdownContent isOpen={isOpen}>{children}</DropdownContent>
     </DropdownStyled>
   );
 };

@@ -30,6 +30,7 @@ export const DropdownContentStyled = styled.ul<{ isOpen: boolean }>`
   visibility: hidden;
   transition: all 0.3s ease-in-out;
   transform: translateY(-5%);
+
   // When it's closed we can't click on the items
   pointer-events: none;
 
