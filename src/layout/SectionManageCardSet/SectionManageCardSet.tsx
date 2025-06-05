@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 
 import {
-  ManageCardSetStyled,
   ManageCardSetRetryButtonStyled,
   ManageCardSetRetryContainerStyled,
   ManageCardSetRetryTextStyled,
+  ManageCardSetStyled,
   ManageCardSetSwitchButtonStyled,
   SectionManageCardSetStyled
 } from "./styled";
 
-import { Error as ErrorComponent } from "src/components";
+import { Dropdown, DropdownItem, Error as ErrorComponent } from "src/components";
 import { CardSet } from "src/components/CardSet";
 
 import { CardSetProps } from "src/types";
@@ -65,6 +65,11 @@ export const SectionManageCardSet = () => {
 
   return (
     <SectionManageCardSetStyled>
+      <Dropdown buttonText="Select card set">
+        {cardSets.map(({ cardSetName }) => (
+          <DropdownItem key={cardSetName}>{cardSetName}</DropdownItem>
+        ))}
+      </Dropdown>
       <div style={{ display: "flex", alignItems: "center" }}>
         <div style={{ display: "flex", flexDirection: "column", marginRight: "40px" }}>
           <label htmlFor="select_card-sets">Select card set</label>
