@@ -1,8 +1,8 @@
 import { FC, useEffect, useRef, useState } from "react";
 
-import { DropdownStyled } from "./styled";
+import { DropdownButtonStyled, DropdownStyled } from "./styled";
 
-import { DropdownButton, DropdownContent } from "src/components";
+import { DropdownContent } from "src/components";
 
 import { DropdownProps } from "src/types";
 
@@ -10,25 +10,34 @@ export const Dropdown: FC<DropdownProps> = ({ buttonText, children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef(null);
+  const contentRef = useRef(null);
 
   const toggleDropdown = () => setIsOpen((isOpen) => !isOpen);
 
   useEffect(() => {
-    const handler = (event: any) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) setIsOpen(false);
+    const handler = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node))
+        setIsOpen(false);
     };
 
     document.addEventListener("click", handler);
 
     return () => document.removeEventListener("click", handler);
-  }, [dropdownRef]);
+  }, []);
 
   return (
     <DropdownStyled ref={dropdownRef}>
-      <DropdownButton isOpen={isOpen} onClick={toggleDropdown}>
+      <DropdownButtonStyled
+        variant="secondary"
+        isOpen={isOpen}
+        onClick={toggleDropdown}
+        ref={buttonRef}>
         {buttonText}
-      </DropdownButton>
-      <DropdownContent isOpen={isOpen}>{children}</DropdownContent>
+      </DropdownButtonStyled>
+      <DropdownContent isOpen={isOpen} ref={contentRef}>
+        {children}
+      </DropdownContent>
     </DropdownStyled>
   );
 };
