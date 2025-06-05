@@ -6,6 +6,7 @@ export const DropdownItemStyled = styled.li`
   width: 100%;
   border-radius: 4px;
   cursor: pointer;
+  user-select: none;
 
   &:hover {
     background-color: rgb(240, 249, 255);

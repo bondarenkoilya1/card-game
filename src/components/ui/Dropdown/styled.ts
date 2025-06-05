@@ -16,6 +16,7 @@ const DropdownButtonOpenedStyles = css`
 export const DropdownButtonStyled = styled(Button)<{ isOpen: boolean }>`
   box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
   border: 2px solid transparent;
+  font-size: 14px;
 
   ${({ isOpen }) => isOpen && DropdownButtonOpenedStyles}
 `;
