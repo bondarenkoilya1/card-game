@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 import {
@@ -17,6 +17,10 @@ import { SidebarItemProps, SidebarProps, SidebarSectionProps } from "src/types";
 export const Sidebar: FC<SidebarProps> = ({ title, components }) => {
   return (
     <SidebarStyled>
+      {/* todo: temporarily here */}
+      <Link to="/" style={{ textAlign: "center" }}>
+        [back home]
+      </Link>
       <SidebarTitleStyled>{title}</SidebarTitleStyled>
       <SidebarListStyled>
         {components &&

@@ -1,6 +1,6 @@
 import { Theme } from "@emotion/react";
 
-/* These names, like "blue" and "red" are temporary.
+/* These names, like "blue" and "red" are temporarily.
    In case a dark theme is needed, these names will be changed. */
 export const defaultTheme: Theme = {
   colors: {
