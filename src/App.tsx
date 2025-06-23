@@ -56,6 +56,9 @@ function renderHeader() {
             <li style={{ marginRight: "30px" }}>
               <Link to="/play">Play</Link>
             </li>
+            <li style={{ marginRight: "30px" }}>
+              <Link to="/pick-set">Pick set</Link>
+            </li>
             <li>
               <Link to="/admin-panel">Admin panel</Link>
             </li>
