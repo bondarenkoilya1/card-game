@@ -30,7 +30,8 @@ export const PickSet = () => {
           }}>
           {cardSets &&
             cardSets.map(({ cardSetName }) => {
-              const currentSetUrl = cardSetName.split(" ").join("-").toLowerCase();
+              // TODO: Currently remove toLowerCase because have no ideas how to recover it in child component
+              const currentSetUrl = cardSetName.split(" ").join("-");
 
               return (
                 <li key={cardSetName}>
