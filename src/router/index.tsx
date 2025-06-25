@@ -2,7 +2,15 @@ import { createBrowserRouter } from "react-router-dom";
 
 import { App } from "src/App";
 
-import { AdminPanel, Game, Main, ManageCardSet, UploadCardSet, PickSet } from "src/pages";
+import {
+  AdminPanel,
+  Game,
+  Main,
+  ManageCardSet,
+  ManageDeck,
+  PickSet,
+  UploadCardSet
+} from "src/pages";
 
 // TODO: Here will be a few more options such as errorElement, loader
 export const router = createBrowserRouter([
@@ -21,6 +29,10 @@ export const router = createBrowserRouter([
       {
         path: "pick-set",
         element: <PickSet />
+      },
+      {
+        path: "pick-set/:cardSetName",
+        element: <ManageDeck />
       }
     ]
   },
