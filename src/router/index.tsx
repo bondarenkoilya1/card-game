@@ -31,7 +31,7 @@ export const router = createBrowserRouter([
         element: <PickSet />
       },
       {
-        path: "pick-set/:cardSetName",
+        path: "pick-set/:cardSetSlug",
         element: <ManageDeck />
       }
     ]

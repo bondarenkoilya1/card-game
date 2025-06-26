@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-import { RowType } from "../../../types";
+import { RowType } from "src/types";
 
 export const CardRowStyled = styled.ul<{ type: RowType }>`
   display: flex;
