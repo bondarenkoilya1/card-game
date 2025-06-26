@@ -1,15 +1,18 @@
 import { FC } from "react";
 
-import { OptionStyled, OptionTitleStyled } from "./styled";
+import { OptionContainerStyled, OptionStyled, OptionTitleStyled } from "./styled";
 
 type CardSetOptionProps = {
   cardSetName: string;
+  href: string;
 };
 
-export const CardSetOption: FC<CardSetOptionProps> = ({ cardSetName }) => {
+export const CardSetOption: FC<CardSetOptionProps> = ({ cardSetName, href }) => {
   return (
-    <OptionStyled cardSetName={cardSetName}>
-      <OptionTitleStyled>{cardSetName}</OptionTitleStyled>
-    </OptionStyled>
+    <OptionContainerStyled>
+      <OptionStyled cardSetName={cardSetName} to={href}>
+        <OptionTitleStyled>{cardSetName}</OptionTitleStyled>
+      </OptionStyled>
+    </OptionContainerStyled>
   );
 };
