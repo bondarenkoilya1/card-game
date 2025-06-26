@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { Card } from "src/components";
+import { Card, CardRow } from "src/components";
 
 import { useCardSetsStore } from "src/store";
 
@@ -23,12 +23,12 @@ export const ManageDeck = () => {
   const currentCardSetCards = currentCardSet?.cards;
 
   return (
-    <div style={{ color: "#000", marginTop: "40px" }}>
+    <div style={{ color: "#000", marginTop: "40px", textAlign: "center" }}>
       <p>Manage deck</p>
-      <ul>
+      <CardRow type="close">
         {currentCardSetCards &&
           currentCardSetCards.map((card) => <Card location="hand" key={card._id} card={card} />)}
-      </ul>
+      </CardRow>
     </div>
   );
 };

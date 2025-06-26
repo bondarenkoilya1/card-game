@@ -1,8 +1,9 @@
-import { CardProps } from "./ui/Card.ts";
+import { CardProps } from "./ui/Card";
 
 export type CardSetProps = {
   _id: string;
   cardSetName: string;
+  slug: string;
   cards: CardProps[];
 };
 

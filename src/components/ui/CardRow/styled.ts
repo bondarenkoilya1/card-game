@@ -8,7 +8,7 @@ export const CardRowStyled = styled.ul<{ type: RowType }>`
   border: 2px solid #fff;
   border-radius: 12px;
   width: 100%;
-  height: 100px;
+  height: 104px;
   overflow: hidden;
   overflow-x: auto;
 `;

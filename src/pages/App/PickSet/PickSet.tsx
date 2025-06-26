@@ -29,24 +29,19 @@ export const PickSet = () => {
             justifyContent: "center"
           }}>
           {cardSets &&
-            cardSets.map(({ cardSetName }) => {
-              // TODO: Currently remove toLowerCase because have no ideas how to recover it in child component
-              const currentSetUrl = cardSetName.split(" ").join("-");
-
-              return (
-                <li key={cardSetName}>
-                  <Link
-                    to={currentSetUrl}
-                    style={{
-                      padding: "20px",
-                      backgroundColor: "#9de2ec",
-                      borderRadius: "4px"
-                    }}>
-                    {cardSetName}
-                  </Link>
-                </li>
-              );
-            })}
+            cardSets.map((cardSet) => (
+              <li key={cardSet.cardSetName}>
+                <Link
+                  to={cardSet.slug}
+                  style={{
+                    padding: "20px",
+                    backgroundColor: "#9de2ec",
+                    borderRadius: "4px"
+                  }}>
+                  {cardSet.cardSetName}
+                </Link>
+              </li>
+            ))}
         </ul>
       </ContainerStyled>
     </div>
