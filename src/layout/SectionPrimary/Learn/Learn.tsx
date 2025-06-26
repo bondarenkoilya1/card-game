@@ -17,7 +17,7 @@ export const Learn = () => {
         Discover your skill level by starting with easy bots. <br />
         Master the game and challenge the veterans!
       </LearnDescriptionStyled>
-      <Link to="/play">
+      <Link to="/pick-set">
         <ButtonStyled hasIcon="onLeft" icon={LightningIcon}>
           Choose your card set
         </ButtonStyled>
