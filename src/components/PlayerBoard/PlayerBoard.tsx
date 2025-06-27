@@ -31,7 +31,7 @@ export const PlayerBoard: FC<CardsOnBoardArray> = ({
     CARD_TYPES.map((type: CardType, index) => (
       <CardRow outsideStyles={CardRowStyles} type={type} key={uuidv4()}>
         {cardsOnBoard[index].cards.map((card) => (
-          <Card card={card} key={card._id} />
+          <Card card={card} location="hand" key={card._id} />
         ))}
       </CardRow>
     ));

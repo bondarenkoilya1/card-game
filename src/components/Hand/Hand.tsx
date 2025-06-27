@@ -3,22 +3,26 @@ import { v4 as uuidv4 } from "uuid";
 
 import { HandStyled, LoadingMessageStyled, TitleStyled } from "./styled";
 
-import { NORTHERN_REALMS_CARDS_ARRAY } from "src/constants";
-
 import { Card, CardRow, Error } from "src/components";
 
 import { CardProps, CardsOnBoardUpdater } from "src/types";
 
 import { useCardSetup } from "src/hooks";
 
-export const Hand: FC<CardsOnBoardUpdater> = ({ outsideStyles, setCardsOnBoard, currentScore }) => {
-  const { cardsInHand, setCardsInHand, loading, error } = useCardSetup(NORTHERN_REALMS_CARDS_ARRAY);
+export const Hand: FC<CardsOnBoardUpdater> = ({
+  outsideStyles,
+  setCardsOnBoard,
+  currentScore,
+  cards
+}) => {
+  // todo: maybe rename "cards"
+  const { cardsInHand, setCardsInHand, loading, error } = useCardSetup(cards);
 
   if (loading) return <LoadingMessageStyled>Loading...</LoadingMessageStyled>;
 
   const removeCardFromHand = (cardId: string) => {
     setCardsInHand((prevHand: CardProps[]) =>
-      prevHand.filter((handCard) => handCard.id !== cardId)
+      prevHand.filter((handCard) => handCard._id !== cardId)
     );
   };
 
@@ -36,7 +40,7 @@ export const Hand: FC<CardsOnBoardUpdater> = ({ outsideStyles, setCardsOnBoard, 
       )
     );
 
-    removeCardFromHand(card.id);
+    removeCardFromHand(card._id);
   };
 
   return (
@@ -47,7 +51,7 @@ export const Hand: FC<CardsOnBoardUpdater> = ({ outsideStyles, setCardsOnBoard, 
       <TitleStyled>Your Hand</TitleStyled>
       <CardRow type="hand">
         {cardsInHand.map((card: CardProps) => (
-          <Card card={card} onClick={() => addCardToBoard(card)} key={uuidv4()} />
+          <Card card={card} location="hand" onClick={() => addCardToBoard(card)} key={uuidv4()} />
         ))}
       </CardRow>
     </HandStyled>
