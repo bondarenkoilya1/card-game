@@ -3,12 +3,10 @@ type Speciality = "multiplier";
 type CardLocation = "hand" | "adminPanel";
 
 export type CardProps = {
-  // TODO: fix these mess with ids. I guess i should not set id myself, because i already have _id from mongo
-  _id?: string;
-  id?: string;
+  _id: string;
   name: string;
   description?: string;
-  type?: CardType;
+  type: CardType;
   // TODO: check if such card is not already in a row
   speciality?: Speciality;
   points?: number;

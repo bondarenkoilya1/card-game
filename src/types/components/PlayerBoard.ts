@@ -19,4 +19,5 @@ export type CardsOnBoardUpdater = {
   outsideStyles?: CSS;
   setCardsOnBoard: React.Dispatch<React.SetStateAction<RowProps[]>>;
   currentScore: number;
+  cards: CardProps[];
 };
