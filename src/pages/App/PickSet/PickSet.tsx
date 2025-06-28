@@ -17,6 +17,17 @@ export const PickSet = () => {
     fetchCardSets();
   }, []);
 
+  // TODO: Currently useless, but maybe useful later
+  // const saveSelectedSetToLocalStorage = (event: React.MouseEvent<HTMLElement>) => {
+  //   const cardSetName = event.currentTarget.getAttribute("cardsetname");
+  //
+  //   if (!cardSetName) {
+  //     throw new Error("Attribute 'cardsetname' was not found on clicked element.");
+  //   }
+  //
+  //   localStorage.setItem("selectedCardSet", cardSetName);
+  // };
+
   return (
     <div style={{ color: "#000", marginTop: "40px" }}>
       <ContainerStyled>

@@ -5,27 +5,33 @@ import { ContainerStyled } from "src/styled";
 
 import { Hand, PlayerBoard } from "src/components";
 
-import { RowProps } from "src/types";
+import { CardSetProps, CardType, RowProps } from "src/types";
 
 import { useCardSetsStore } from "src/store";
 
 import { useCardSetHTTPMethod } from "src/hooks";
 
+const INITIAL_CARDS_ON_BOARD = [
+  { type: "close" as CardType, cards: [] },
+  { type: "range" as CardType, cards: [] },
+  { type: "siege" as CardType, cards: [] }
+];
+
 export const Game = () => {
-  const [cardsOnBoard, setCardsOnBoard] = useState<RowProps[]>([
-    { type: "close", cards: [] },
-    { type: "range", cards: [] },
-    { type: "siege", cards: [] }
-  ]);
+  const [cardsOnBoard, setCardsOnBoard] = useState<RowProps[]>(INITIAL_CARDS_ON_BOARD);
   const [currentScore, setCurrentScore] = useState(0);
 
   // todo: temporarily here
   const { fetchCardSets } = useCardSetHTTPMethod();
-  const { cardSets } = useCardSetsStore();
+  const { cardSets, selectedCardSetName } = useCardSetsStore();
 
   useEffect(() => {
     fetchCardSets();
   }, []);
+
+  // TODO: Watch github planning table
+  const currentCardSet: CardSetProps =
+    cardSets.find((cardSet) => cardSet.cardSetName === selectedCardSetName) || cardSets[0];
 
   return (
     <GamePageStyled>
@@ -35,13 +41,12 @@ export const Game = () => {
           currentScore={currentScore}
           setCurrentScore={setCurrentScore}
         />
-        {/* todo: temporarily give cardSet prop */}
-        {cardSets.length > 0 && (
+        {currentCardSet && currentCardSet.cards.length > 0 && (
           <Hand
             outsideStyles={HandStyles}
             setCardsOnBoard={setCardsOnBoard}
             currentScore={currentScore}
-            cards={cardSets[0].cards}
+            cards={currentCardSet.cards}
           />
         )}
       </ContainerStyled>
