@@ -10,7 +10,7 @@ type CardSetOptionProps = {
 export const CardSetOption: FC<CardSetOptionProps> = ({ cardSetName, href }) => {
   return (
     <OptionContainerStyled>
-      <OptionStyled cardSetName={cardSetName} to={href}>
+      <OptionStyled cardsetname={cardSetName} to={href}>
         <OptionTitleStyled>{cardSetName}</OptionTitleStyled>
       </OptionStyled>
     </OptionContainerStyled>
