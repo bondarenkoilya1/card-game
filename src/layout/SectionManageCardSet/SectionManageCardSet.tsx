@@ -14,6 +14,8 @@ import { CardSet } from "src/components/CardSet";
 
 import { CardSetProps } from "src/types";
 
+import { findCardSetByName } from "src/utils";
+
 import { useCardSetsStore } from "src/store";
 
 import { useCardSetHTTPMethod } from "src/hooks";
@@ -30,7 +32,7 @@ export const SectionManageCardSet = () => {
   useEffect(() => setSelectedCardSet(cardSets[0] || null), [cardSets]);
 
   const handleSelect = (cardSetName: string) => {
-    const matchingCardSet = cardSets.find((cardSet) => cardSet.cardSetName === cardSetName);
+    const matchingCardSet = findCardSetByName(cardSets, cardSetName);
     setSelectedCardSet(matchingCardSet || null);
   };
 
