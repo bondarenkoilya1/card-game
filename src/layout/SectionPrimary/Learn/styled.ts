@@ -1,6 +1,6 @@
-import { css, Theme } from "@emotion/react";
-
 import styled from "@emotion/styled";
+
+import { Button } from "src/components";
 
 import youngManPhoto from "../../../assets/photos/sectionPrimary/young-man.png";
 
@@ -32,7 +32,7 @@ export const LearnDescriptionStyled = styled.p`
   margin: 20px auto 0 auto;
 `;
 
-export const LearnButtonStyles = (props: { theme: Theme }) => css`
+export const LearnButtonStyled = styled(Button)`
   border: 3px solid #fff;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   text-transform: uppercase;
@@ -44,7 +44,6 @@ export const LearnButtonStyles = (props: { theme: Theme }) => css`
   margin: 60px auto 0 auto;
   display: flex;
   justify-content: center;
-
   transition: all 0.3s ease-in-out;
 
   & svg {
@@ -52,13 +51,11 @@ export const LearnButtonStyles = (props: { theme: Theme }) => css`
   }
 
   &:hover {
-    transition: all 0.3s ease-in-out;
-    border-color: ${props.theme.colors.red["700"]};
-    color: ${props.theme.colors.red["700"]};
+    border-color: ${({ theme }) => theme.colors.red["700"]};
+    color: ${({ theme }) => theme.colors.red["700"]};
 
     & svg {
-      transition: all 0.3s ease-in-out;
-      color: ${props.theme.colors.red["700"]};
+      color: ${({ theme }) => theme.colors.red["700"]};
     }
   }
 `;

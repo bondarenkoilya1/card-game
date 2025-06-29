@@ -21,13 +21,11 @@ const INITIAL_CARDS_ON_BOARD = [
 ];
 
 export const Game = () => {
+  const { cardSets, selectedCardSetName } = useCardSetsStore();
+  const { fetchCardSets } = useCardSetHTTPMethod();
   const [cardsOnBoard, setCardsOnBoard] = useState<RowProps[]>(INITIAL_CARDS_ON_BOARD);
   const [currentScore, setCurrentScore] = useState(0);
   const navigate = useNavigate();
-
-  // todo: temporarily here
-  const { fetchCardSets } = useCardSetHTTPMethod();
-  const { cardSets, selectedCardSetName } = useCardSetsStore();
 
   useEffect(() => {
     fetchCardSets();

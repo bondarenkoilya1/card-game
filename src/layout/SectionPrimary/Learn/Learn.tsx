@@ -1,13 +1,7 @@
 import { BsFillLightningChargeFill as LightningIcon } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-import { LearnButtonStyles, LearnDescriptionStyled, LearnStyled, LearnTitleStyled } from "./styled";
-import styled from "@emotion/styled";
-
-import { Button } from "src/components";
-
-// TODO: Transfer this to styled file
-const ButtonStyled = styled(Button)(LearnButtonStyles);
+import { LearnButtonStyled, LearnDescriptionStyled, LearnStyled, LearnTitleStyled } from "./styled";
 
 export const Learn = () => {
   return (
@@ -18,9 +12,9 @@ export const Learn = () => {
         Master the game and challenge the veterans!
       </LearnDescriptionStyled>
       <Link to="/pick-set">
-        <ButtonStyled hasIcon="onLeft" icon={LightningIcon}>
+        <LearnButtonStyled hasIcon="onLeft" icon={LightningIcon}>
           Choose your card set
-        </ButtonStyled>
+        </LearnButtonStyled>
       </Link>
     </LearnStyled>
   );

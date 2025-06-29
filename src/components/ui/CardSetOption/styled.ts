@@ -4,7 +4,6 @@ import { css } from "@emotion/react";
 
 import styled from "@emotion/styled";
 
-// TODO: Here i firstly introduce new naming system, which will be later used everywhere in this project
 export const OptionContainerStyled = styled.li`
   margin-bottom: 1.5%;
 `;
