@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { ContainerStyles, GamePageStyled, HandStyles } from "./styled";
 import { ContainerStyled } from "src/styled";
 
 import { Hand, PlayerBoard } from "src/components";
 
-import { CardSetProps, CardType, RowProps } from "src/types";
+import { CardType, RowProps } from "src/types";
 
 import { findCardSetByName } from "src/utils";
 
@@ -22,6 +23,7 @@ const INITIAL_CARDS_ON_BOARD = [
 export const Game = () => {
   const [cardsOnBoard, setCardsOnBoard] = useState<RowProps[]>(INITIAL_CARDS_ON_BOARD);
   const [currentScore, setCurrentScore] = useState(0);
+  const navigate = useNavigate();
 
   // todo: temporarily here
   const { fetchCardSets } = useCardSetHTTPMethod();
@@ -31,9 +33,16 @@ export const Game = () => {
     fetchCardSets();
   }, []);
 
-  // TODO: Watch github planning table
-  const currentCardSet: CardSetProps =
-    findCardSetByName(cardSets, selectedCardSetName) || cardSets[0];
+  const currentCardSet = useMemo(
+    () => findCardSetByName(cardSets, selectedCardSetName),
+    [cardSets, selectedCardSetName]
+  );
+
+  useEffect(() => {
+    if (!currentCardSet) {
+      navigate("/pick-set");
+    }
+  }, [currentCardSet]);
 
   return (
     <GamePageStyled>
