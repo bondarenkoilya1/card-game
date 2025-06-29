@@ -6,12 +6,32 @@ import { CardProps } from "src/types";
 
 import { pickUniqueRandomNumbers, validateError } from "src/utils";
 
-// TODO: Rename.
+// TODO: Rename; Maybe store some states with zustand
 export const useCardSetup = (cards: CardProps[]) => {
+  const [initialCards, setInitialCards] = useState<CardProps[]>(cards);
+  const [cardsInDeck, setCardsInDeck] = useState<CardProps[]>([]);
+
   const [availableCards, setAvailableCards] = useState<CardProps[]>([]);
   const [cardsInHand, setCardsInHand] = useState<CardProps[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const removeCardFromDeck = (cardId: string) => {
+    setCardsInDeck((prevDeck) => prevDeck.filter((deckCard) => deckCard._id !== cardId));
+    const currentCard = cardsInDeck.find((deckCard) => deckCard._id === cardId);
+    if (currentCard) setInitialCards((prevInitial) => [...prevInitial, currentCard]);
+  };
+
+  const removeCardFromInitial = (cardId: string) => {
+    setInitialCards((prevInitial) =>
+      prevInitial.filter((initialCard) => initialCard._id !== cardId)
+    );
+  };
+
+  const addCardToDeck = (card: CardProps) => {
+    setCardsInDeck((prevDeck) => [...prevDeck, card]);
+    removeCardFromInitial(card._id);
+  };
 
   const generateHand = () => {
     setLoading(true);
@@ -37,5 +57,16 @@ export const useCardSetup = (cards: CardProps[]) => {
     generateHand();
   }, []);
 
-  return { availableCards, cardsInHand, setCardsInHand, loading, error, refetch: generateHand };
+  return {
+    availableCards,
+    cardsInHand,
+    setCardsInHand,
+    initialCards,
+    cardsInDeck,
+    addCardToDeck,
+    removeCardFromDeck,
+    loading,
+    error,
+    refetch: generateHand
+  };
 };
