@@ -19,7 +19,7 @@ export const App = () => {
   );
 };
 
-// TODO: temporarily here [Not optimized]
+// TODO: Fast navigation during development. Will be killed
 function renderHeader() {
   return (
     <header

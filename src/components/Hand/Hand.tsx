@@ -15,7 +15,6 @@ export const Hand: FC<CardsOnBoardUpdater> = ({
   currentScore,
   cards
 }) => {
-  // todo: maybe rename "cards"
   const { cardsInHand, setCardsInHand, loading, error } = useCardSetup(cards);
 
   if (loading) return <LoadingMessageStyled>Loading...</LoadingMessageStyled>;

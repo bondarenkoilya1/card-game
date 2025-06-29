@@ -19,7 +19,6 @@ export const ManageDeck = () => {
   const currentCardSet = cardSets.find((cardSet) => cardSet.slug === cardSetSlug);
   const currentCardSetCards = currentCardSet?.cards;
 
-  // TODO: Maybe rename
   const saveSelectedCardSetName = () => {
     if (currentCardSet) {
       setSelectedCardSetName(currentCardSet.cardSetName);
