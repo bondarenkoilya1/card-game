@@ -7,6 +7,8 @@ import { Hand, PlayerBoard } from "src/components";
 
 import { CardSetProps, CardType, RowProps } from "src/types";
 
+import { findCardSetByName } from "src/utils";
+
 import { useCardSetsStore } from "src/store";
 
 import { useCardSetHTTPMethod } from "src/hooks";
@@ -31,7 +33,7 @@ export const Game = () => {
 
   // TODO: Watch github planning table
   const currentCardSet: CardSetProps =
-    cardSets.find((cardSet) => cardSet.cardSetName === selectedCardSetName) || cardSets[0];
+    findCardSetByName(cardSets, selectedCardSetName) || cardSets[0];
 
   return (
     <GamePageStyled>
