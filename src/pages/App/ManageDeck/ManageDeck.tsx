@@ -5,15 +5,18 @@ import { CARDS_IN_HAND } from "src/constants";
 
 import { Card, CardRow } from "src/components";
 
-import { useCardSetsStore } from "src/store";
+import { useCardSetsStore, useGameDeckStore } from "src/store";
 
 import { useCardSetHTTPMethod, useCardSetup } from "src/hooks";
 
 export const ManageDeck = () => {
   const { cardSetSlug } = useParams();
-  const { cardSets, setSelectedCardSetName } = useCardSetsStore();
-  const { fetchCardSets } = useCardSetHTTPMethod();
   const navigate = useNavigate();
+
+  const { fetchCardSets } = useCardSetHTTPMethod();
+  const { cardSets, setSelectedCardSetName } = useCardSetsStore();
+
+  const { deck, addCardToDeck, removeCardFromDeck } = useGameDeckStore();
 
   useEffect(() => {
     fetchCardSets();
@@ -24,6 +27,7 @@ export const ManageDeck = () => {
     [cardSets, cardSetSlug]
   );
 
+  // TODO: Maybe create a new utility function
   useEffect(() => {
     if (!currentCardSet) {
       navigate("/pick-set");
@@ -35,8 +39,7 @@ export const ManageDeck = () => {
     return null;
   }
 
-  const { availableCards, deck, handleAddCardToDeck, handleRemoveCardFromDeck, generateHand } =
-    useCardSetup(currentCardSet.cards ?? []);
+  const { availableCards, generateHand } = useCardSetup(currentCardSet.cards ?? []);
 
   const handleStartGameButton = (event: React.MouseEvent<HTMLElement>) => {
     if (deck.length < CARDS_IN_HAND) {
@@ -44,10 +47,7 @@ export const ManageDeck = () => {
       return;
     }
 
-    if (currentCardSet) {
-      setSelectedCardSetName(currentCardSet.cardSetName);
-    }
-
+    setSelectedCardSetName(currentCardSet.cardSetName);
     generateHand();
   };
 
@@ -62,7 +62,7 @@ export const ManageDeck = () => {
               key={card._id}
               card={card}
               onClick={() => {
-                handleAddCardToDeck(card);
+                addCardToDeck(card);
               }}
             />
           ))}
@@ -75,7 +75,7 @@ export const ManageDeck = () => {
               key={card._id}
               card={card}
               onClick={() => {
-                handleRemoveCardFromDeck(card._id);
+                removeCardFromDeck(card._id);
               }}
             />
           ))}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import { CARDS_IN_HAND } from "src/constants";
 
@@ -8,35 +8,19 @@ import { pickUniqueRandomNumbers, validateError } from "src/utils";
 
 import { useGameDeckStore, useGameHandStore } from "src/store";
 
-// TODO: Store some states with zustand; Rename functions
 export const useCardSetup = (cards: CardProps[]) => {
-  const { deck, setDeck, addCardToDeck, removeCardFromDeck } = useGameDeckStore();
-  const { hand, setHand } = useGameHandStore();
-
-  const [availableCards, setAvailableCards] = useState<CardProps[]>(cards);
+  const { deck, setDeck } = useGameDeckStore();
+  const { setHand } = useGameHandStore();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const removeCardFromAvailable = (cardId: string) =>
-    setAvailableCards((prevAvailable) =>
-      prevAvailable.filter((availableCards) => availableCards._id !== cardId)
-    );
-
-  const handleAddCardToDeck = (card: CardProps) => {
-    addCardToDeck(card);
-    removeCardFromAvailable(card._id);
-  };
-
-  const handleRemoveCardFromDeck = (cardId: string) => {
-    const currentCard = deck.find((deckCard) => deckCard._id === cardId);
-    if (currentCard) {
-      removeCardFromDeck(cardId);
-      setAvailableCards((prevInitial) => [...prevInitial, currentCard]);
-    }
-  };
+  const availableCards = useMemo(() => {
+    return cards.filter((card) => !deck.some((deckCard) => deckCard._id === card._id));
+  }, [cards, deck]);
 
   const generateHand = () => {
     setLoading(true);
+    setError(null);
 
     try {
       const cardsQuantity = deck.length;
@@ -57,13 +41,8 @@ export const useCardSetup = (cards: CardProps[]) => {
 
   return {
     availableCards,
-    deck,
-    hand,
     loading,
     error,
-    handleAddCardToDeck,
-    handleRemoveCardFromDeck,
-    generateHand,
-    setHand
+    generateHand
   };
 };
