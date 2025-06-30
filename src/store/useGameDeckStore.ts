@@ -1,9 +1,9 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
-import { useGameDeckStoreProps } from "src/types";
+import { GameDeckStoreProps } from "src/types";
 
-export const useGameDeckStore = create<useGameDeckStoreProps>()(
+export const useGameDeckStore = create<GameDeckStoreProps>()(
   devtools((set) => ({
     deck: [],
     setDeck: (newCards) => set({ deck: newCards }),

@@ -1,6 +1,6 @@
 import { CardProps } from "src/types";
 
-export type useGameDeckStoreProps = {
+export type GameDeckStoreProps = {
   deck: CardProps[];
   setDeck: (cards: CardProps[]) => void;
   addCardToDeck: (newCard: CardProps) => void;
