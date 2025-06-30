@@ -1,21 +1,27 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import { HandStyled, LoadingMessageStyled, TitleStyled } from "./styled";
+
+import { CARDS_IN_HAND } from "src/constants";
 
 import { Card, CardRow, Error } from "src/components";
 
 import { CardProps, CardsOnBoardUpdater } from "src/types";
 
+import { useGameDeckStore } from "src/store";
+
 import { useCardSetup } from "src/hooks";
 
-export const Hand: FC<CardsOnBoardUpdater> = ({
-  outsideStyles,
-  setCardsOnBoard,
-  currentScore,
-  cards
-}) => {
-  const { cardsInHand, setCardsInHand, loading, error } = useCardSetup(cards);
+export const Hand: FC<CardsOnBoardUpdater> = ({ outsideStyles, setCardsOnBoard, currentScore }) => {
+  const { selectedDeck } = useGameDeckStore();
+  const { cardsInHand, loading, error, setCardsInHand, generateHand } = useCardSetup(selectedDeck);
+
+  useEffect(() => {
+    if (selectedDeck.length >= CARDS_IN_HAND && cardsInHand.length === 0) {
+      generateHand();
+    }
+  }, [selectedDeck, generateHand]);
 
   if (loading) return <LoadingMessageStyled>Loading...</LoadingMessageStyled>;
 
@@ -49,9 +55,10 @@ export const Hand: FC<CardsOnBoardUpdater> = ({
 
       <TitleStyled>Your Hand</TitleStyled>
       <CardRow type="hand">
-        {cardsInHand.map((card: CardProps) => (
-          <Card card={card} location="hand" onClick={() => addCardToBoard(card)} key={uuidv4()} />
-        ))}
+        {cardsInHand &&
+          cardsInHand.map((card: CardProps) => (
+            <Card card={card} location="hand" onClick={() => addCardToBoard(card)} key={uuidv4()} />
+          ))}
       </CardRow>
     </HandStyled>
   );

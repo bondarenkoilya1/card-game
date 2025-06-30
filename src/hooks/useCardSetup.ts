@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { CARDS_IN_HAND } from "src/constants";
 
@@ -6,44 +6,48 @@ import { CardProps } from "src/types";
 
 import { pickUniqueRandomNumbers, validateError } from "src/utils";
 
-// TODO: Rename; Maybe store some states with zustand
-export const useCardSetup = (cards: CardProps[]) => {
-  const [initialCards, setInitialCards] = useState<CardProps[]>(cards);
-  const [cardsInDeck, setCardsInDeck] = useState<CardProps[]>([]);
+import { useGameDeckStore } from "src/store";
 
-  const [availableCards, setAvailableCards] = useState<CardProps[]>([]);
+// TODO: Store some states with zustand; Rename functions
+export const useCardSetup = (cards: CardProps[]) => {
+  const { selectedDeck, setCardsInDeck, addCardToDeck, removeCardFromDeck } = useGameDeckStore();
+
+  const [availableCards, setAvailableCards] = useState<CardProps[]>(cards);
   const [cardsInHand, setCardsInHand] = useState<CardProps[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const removeCardFromDeck = (cardId: string) => {
-    setCardsInDeck((prevDeck) => prevDeck.filter((deckCard) => deckCard._id !== cardId));
-    const currentCard = cardsInDeck.find((deckCard) => deckCard._id === cardId);
-    if (currentCard) setInitialCards((prevInitial) => [...prevInitial, currentCard]);
-  };
-
-  const removeCardFromInitial = (cardId: string) => {
-    setInitialCards((prevInitial) =>
-      prevInitial.filter((initialCard) => initialCard._id !== cardId)
+  const removeCardFromAvailable = (cardId: string) =>
+    setAvailableCards((prevAvailable) =>
+      prevAvailable.filter((availableCards) => availableCards._id !== cardId)
     );
+
+  const handleAddCardToDeck = (card: CardProps) => {
+    addCardToDeck(card);
+    removeCardFromAvailable(card._id);
   };
 
-  const addCardToDeck = (card: CardProps) => {
-    setCardsInDeck((prevDeck) => [...prevDeck, card]);
-    removeCardFromInitial(card._id);
+  const handleRemoveCardFromDeck = (cardId: string) => {
+    const currentCard = selectedDeck.find((deckCard) => deckCard._id === cardId);
+    if (currentCard) {
+      removeCardFromDeck(cardId);
+      setAvailableCards((prevInitial) => [...prevInitial, currentCard]);
+    }
   };
 
   const generateHand = () => {
     setLoading(true);
 
     try {
-      const cardsQuantity = cards.length;
+      const cardsQuantity = selectedDeck.length;
       const arrayOfUniqueNumbers = pickUniqueRandomNumbers(CARDS_IN_HAND, cardsQuantity);
 
-      const selectedCards = arrayOfUniqueNumbers.map((index) => cards[index]);
-      const remainingCards = cards.filter((_, index) => !arrayOfUniqueNumbers.includes(index));
+      const selectedCards = arrayOfUniqueNumbers.map((index) => selectedDeck[index]);
+      const remainingCards = selectedDeck.filter(
+        (_, index) => !arrayOfUniqueNumbers.includes(index)
+      );
 
-      setAvailableCards(remainingCards);
+      setCardsInDeck(remainingCards);
       setCardsInHand(selectedCards);
     } catch (error) {
       setError(validateError(error));
@@ -53,20 +57,15 @@ export const useCardSetup = (cards: CardProps[]) => {
     }
   };
 
-  useEffect(() => {
-    generateHand();
-  }, []);
-
   return {
     availableCards,
+    selectedDeck,
     cardsInHand,
-    setCardsInHand,
-    initialCards,
-    cardsInDeck,
-    addCardToDeck,
-    removeCardFromDeck,
     loading,
     error,
-    refetch: generateHand
+    handleAddCardToDeck,
+    handleRemoveCardFromDeck,
+    generateHand,
+    setCardsInHand
   };
 };

@@ -1,5 +1,7 @@
-import { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+
+import { CARDS_IN_HAND } from "src/constants";
 
 import { Card, CardRow } from "src/components";
 
@@ -33,46 +35,60 @@ export const ManageDeck = () => {
     return null;
   }
 
-  const { initialCards, cardsInDeck, addCardToDeck, removeCardFromDeck } = useCardSetup(
-    currentCardSet?.cards ?? []
-  );
+  const {
+    availableCards,
+    selectedDeck,
+    handleAddCardToDeck,
+    handleRemoveCardFromDeck,
+    generateHand
+  } = useCardSetup(currentCardSet.cards ?? []);
 
-  const saveSelectedCardSetName = () => {
+  const handleStartGameButton = (event: React.MouseEvent<HTMLElement>) => {
+    if (selectedDeck.length < CARDS_IN_HAND) {
+      event.preventDefault();
+      return;
+    }
+
     if (currentCardSet) {
       setSelectedCardSetName(currentCardSet.cardSetName);
     }
+
+    generateHand();
   };
 
   return (
     <div style={{ color: "#000", marginTop: "40px", textAlign: "center" }}>
       <p>Manage deck</p>
       <CardRow type="close">
-        {initialCards &&
-          initialCards.map((card) => (
+        {availableCards &&
+          availableCards.map((card) => (
             <Card
               location="hand"
               key={card._id}
               card={card}
               onClick={() => {
-                addCardToDeck(card);
+                handleAddCardToDeck(card);
               }}
             />
           ))}
       </CardRow>
       <CardRow type="close">
-        {cardsInDeck &&
-          cardsInDeck.map((card) => (
+        {selectedDeck &&
+          selectedDeck.map((card) => (
             <Card
               location="hand"
               key={card._id}
               card={card}
               onClick={() => {
-                removeCardFromDeck(card._id);
+                handleRemoveCardFromDeck(card._id);
               }}
             />
           ))}
       </CardRow>
-      <Link style={{ margin: "20px auto 0 auto" }} to="/play" onClick={saveSelectedCardSetName}>
+      <Link
+        style={{ margin: "20px auto 0 auto" }}
+        to="/play"
+        onClick={(event: React.MouseEvent<HTMLElement>) => handleStartGameButton(event)}>
         Play with this card set
       </Link>
     </div>
