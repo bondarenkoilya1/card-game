@@ -5,13 +5,12 @@ import { useGameDeckStoreProps } from "src/types";
 
 export const useGameDeckStore = create<useGameDeckStoreProps>()(
   devtools((set) => ({
-    selectedDeck: [],
-    setCardsInDeck: (newCards) => set({ selectedDeck: newCards }),
-    addCardToDeck: (newCard) =>
-      set((state) => ({ selectedDeck: [...state.selectedDeck, newCard] })),
+    deck: [],
+    setDeck: (newCards) => set({ deck: newCards }),
+    addCardToDeck: (newCard) => set((state) => ({ deck: [...state.deck, newCard] })),
     removeCardFromDeck: (cardId) =>
       set((state) => ({
-        selectedDeck: state.selectedDeck.filter((card) => card._id !== cardId)
+        deck: state.deck.filter((card) => card._id !== cardId)
       }))
   }))
 );

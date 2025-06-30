@@ -14,14 +14,14 @@ import { useGameDeckStore } from "src/store";
 import { useCardSetup } from "src/hooks";
 
 export const Hand: FC<CardsOnBoardUpdater> = ({ outsideStyles, setCardsOnBoard, currentScore }) => {
-  const { selectedDeck } = useGameDeckStore();
-  const { cardsInHand, loading, error, setCardsInHand, generateHand } = useCardSetup(selectedDeck);
+  const { deck } = useGameDeckStore();
+  const { cardsInHand, loading, error, setCardsInHand, generateHand } = useCardSetup(deck);
 
   useEffect(() => {
-    if (selectedDeck.length >= CARDS_IN_HAND && cardsInHand.length === 0) {
+    if (deck.length >= CARDS_IN_HAND && cardsInHand.length === 0) {
       generateHand();
     }
-  }, [selectedDeck, generateHand]);
+  }, [deck, generateHand]);
 
   if (loading) return <LoadingMessageStyled>Loading...</LoadingMessageStyled>;
 

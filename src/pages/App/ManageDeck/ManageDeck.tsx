@@ -35,16 +35,11 @@ export const ManageDeck = () => {
     return null;
   }
 
-  const {
-    availableCards,
-    selectedDeck,
-    handleAddCardToDeck,
-    handleRemoveCardFromDeck,
-    generateHand
-  } = useCardSetup(currentCardSet.cards ?? []);
+  const { availableCards, deck, handleAddCardToDeck, handleRemoveCardFromDeck, generateHand } =
+    useCardSetup(currentCardSet.cards ?? []);
 
   const handleStartGameButton = (event: React.MouseEvent<HTMLElement>) => {
-    if (selectedDeck.length < CARDS_IN_HAND) {
+    if (deck.length < CARDS_IN_HAND) {
       event.preventDefault();
       return;
     }
@@ -73,8 +68,8 @@ export const ManageDeck = () => {
           ))}
       </CardRow>
       <CardRow type="close">
-        {selectedDeck &&
-          selectedDeck.map((card) => (
+        {deck &&
+          deck.map((card) => (
             <Card
               location="hand"
               key={card._id}

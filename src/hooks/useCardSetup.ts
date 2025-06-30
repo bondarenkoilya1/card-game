@@ -10,7 +10,7 @@ import { useGameDeckStore } from "src/store";
 
 // TODO: Store some states with zustand; Rename functions
 export const useCardSetup = (cards: CardProps[]) => {
-  const { selectedDeck, setCardsInDeck, addCardToDeck, removeCardFromDeck } = useGameDeckStore();
+  const { deck, setDeck, addCardToDeck, removeCardFromDeck } = useGameDeckStore();
 
   const [availableCards, setAvailableCards] = useState<CardProps[]>(cards);
   const [cardsInHand, setCardsInHand] = useState<CardProps[]>([]);
@@ -28,7 +28,7 @@ export const useCardSetup = (cards: CardProps[]) => {
   };
 
   const handleRemoveCardFromDeck = (cardId: string) => {
-    const currentCard = selectedDeck.find((deckCard) => deckCard._id === cardId);
+    const currentCard = deck.find((deckCard) => deckCard._id === cardId);
     if (currentCard) {
       removeCardFromDeck(cardId);
       setAvailableCards((prevInitial) => [...prevInitial, currentCard]);
@@ -39,15 +39,13 @@ export const useCardSetup = (cards: CardProps[]) => {
     setLoading(true);
 
     try {
-      const cardsQuantity = selectedDeck.length;
+      const cardsQuantity = deck.length;
       const arrayOfUniqueNumbers = pickUniqueRandomNumbers(CARDS_IN_HAND, cardsQuantity);
 
-      const selectedCards = arrayOfUniqueNumbers.map((index) => selectedDeck[index]);
-      const remainingCards = selectedDeck.filter(
-        (_, index) => !arrayOfUniqueNumbers.includes(index)
-      );
+      const selectedCards = arrayOfUniqueNumbers.map((index) => deck[index]);
+      const remainingCards = deck.filter((_, index) => !arrayOfUniqueNumbers.includes(index));
 
-      setCardsInDeck(remainingCards);
+      setDeck(remainingCards);
       setCardsInHand(selectedCards);
     } catch (error) {
       setError(validateError(error));
@@ -59,7 +57,7 @@ export const useCardSetup = (cards: CardProps[]) => {
 
   return {
     availableCards,
-    selectedDeck,
+    deck,
     cardsInHand,
     loading,
     error,
