@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import { CARDS_IN_HAND } from "src/constants";
 
@@ -7,15 +7,12 @@ import { Card, CardRow } from "src/components";
 
 import { useCardSetsStore, useGameDeckStore } from "src/store";
 
-import { useCardSetHTTPMethod, useCardSetup } from "src/hooks";
+import { useCardSetHTTPMethod, useCardSetup, useRedirect } from "src/hooks";
 
 export const ManageDeck = () => {
   const { cardSetSlug } = useParams();
-  const navigate = useNavigate();
-
   const { fetchCardSets } = useCardSetHTTPMethod();
   const { cardSets, setSelectedCardSetName } = useCardSetsStore();
-
   const { deck, addCardToDeck, removeCardFromDeck } = useGameDeckStore();
 
   useEffect(() => {
@@ -27,12 +24,7 @@ export const ManageDeck = () => {
     [cardSets, cardSetSlug]
   );
 
-  // TODO: Maybe create a new utility function
-  useEffect(() => {
-    if (!currentCardSet) {
-      navigate("/pick-set");
-    }
-  }, [currentCardSet]);
+  useRedirect(!currentCardSet, "/pick-set");
 
   // To prevent execution of code below this statement
   if (!currentCardSet) {
