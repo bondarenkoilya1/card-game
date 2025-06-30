@@ -55,7 +55,6 @@ export const Game = () => {
             outsideStyles={HandStyles}
             setCardsOnBoard={setCardsOnBoard}
             currentScore={currentScore}
-            cards={currentCardSet.cards}
           />
         )}
       </ContainerStyled>

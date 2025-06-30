@@ -1,17 +1,22 @@
-import { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+
+import { CARDS_IN_HAND } from "src/constants";
 
 import { Card, CardRow } from "src/components";
 
-import { useCardSetsStore } from "src/store";
+import { useCardSetsStore, useGameDeckStore } from "src/store";
 
 import { useCardSetHTTPMethod, useCardSetup } from "src/hooks";
 
 export const ManageDeck = () => {
   const { cardSetSlug } = useParams();
-  const { cardSets, setSelectedCardSetName } = useCardSetsStore();
-  const { fetchCardSets } = useCardSetHTTPMethod();
   const navigate = useNavigate();
+
+  const { fetchCardSets } = useCardSetHTTPMethod();
+  const { cardSets, setSelectedCardSetName } = useCardSetsStore();
+
+  const { deck, addCardToDeck, removeCardFromDeck } = useGameDeckStore();
 
   useEffect(() => {
     fetchCardSets();
@@ -22,6 +27,7 @@ export const ManageDeck = () => {
     [cardSets, cardSetSlug]
   );
 
+  // TODO: Maybe create a new utility function
   useEffect(() => {
     if (!currentCardSet) {
       navigate("/pick-set");
@@ -33,22 +39,24 @@ export const ManageDeck = () => {
     return null;
   }
 
-  const { initialCards, cardsInDeck, addCardToDeck, removeCardFromDeck } = useCardSetup(
-    currentCardSet?.cards ?? []
-  );
+  const { availableCards, generateHand } = useCardSetup(currentCardSet.cards ?? []);
 
-  const saveSelectedCardSetName = () => {
-    if (currentCardSet) {
-      setSelectedCardSetName(currentCardSet.cardSetName);
+  const handleStartGameButton = (event: React.MouseEvent<HTMLElement>) => {
+    if (deck.length < CARDS_IN_HAND) {
+      event.preventDefault();
+      return;
     }
+
+    setSelectedCardSetName(currentCardSet.cardSetName);
+    generateHand();
   };
 
   return (
     <div style={{ color: "#000", marginTop: "40px", textAlign: "center" }}>
       <p>Manage deck</p>
       <CardRow type="close">
-        {initialCards &&
-          initialCards.map((card) => (
+        {availableCards &&
+          availableCards.map((card) => (
             <Card
               location="hand"
               key={card._id}
@@ -60,8 +68,8 @@ export const ManageDeck = () => {
           ))}
       </CardRow>
       <CardRow type="close">
-        {cardsInDeck &&
-          cardsInDeck.map((card) => (
+        {deck &&
+          deck.map((card) => (
             <Card
               location="hand"
               key={card._id}
@@ -72,7 +80,10 @@ export const ManageDeck = () => {
             />
           ))}
       </CardRow>
-      <Link style={{ margin: "20px auto 0 auto" }} to="/play" onClick={saveSelectedCardSetName}>
+      <Link
+        style={{ margin: "20px auto 0 auto" }}
+        to="/play"
+        onClick={(event: React.MouseEvent<HTMLElement>) => handleStartGameButton(event)}>
         Play with this card set
       </Link>
     </div>
