@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { ContainerStyles, GamePageStyled, HandStyles } from "./styled";
 import { ContainerStyled } from "src/styled";
@@ -12,7 +11,7 @@ import { findCardSetByName } from "src/utils";
 
 import { useCardSetsStore } from "src/store";
 
-import { useCardSetHTTPMethod } from "src/hooks";
+import { useCardSetHTTPMethod, useRedirect } from "src/hooks";
 
 const INITIAL_CARDS_ON_BOARD = [
   { type: "close" as CardType, cards: [] },
@@ -25,7 +24,6 @@ export const Game = () => {
   const { fetchCardSets } = useCardSetHTTPMethod();
   const [cardsOnBoard, setCardsOnBoard] = useState<RowProps[]>(INITIAL_CARDS_ON_BOARD);
   const [currentScore, setCurrentScore] = useState(0);
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetchCardSets();
@@ -36,11 +34,7 @@ export const Game = () => {
     [cardSets, selectedCardSetName]
   );
 
-  useEffect(() => {
-    if (!currentCardSet) {
-      navigate("/pick-set");
-    }
-  }, [currentCardSet]);
+  useRedirect(!currentCardSet, "/pick-set");
 
   return (
     <GamePageStyled>
