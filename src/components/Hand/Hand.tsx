@@ -9,27 +9,22 @@ import { Card, CardRow, Error } from "src/components";
 
 import { CardProps, CardsOnBoardUpdater } from "src/types";
 
-import { useGameDeckStore } from "src/store";
+import { useGameDeckStore, useGameHandStore } from "src/store";
 
 import { useCardSetup } from "src/hooks";
 
 export const Hand: FC<CardsOnBoardUpdater> = ({ outsideStyles, setCardsOnBoard, currentScore }) => {
   const { deck } = useGameDeckStore();
-  const { cardsInHand, loading, error, setCardsInHand, generateHand } = useCardSetup(deck);
+  const { hand, removeCardFromHand } = useGameHandStore();
+  const { loading, error, generateHand } = useCardSetup(deck);
 
   useEffect(() => {
-    if (deck.length >= CARDS_IN_HAND && cardsInHand.length === 0) {
+    if (deck.length >= CARDS_IN_HAND && hand.length === 0) {
       generateHand();
     }
   }, [deck, generateHand]);
 
   if (loading) return <LoadingMessageStyled>Loading...</LoadingMessageStyled>;
-
-  const removeCardFromHand = (cardId: string) => {
-    setCardsInHand((prevHand: CardProps[]) =>
-      prevHand.filter((handCard) => handCard._id !== cardId)
-    );
-  };
 
   const addCardToBoard = (card: CardProps) => {
     const selectedRowType = card.type;
@@ -55,8 +50,8 @@ export const Hand: FC<CardsOnBoardUpdater> = ({ outsideStyles, setCardsOnBoard, 
 
       <TitleStyled>Your Hand</TitleStyled>
       <CardRow type="hand">
-        {cardsInHand &&
-          cardsInHand.map((card: CardProps) => (
+        {hand &&
+          hand.map((card: CardProps) => (
             <Card card={card} location="hand" onClick={() => addCardToBoard(card)} key={uuidv4()} />
           ))}
       </CardRow>

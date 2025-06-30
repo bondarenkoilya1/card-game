@@ -6,14 +6,14 @@ import { CardProps } from "src/types";
 
 import { pickUniqueRandomNumbers, validateError } from "src/utils";
 
-import { useGameDeckStore } from "src/store";
+import { useGameDeckStore, useGameHandStore } from "src/store";
 
 // TODO: Store some states with zustand; Rename functions
 export const useCardSetup = (cards: CardProps[]) => {
   const { deck, setDeck, addCardToDeck, removeCardFromDeck } = useGameDeckStore();
+  const { hand, setHand } = useGameHandStore();
 
   const [availableCards, setAvailableCards] = useState<CardProps[]>(cards);
-  const [cardsInHand, setCardsInHand] = useState<CardProps[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -46,7 +46,7 @@ export const useCardSetup = (cards: CardProps[]) => {
       const remainingCards = deck.filter((_, index) => !arrayOfUniqueNumbers.includes(index));
 
       setDeck(remainingCards);
-      setCardsInHand(selectedCards);
+      setHand(selectedCards);
     } catch (error) {
       setError(validateError(error));
       console.error(error);
@@ -58,12 +58,12 @@ export const useCardSetup = (cards: CardProps[]) => {
   return {
     availableCards,
     deck,
-    cardsInHand,
+    hand,
     loading,
     error,
     handleAddCardToDeck,
     handleRemoveCardFromDeck,
     generateHand,
-    setCardsInHand
+    setHand
   };
 };
