@@ -10,7 +10,6 @@ export const NAVIGATION_ITEMS: NavigationProps = {
     {
       title: "Card management",
       items: [
-        // TODO: url is temporarily empty
         { title: "Manage Card Sets", url: "" },
         { title: "Upload Card Sets", url: "upload" }
       ]
