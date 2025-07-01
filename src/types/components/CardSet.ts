@@ -19,5 +19,8 @@ export type CardSetWrapperProps = {
   ) => void;
 };
 
-// TODO: rename
-export type CardSets = CardSetProps[];
+export type CardSetsType = CardSetProps[];
+
+export type CardSetsProp = {
+  cardSets: CardSetsType;
+};

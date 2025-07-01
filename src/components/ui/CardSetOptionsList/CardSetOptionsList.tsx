@@ -4,13 +4,9 @@ import { OptionListStyled } from "./styled";
 
 import { CardSetOption } from "src/components";
 
-import { CardSets } from "src/types";
+import { CardSetsProp } from "src/types";
 
-type CardSetOptionsListProps = {
-  cardSets: CardSets;
-};
-
-export const CardSetOptionsList: FC<CardSetOptionsListProps> = ({ cardSets }) => {
+export const CardSetOptionsList: FC<CardSetsProp> = ({ cardSets }) => {
   return (
     <OptionListStyled>
       {cardSets &&

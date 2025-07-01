@@ -1,4 +1,4 @@
-import { CardSetNameProp, CardSets, ServerErrorProps } from "src/types";
+import { CardSetNameProp, CardSetsType, ServerErrorProps } from "src/types";
 
 import { validateError } from "src/utils";
 
@@ -14,7 +14,7 @@ export const useCardSetHTTPMethod = () => {
     setError(null);
 
     try {
-      const sets: CardSets = await fetchItem<CardSets>("/card-sets");
+      const sets = await fetchItem<CardSetsType>("/card-sets");
       setCardSets(sets);
     } catch (error) {
       const errorMessage = validateError(error);
