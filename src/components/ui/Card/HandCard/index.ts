@@ -1,1 +1,1 @@
-export * from "./HandCard";
+export * from "./BoardCard";

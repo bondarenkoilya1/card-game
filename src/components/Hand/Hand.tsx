@@ -52,7 +52,12 @@ export const Hand: FC<CardsOnBoardUpdater> = ({ outsideStyles, setCardsOnBoard, 
       <CardRow type="hand">
         {hand &&
           hand.map((card: CardProps) => (
-            <Card card={card} location="hand" onClick={() => addCardToBoard(card)} key={uuidv4()} />
+            <Card
+              card={card}
+              location="board"
+              onClick={() => addCardToBoard(card)}
+              key={uuidv4()}
+            />
           ))}
       </CardRow>
     </HandStyled>
