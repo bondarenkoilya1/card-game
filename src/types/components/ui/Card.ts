@@ -1,6 +1,6 @@
 export type CardType = "close" | "range" | "siege";
 type Speciality = "multiplier";
-type CardLocation = "hand" | "adminPanel";
+type CardLocation = "board" | "adminPanel";
 
 export type CardProps = {
   _id: string;

@@ -50,7 +50,7 @@ export const ManageDeck = () => {
         {availableCards &&
           availableCards.map((card) => (
             <Card
-              location="hand"
+              location="board"
               key={card._id}
               card={card}
               onClick={() => {
@@ -63,7 +63,7 @@ export const ManageDeck = () => {
         {deck &&
           deck.map((card) => (
             <Card
-              location="hand"
+              location="board"
               key={card._id}
               card={card}
               onClick={() => {
