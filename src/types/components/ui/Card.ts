@@ -1,6 +1,6 @@
 export type CardType = "close" | "range" | "siege";
 type Speciality = "multiplier";
-type CardLocation = "board" | "adminPanel";
+export type CardLocation = "deck" | "board" | "adminPanel";
 
 export type CardProps = {
   _id: string;
@@ -19,6 +19,6 @@ export type CardListProps = {
 
 export type CardWrapperProps = {
   card: CardProps;
-  location?: CardLocation;
+  location: CardLocation;
   onClick?: () => void;
 };

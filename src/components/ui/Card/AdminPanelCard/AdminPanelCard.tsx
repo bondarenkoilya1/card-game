@@ -10,11 +10,11 @@ import {
 
 import { CardWrapperProps } from "src/types";
 
-export const AdminPanelCard: FC<CardWrapperProps> = ({ card }) => {
+export const AdminPanelCard: FC<CardWrapperProps> = ({ card, onClick }) => {
   const { name, type, points } = card;
 
   return (
-    <AdminPanelCardStyled>
+    <AdminPanelCardStyled onClick={onClick}>
       <AdminPanelCardPropertiesStyled>
         <AdminPanelCardTitleStyled>{name}</AdminPanelCardTitleStyled>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
