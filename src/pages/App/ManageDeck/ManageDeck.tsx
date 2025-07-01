@@ -1,15 +1,20 @@
-import React, { useEffect, useMemo } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useEffect, useMemo } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
+import { DecksContainerStyled, ManageDeckStyled, TitleStyled } from "./styled";
 
 import { CARDS_IN_HAND } from "src/constants";
 
-import { Card, CardRow } from "src/components";
+import { Button, Card, CardRow } from "src/components";
+
+import { CardProps } from "src/types";
 
 import { useCardSetsStore, useGameDeckStore } from "src/store";
 
 import { useCardSetHTTPMethod, useCardSetup, useRedirect } from "src/hooks";
 
 export const ManageDeck = () => {
+  const navigate = useNavigate();
   const { cardSetSlug } = useParams();
   const { fetchCardSets } = useCardSetHTTPMethod();
   const { cardSets, setSelectedCardSetName } = useCardSetsStore();
@@ -33,51 +38,40 @@ export const ManageDeck = () => {
 
   const { availableCards, generateHand } = useCardSetup(currentCardSet.cards ?? []);
 
-  const handleStartGameButton = (event: React.MouseEvent<HTMLElement>) => {
-    if (deck.length < CARDS_IN_HAND) {
-      event.preventDefault();
-      return;
-    }
-
+  const handleStartGameButton = () => {
+    navigate("/play");
     setSelectedCardSetName(currentCardSet.cardSetName);
     generateHand();
   };
 
+  const renderCardRow = (cards: CardProps[], action: "add" | "remove") => (
+    <CardRow type="deck">
+      {cards &&
+        cards.map((card) => (
+          <Card
+            location="deck"
+            key={card._id}
+            card={card}
+            onClick={() => (action === "add" ? addCardToDeck(card) : removeCardFromDeck(card._id))}
+          />
+        ))}
+    </CardRow>
+  );
+
   return (
-    <div style={{ color: "#000", marginTop: "40px", textAlign: "center" }}>
-      <p>Manage deck</p>
-      <CardRow type="close">
-        {availableCards &&
-          availableCards.map((card) => (
-            <Card
-              location="board"
-              key={card._id}
-              card={card}
-              onClick={() => {
-                addCardToDeck(card);
-              }}
-            />
-          ))}
-      </CardRow>
-      <CardRow type="close">
-        {deck &&
-          deck.map((card) => (
-            <Card
-              location="board"
-              key={card._id}
-              card={card}
-              onClick={() => {
-                removeCardFromDeck(card._id);
-              }}
-            />
-          ))}
-      </CardRow>
-      <Link
-        style={{ margin: "20px auto 0 auto" }}
-        to="/play"
-        onClick={(event: React.MouseEvent<HTMLElement>) => handleStartGameButton(event)}>
+    <ManageDeckStyled>
+      <TitleStyled>Manage deck</TitleStyled>
+      <DecksContainerStyled>
+        {renderCardRow(availableCards, "add")}
+        {renderCardRow(deck, "remove")}
+      </DecksContainerStyled>
+      {/* TODO: Temporary decision to use Button instead of Link */}
+      <Button
+        onClick={handleStartGameButton}
+        disabled={deck.length < CARDS_IN_HAND}
+        style={{ margin: "40px auto 0 auto" }}>
         Play with this card set
-      </Link>
-    </div>
+      </Button>
+    </ManageDeckStyled>
   );
 };
