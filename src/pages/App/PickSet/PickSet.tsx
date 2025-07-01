@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 
+import { PickSetStyled, TitleStyled } from "./styled";
 import { ContainerStyled } from "src/styled";
 
 import { CardSetOptionsList } from "src/components";
@@ -8,7 +9,6 @@ import { useCardSetsStore } from "src/store";
 
 import { useCardSetHTTPMethod } from "src/hooks";
 
-// TODO: Create SectionPickSet
 export const PickSet = () => {
   const { cardSets } = useCardSetsStore();
   const { fetchCardSets } = useCardSetHTTPMethod();
@@ -18,11 +18,11 @@ export const PickSet = () => {
   }, []);
 
   return (
-    <div style={{ color: "#000", marginTop: "40px" }}>
+    <PickSetStyled>
       <ContainerStyled>
-        <h1 style={{ textAlign: "center" }}>Pick your set</h1>
+        <TitleStyled>Pick your set</TitleStyled>
         <CardSetOptionsList cardSets={cardSets} />
       </ContainerStyled>
-    </div>
+    </PickSetStyled>
   );
 };
