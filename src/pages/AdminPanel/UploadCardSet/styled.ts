@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
 
-export const SectionUploadCardSetStyled = styled.section`
+export const UploadCardSetStyled = styled.section`
   display: flex;
 `;
