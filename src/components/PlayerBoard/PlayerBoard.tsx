@@ -9,10 +9,10 @@ import { Card, CardRow } from "src/components";
 
 import { CardProps, CardsOnBoardArray, CardType } from "src/types";
 
-import { saveCurrentScore } from "src/utils";
-
 import { useScoresStore } from "src/store";
 
+/* TODO: Probably two same components: Player and Bot board, only cards prop is different
+    I guess that's okay to use fabric pattern here */
 export const PlayerBoard: FC<CardsOnBoardArray> = ({ cardsOnBoard }) => {
   const { playerScore, setPlayerScore } = useScoresStore();
 
@@ -24,8 +24,6 @@ export const PlayerBoard: FC<CardsOnBoardArray> = ({ cardsOnBoard }) => {
 
     if (currentScore !== playerScore) setPlayerScore(currentScore);
   }, [cardsOnBoard, setPlayerScore]);
-
-  saveCurrentScore(playerScore);
 
   const renderRowsByCardTypes = () =>
     CARD_TYPES.map((type: CardType, index) => (
