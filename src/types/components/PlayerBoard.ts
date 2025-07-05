@@ -11,12 +11,9 @@ export type RowProps = {
 
 export type CardsOnBoardArray = {
   cardsOnBoard: RowProps[];
-  currentScore: number;
-  setCurrentScore: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export type CardsOnBoardUpdater = {
   outsideStyles?: CSS;
   setCardsOnBoard: React.Dispatch<React.SetStateAction<RowProps[]>>;
-  currentScore: number;
 };
