@@ -11,21 +11,21 @@ import { CardProps, CardsOnBoardArray, CardType } from "src/types";
 
 import { saveCurrentScore } from "src/utils";
 
-export const PlayerBoard: FC<CardsOnBoardArray> = ({
-  cardsOnBoard,
-  currentScore,
-  setCurrentScore
-}) => {
-  const getCardPoints = (card: CardProps) => Number(card.points) || 0;
+import { useScoresStore } from "src/store";
+
+export const PlayerBoard: FC<CardsOnBoardArray> = ({ cardsOnBoard }) => {
+  const { playerScore, setPlayerScore } = useScoresStore();
+
+  const getCardPoints = (card: CardProps) => card.points || 0;
 
   useEffect(() => {
     const allCards: CardProps[] = cardsOnBoard.flatMap((row) => row.cards);
     const currentScore = allCards.reduce((total, card) => total + getCardPoints(card), 0);
 
-    setCurrentScore((prevScore) => (prevScore !== currentScore ? currentScore : prevScore));
-  }, [cardsOnBoard, setCurrentScore]);
+    if (currentScore !== playerScore) setPlayerScore(currentScore);
+  }, [cardsOnBoard, setPlayerScore]);
 
-  saveCurrentScore(currentScore);
+  saveCurrentScore(playerScore);
 
   const renderRowsByCardTypes = () =>
     CARD_TYPES.map((type: CardType, index) => (

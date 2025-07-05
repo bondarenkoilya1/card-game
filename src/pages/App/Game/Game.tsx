@@ -23,7 +23,6 @@ export const Game = () => {
   const { cardSets, selectedCardSetName } = useCardSetsStore();
   const { fetchCardSets } = useCardSetHTTPMethod();
   const [cardsOnBoard, setCardsOnBoard] = useState<RowProps[]>(INITIAL_CARDS_ON_BOARD);
-  const [currentScore, setCurrentScore] = useState(0);
 
   useEffect(() => {
     fetchCardSets();
@@ -39,17 +38,9 @@ export const Game = () => {
   return (
     <GamePageStyled>
       <ContainerStyled style={ContainerStyles}>
-        <PlayerBoard
-          cardsOnBoard={cardsOnBoard}
-          currentScore={currentScore}
-          setCurrentScore={setCurrentScore}
-        />
+        <PlayerBoard cardsOnBoard={cardsOnBoard} />
         {currentCardSet && currentCardSet.cards.length > 0 && (
-          <Hand
-            outsideStyles={HandStyles}
-            setCardsOnBoard={setCardsOnBoard}
-            currentScore={currentScore}
-          />
+          <Hand outsideStyles={HandStyles} setCardsOnBoard={setCardsOnBoard} />
         )}
       </ContainerStyled>
     </GamePageStyled>
