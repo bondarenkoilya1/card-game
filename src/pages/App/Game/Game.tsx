@@ -3,13 +3,13 @@ import { useEffect, useMemo, useState } from "react";
 import { ContainerStyles, GamePageStyled, HandStyles } from "./styled";
 import { ContainerStyled } from "src/styled";
 
-import { Hand, PlayerBoard } from "src/components";
+import { Board, Hand } from "src/components";
 
 import { CardType, RowProps } from "src/types";
 
 import { findCardSetByName } from "src/utils";
 
-import { useCardSetsStore } from "src/store";
+import { useCardSetsStore, useScoresStore } from "src/store";
 
 import { useCardSetHTTPMethod, useRedirect } from "src/hooks";
 
@@ -23,6 +23,7 @@ export const Game = () => {
   const { cardSets, selectedCardSetName } = useCardSetsStore();
   const { fetchCardSets } = useCardSetHTTPMethod();
   const [cardsOnBoard, setCardsOnBoard] = useState<RowProps[]>(INITIAL_CARDS_ON_BOARD);
+  const { playerScore, setPlayerScore, botScore, setBotScore } = useScoresStore();
 
   useEffect(() => {
     fetchCardSets();
@@ -38,7 +39,13 @@ export const Game = () => {
   return (
     <GamePageStyled>
       <ContainerStyled style={ContainerStyles}>
-        <PlayerBoard cardsOnBoard={cardsOnBoard} />
+        <Board
+          cardsOnBoard={cardsOnBoard}
+          score={playerScore}
+          setScore={setPlayerScore}
+          type="bot"
+        />
+        <Board cardsOnBoard={cardsOnBoard} score={botScore} setScore={setBotScore} type="player" />
         {currentCardSet && currentCardSet.cards.length > 0 && (
           <Hand outsideStyles={HandStyles} setCardsOnBoard={setCardsOnBoard} />
         )}

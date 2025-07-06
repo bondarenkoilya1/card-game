@@ -1,29 +1,24 @@
 import { FC, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-import { CardRowStyles, PlayerBoardStyled } from "./styled";
+import { BoardStyled, CardRowStyles } from "./styled";
 
 import { CARD_TYPES } from "src/constants";
 
 import { Card, CardRow } from "src/components";
+import { Score } from "src/components/ui/Score";
 
 import { CardProps, CardsOnBoardArray, CardType } from "src/types";
 
-import { useScoresStore } from "src/store";
-
-/* TODO: Probably two same components: Player and Bot board, only cards prop is different
-    I guess that's okay to use fabric pattern here */
-export const PlayerBoard: FC<CardsOnBoardArray> = ({ cardsOnBoard }) => {
-  const { playerScore, setPlayerScore } = useScoresStore();
-
+export const Board: FC<CardsOnBoardArray> = ({ cardsOnBoard, score, setScore, type }) => {
   const getCardPoints = (card: CardProps) => card.points || 0;
 
   useEffect(() => {
     const allCards: CardProps[] = cardsOnBoard.flatMap((row) => row.cards);
     const currentScore = allCards.reduce((total, card) => total + getCardPoints(card), 0);
 
-    if (currentScore !== playerScore) setPlayerScore(currentScore);
-  }, [cardsOnBoard, setPlayerScore]);
+    if (currentScore !== score) setScore(currentScore);
+  }, [cardsOnBoard, setScore]);
 
   const renderRowsByCardTypes = () =>
     CARD_TYPES.map((type: CardType, index) => (
@@ -34,5 +29,12 @@ export const PlayerBoard: FC<CardsOnBoardArray> = ({ cardsOnBoard }) => {
       </CardRow>
     ));
 
-  return <PlayerBoardStyled>{renderRowsByCardTypes()}</PlayerBoardStyled>;
+  const scoreOwner = type === "player" ? "You" : "Bot";
+
+  return (
+    <BoardStyled>
+      {renderRowsByCardTypes()}
+      <Score owner={scoreOwner} score={score} />
+    </BoardStyled>
+  );
 };

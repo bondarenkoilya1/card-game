@@ -9,14 +9,13 @@ import { Card, CardRow, Error } from "src/components";
 
 import { CardProps, CardsOnBoardUpdater } from "src/types";
 
-import { useGameDeckStore, useGameHandStore, useScoresStore } from "src/store";
+import { useGameDeckStore, useGameHandStore } from "src/store";
 
 import { useCardSetup } from "src/hooks";
 
 export const Hand: FC<CardsOnBoardUpdater> = ({ outsideStyles, setCardsOnBoard }) => {
   const { deck } = useGameDeckStore();
   const { hand, removeCardFromHand } = useGameHandStore();
-  const { playerScore } = useScoresStore();
   const { loading, error, generateHand } = useCardSetup(deck);
 
   useEffect(() => {
@@ -47,7 +46,6 @@ export const Hand: FC<CardsOnBoardUpdater> = ({ outsideStyles, setCardsOnBoard }
   return (
     <HandStyled css={outsideStyles}>
       {error && <Error unspecifiedErrorMessage={error} />}
-      <div>Score: {playerScore}</div>
 
       <TitleStyled>Your Hand</TitleStyled>
       <CardRow type="hand">
