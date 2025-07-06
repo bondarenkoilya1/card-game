@@ -1,4 +1,4 @@
-import { CardProps, CardType } from "./ui/Card.ts";
+import { CardProps, CardType } from "./ui/Card";
 
 export type Boards = "player" | "bot";
 
