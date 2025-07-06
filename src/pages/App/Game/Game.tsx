@@ -32,12 +32,17 @@ export const Game = () => {
   return (
     <GamePageStyled>
       <ContainerStyled style={ContainerStyles}>
-        <Board cardsOnBoard={botBoardCards} score={botScore} setScore={setBotScore} type="bot" />
+        <Board
+          cardsOnBoard={botBoardCards}
+          score={botScore}
+          setScore={setBotScore}
+          boardType="bot"
+        />
         <Board
           cardsOnBoard={playerBoardCards}
           score={playerScore}
           setScore={setPlayerScore}
-          type="player"
+          boardType="player"
         />
         {currentCardSet && currentCardSet.cards.length > 0 && <Hand outsideStyles={HandStyles} />}
       </ContainerStyled>

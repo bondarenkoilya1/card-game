@@ -2,7 +2,7 @@ import { CSS } from "src/types";
 
 import { CardProps, CardType } from "./ui/Card.ts";
 
-type Boards = "player" | "bot";
+export type Boards = "player" | "bot";
 
 export type RowProps = {
   type: CardType;
@@ -13,7 +13,7 @@ export type CardsOnBoardArray = {
   cardsOnBoard: RowProps[];
   score: number;
   setScore: (newScore: number) => void;
-  type: Boards;
+  boardType: Boards;
 };
 
 export type CardsOnBoardUpdater = {
