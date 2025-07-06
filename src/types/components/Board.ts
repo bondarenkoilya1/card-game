@@ -1,5 +1,3 @@
-import React from "react";
-
 import { CSS } from "src/types";
 
 import { CardProps, CardType } from "./ui/Card.ts";
@@ -20,5 +18,4 @@ export type CardsOnBoardArray = {
 
 export type CardsOnBoardUpdater = {
   outsideStyles?: CSS;
-  setCardsOnBoard: React.Dispatch<React.SetStateAction<RowProps[]>>;
 };

@@ -9,13 +9,14 @@ import { Card, CardRow, Error } from "src/components";
 
 import { CardProps, CardsOnBoardUpdater } from "src/types";
 
-import { useGameDeckStore, useGameHandStore } from "src/store";
+import { useCardsOnBoardStore, useGameDeckStore, useGameHandStore } from "src/store";
 
 import { useCardSetup } from "src/hooks";
 
-export const Hand: FC<CardsOnBoardUpdater> = ({ outsideStyles, setCardsOnBoard }) => {
+export const Hand: FC<CardsOnBoardUpdater> = ({ outsideStyles }) => {
   const { deck } = useGameDeckStore();
   const { hand, removeCardFromHand } = useGameHandStore();
+  const { addPlayerBoardCard } = useCardsOnBoardStore();
   const { loading, error, generateHand } = useCardSetup(deck);
 
   useEffect(() => {
@@ -27,19 +28,7 @@ export const Hand: FC<CardsOnBoardUpdater> = ({ outsideStyles, setCardsOnBoard }
   if (loading) return <LoadingMessageStyled>Loading...</LoadingMessageStyled>;
 
   const addCardToBoard = (card: CardProps) => {
-    const selectedRowType = card.type;
-
-    setCardsOnBoard((prevState) =>
-      prevState.map((row) =>
-        row.type === selectedRowType
-          ? {
-              ...row,
-              cards: [...row.cards, card]
-            }
-          : row
-      )
-    );
-
+    addPlayerBoardCard(card);
     removeCardFromHand(card._id);
   };
 

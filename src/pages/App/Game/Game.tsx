@@ -1,29 +1,22 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 
 import { ContainerStyles, GamePageStyled, HandStyles } from "./styled";
 import { ContainerStyled } from "src/styled";
 
 import { Board, Hand } from "src/components";
 
-import { CardType, RowProps } from "src/types";
-
 import { findCardSetByName } from "src/utils";
 
 import { useCardSetsStore, useScoresStore } from "src/store";
+import { useCardsOnBoardStore } from "src/store/useCardsOnBoardStore.ts";
 
 import { useCardSetHTTPMethod, useRedirect } from "src/hooks";
 
-const INITIAL_CARDS_ON_BOARD = [
-  { type: "close" as CardType, cards: [] },
-  { type: "range" as CardType, cards: [] },
-  { type: "siege" as CardType, cards: [] }
-];
-
 export const Game = () => {
   const { cardSets, selectedCardSetName } = useCardSetsStore();
-  const { fetchCardSets } = useCardSetHTTPMethod();
-  const [cardsOnBoard, setCardsOnBoard] = useState<RowProps[]>(INITIAL_CARDS_ON_BOARD);
   const { playerScore, setPlayerScore, botScore, setBotScore } = useScoresStore();
+  const { playerBoardCards, botBoardCards } = useCardsOnBoardStore();
+  const { fetchCardSets } = useCardSetHTTPMethod();
 
   useEffect(() => {
     fetchCardSets();
@@ -39,16 +32,14 @@ export const Game = () => {
   return (
     <GamePageStyled>
       <ContainerStyled style={ContainerStyles}>
+        <Board cardsOnBoard={botBoardCards} score={botScore} setScore={setBotScore} type="bot" />
         <Board
-          cardsOnBoard={cardsOnBoard}
+          cardsOnBoard={playerBoardCards}
           score={playerScore}
           setScore={setPlayerScore}
-          type="bot"
+          type="player"
         />
-        <Board cardsOnBoard={cardsOnBoard} score={botScore} setScore={setBotScore} type="player" />
-        {currentCardSet && currentCardSet.cards.length > 0 && (
-          <Hand outsideStyles={HandStyles} setCardsOnBoard={setCardsOnBoard} />
-        )}
+        {currentCardSet && currentCardSet.cards.length > 0 && <Hand outsideStyles={HandStyles} />}
       </ContainerStyled>
     </GamePageStyled>
   );
