@@ -9,3 +9,4 @@ export * from "./Sidebar";
 export * from "./Navigation";
 export * from "./CardSetInfo";
 export * from "./Dropdown";
+export * from "./Score";
