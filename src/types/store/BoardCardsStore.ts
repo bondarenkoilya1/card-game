@@ -5,7 +5,7 @@ export type CardRowType = {
   cards: CardProps[];
 };
 
-export type CardsOnBoardStore = {
+export type BoardCardsStore = {
   playerBoardCards: CardRowType[];
   addPlayerBoardCard: (newCard: CardProps) => void;
   botBoardCards: CardRowType[];

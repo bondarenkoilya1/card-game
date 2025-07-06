@@ -7,16 +7,16 @@ import { CARDS_IN_HAND } from "src/constants";
 
 import { Card, CardRow, Error } from "src/components";
 
-import { CardProps, CardsOnBoardUpdater } from "src/types";
+import { CardProps } from "src/types";
 
-import { useCardsOnBoardStore, useGameDeckStore, useGameHandStore } from "src/store";
+import { useBoardCardsStore, useGameDeckStore, useGameHandStore } from "src/store";
 
 import { useCardSetup } from "src/hooks";
 
-export const Hand: FC<CardsOnBoardUpdater> = ({ outsideStyles }) => {
+export const Hand: FC = () => {
   const { deck } = useGameDeckStore();
   const { hand, removeCardFromHand } = useGameHandStore();
-  const { addPlayerBoardCard } = useCardsOnBoardStore();
+  const { addPlayerBoardCard } = useBoardCardsStore();
   const { loading, error, generateHand } = useCardSetup(deck);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export const Hand: FC<CardsOnBoardUpdater> = ({ outsideStyles }) => {
   };
 
   return (
-    <HandStyled css={outsideStyles}>
+    <HandStyled>
       {error && <Error unspecifiedErrorMessage={error} />}
 
       <TitleStyled>Your Hand</TitleStyled>

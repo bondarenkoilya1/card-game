@@ -7,6 +7,8 @@ export const LoadingMessageStyled = styled.p`
 
 export const HandStyled = styled.div`
   width: 100%;
+  margin-top: auto;
+  margin-bottom: 5%;
 `;
 
 export const TitleStyled = styled.h2`

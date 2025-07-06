@@ -1,5 +1,3 @@
-import { CSS } from "src/types";
-
 import { CardProps, CardType } from "./ui/Card.ts";
 
 export type Boards = "player" | "bot";
@@ -9,13 +7,9 @@ export type RowProps = {
   cards: CardProps[];
 };
 
-export type CardsOnBoardArray = {
-  cardsOnBoard: RowProps[];
+export type BoardProps = {
+  boardCards: RowProps[];
   score: number;
   setScore: (newScore: number) => void;
   boardType: Boards;
-};
-
-export type CardsOnBoardUpdater = {
-  outsideStyles?: CSS;
 };
