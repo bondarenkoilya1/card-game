@@ -1,6 +1,5 @@
 export * from "./Card";
 export * from "./CardRow";
-export * from "./CardRowList";
 export * from "./CardList";
 export * from "./CardSetInfo";
 export * from "./CardSetOption";
@@ -12,3 +11,4 @@ export * from "./TextField";
 export * from "./Sidebar";
 export * from "./Error";
 export * from "./Dropdown";
+export * from "./Score";

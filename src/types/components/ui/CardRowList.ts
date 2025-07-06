@@ -4,5 +4,5 @@ export type SortVariants = "normal" | "reverse";
 
 export type CardRowListProps = {
   sort: SortVariants;
-  rows: RowProps[];
+  boardCards: RowProps[];
 };

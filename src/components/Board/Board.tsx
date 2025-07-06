@@ -2,10 +2,11 @@ import { FC, useEffect } from "react";
 
 import { BoardStyled } from "./styled";
 
-import { CardRowList } from "src/components";
-import { Score } from "src/components/ui/Score";
+import { Score } from "src/components";
 
 import { BoardProps, CardProps, SortVariants } from "src/types";
+
+import { CardRowList } from "./CardRowList";
 
 const getCardPoints = (card: CardProps) => card.points || 0;
 
@@ -25,7 +26,7 @@ export const Board: FC<BoardProps> = ({ boardCards, score, setScore, boardType }
 
   return (
     <BoardStyled>
-      <CardRowList sort={sort} rows={boardCards} />
+      <CardRowList sort={sort} boardCards={boardCards} />
       <Score owner={owner} score={score} />
     </BoardStyled>
   );
