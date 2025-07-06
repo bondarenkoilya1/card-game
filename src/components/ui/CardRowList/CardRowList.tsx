@@ -8,12 +8,9 @@ import { CARD_TYPES } from "src/constants";
 import { Card, CardRow } from "src/components";
 import { CardRowStyles } from "src/components/Board/styled.ts";
 
-import { CardType, RowProps } from "src/types";
+import { CardRowListProps, CardType } from "src/types";
 
-export const CardRowList: FC<{ sort: "normal" | "reverse"; rows: RowProps[] }> = ({
-  sort,
-  rows
-}) => {
+export const CardRowList: FC<CardRowListProps> = ({ sort, rows }) => {
   return (
     <CardRowListStyled sort={sort}>
       {CARD_TYPES.map((type: CardType, index) => (
