@@ -1,7 +1,5 @@
 import React from "react";
 
-import { css } from "@emotion/react";
-
 import styled from "@emotion/styled";
 
 import woodImage from "../../../assets/photos/wood.jpg";
@@ -19,8 +17,3 @@ export const ContainerStyles: React.CSSProperties = {
   display: "flex",
   flexDirection: "column"
 };
-
-export const HandStyles = css`
-  margin-top: auto;
-  margin-bottom: 5%;
-`;

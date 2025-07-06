@@ -1,12 +1,12 @@
 import { FC } from "react";
 
-import { CardListStyled } from "src/components/ui/CardList/styled.ts";
+import { CardListStyled } from "./styled";
 
 import { CardListProps, CardProps } from "src/types";
 
 import { Card } from "../Card";
 
-// Currently used only for admin panel
+// Currently used only for admin panel. Not a full ui component
 export const CardList: FC<CardListProps> = ({ cards }) => {
   return (
     <CardListStyled>

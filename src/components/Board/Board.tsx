@@ -1,40 +1,33 @@
 import { FC, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
 
-import { BoardStyled, CardRowStyles } from "./styled";
+import { BoardStyled } from "./styled";
 
-import { CARD_TYPES } from "src/constants";
+import { Score } from "src/components";
 
-import { Card, CardRow } from "src/components";
-import { Score } from "src/components/ui/Score";
+import { BoardProps, CardProps, SortVariants } from "src/types";
 
-import { CardProps, CardsOnBoardArray, CardType } from "src/types";
+import { CardRowList } from "./CardRowList";
 
-export const Board: FC<CardsOnBoardArray> = ({ cardsOnBoard, score, setScore, type }) => {
-  const getCardPoints = (card: CardProps) => card.points || 0;
+const getCardPoints = (card: CardProps) => card.points || 0;
 
+export const Board: FC<BoardProps> = ({ boardCards, score, setScore, boardType }) => {
   useEffect(() => {
-    const allCards: CardProps[] = cardsOnBoard.flatMap((row) => row.cards);
+    const allCards: CardProps[] = boardCards.flatMap((row) => row.cards);
     const currentScore = allCards.reduce((total, card) => total + getCardPoints(card), 0);
 
     if (currentScore !== score) setScore(currentScore);
-  }, [cardsOnBoard, setScore]);
+  }, [boardCards, setScore]);
 
-  const renderRowsByCardTypes = () =>
-    CARD_TYPES.map((type: CardType, index) => (
-      <CardRow outsideStyles={CardRowStyles} type={type} key={uuidv4()}>
-        {cardsOnBoard[index].cards.map((card) => (
-          <Card card={card} location="board" key={card._id} />
-        ))}
-      </CardRow>
-    ));
-
-  const scoreOwner = type === "player" ? "You" : "Bot";
+  const settings: Record<"player" | "bot", { owner: string; sort: SortVariants }> = {
+    player: { owner: "You", sort: "normal" },
+    bot: { owner: "Bot", sort: "reverse" }
+  };
+  const { owner, sort } = settings[boardType];
 
   return (
     <BoardStyled>
-      {renderRowsByCardTypes()}
-      <Score owner={scoreOwner} score={score} />
+      <CardRowList sort={sort} boardCards={boardCards} />
+      <Score owner={owner} score={score} />
     </BoardStyled>
   );
 };

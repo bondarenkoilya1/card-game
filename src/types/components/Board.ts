@@ -1,24 +1,15 @@
-import React from "react";
+import { CardProps, CardType } from "./ui/Card";
 
-import { CSS } from "src/types";
-
-import { CardProps, CardType } from "./ui/Card.ts";
-
-type Boards = "player" | "bot";
+export type Boards = "player" | "bot";
 
 export type RowProps = {
   type: CardType;
   cards: CardProps[];
 };
 
-export type CardsOnBoardArray = {
-  cardsOnBoard: RowProps[];
+export type BoardProps = {
+  boardCards: RowProps[];
   score: number;
   setScore: (newScore: number) => void;
-  type: Boards;
-};
-
-export type CardsOnBoardUpdater = {
-  outsideStyles?: CSS;
-  setCardsOnBoard: React.Dispatch<React.SetStateAction<RowProps[]>>;
+  boardType: Boards;
 };

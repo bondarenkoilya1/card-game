@@ -2,10 +2,7 @@ import { FC } from "react";
 
 import { OptionContainerStyled, OptionStyled, OptionTitleStyled } from "./styled";
 
-type CardSetOptionProps = {
-  cardSetName: string;
-  href: string;
-};
+import { CardSetOptionProps } from "src/types";
 
 export const CardSetOption: FC<CardSetOptionProps> = ({ cardSetName, href }) => {
   return (

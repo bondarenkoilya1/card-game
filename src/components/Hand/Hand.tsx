@@ -7,15 +7,16 @@ import { CARDS_IN_HAND } from "src/constants";
 
 import { Card, CardRow, Error } from "src/components";
 
-import { CardProps, CardsOnBoardUpdater } from "src/types";
+import { CardProps } from "src/types";
 
-import { useGameDeckStore, useGameHandStore } from "src/store";
+import { useBoardCardsStore, useGameDeckStore, useGameHandStore } from "src/store";
 
 import { useCardSetup } from "src/hooks";
 
-export const Hand: FC<CardsOnBoardUpdater> = ({ outsideStyles, setCardsOnBoard }) => {
+export const Hand: FC = () => {
   const { deck } = useGameDeckStore();
   const { hand, removeCardFromHand } = useGameHandStore();
+  const { addPlayerBoardCard } = useBoardCardsStore();
   const { loading, error, generateHand } = useCardSetup(deck);
 
   useEffect(() => {
@@ -27,24 +28,12 @@ export const Hand: FC<CardsOnBoardUpdater> = ({ outsideStyles, setCardsOnBoard }
   if (loading) return <LoadingMessageStyled>Loading...</LoadingMessageStyled>;
 
   const addCardToBoard = (card: CardProps) => {
-    const selectedRowType = card.type;
-
-    setCardsOnBoard((prevState) =>
-      prevState.map((row) =>
-        row.type === selectedRowType
-          ? {
-              ...row,
-              cards: [...row.cards, card]
-            }
-          : row
-      )
-    );
-
+    addPlayerBoardCard(card);
     removeCardFromHand(card._id);
   };
 
   return (
-    <HandStyled css={outsideStyles}>
+    <HandStyled>
       {error && <Error unspecifiedErrorMessage={error} />}
 
       <TitleStyled>Your Hand</TitleStyled>
