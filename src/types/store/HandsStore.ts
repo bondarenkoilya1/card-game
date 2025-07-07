@@ -1,6 +1,6 @@
 import { CardProps } from "src/types";
 
-export type GameHandStoreProps = {
+export type HandsStoreProps = {
   hand: CardProps[];
   setHand: (cards: CardProps[]) => void;
   removeCardFromHand: (cardId: string) => void;

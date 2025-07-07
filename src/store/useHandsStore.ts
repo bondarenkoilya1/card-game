@@ -1,9 +1,9 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
-import { GameHandStoreProps } from "src/types";
+import { HandsStoreProps } from "src/types";
 
-export const useGameHandStore = create<GameHandStoreProps>()(
+export const useHandsStore = create<HandsStoreProps>()(
   devtools((set) => ({
     hand: [],
     setHand: (newCards) => set({ hand: newCards }),

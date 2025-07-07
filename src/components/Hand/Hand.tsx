@@ -9,21 +9,21 @@ import { Card, CardRow, Error } from "src/components";
 
 import { CardProps } from "src/types";
 
-import { useBoardCardsStore, useGameDeckStore, useGameHandStore } from "src/store";
+import { useBoardCardsStore, useDecksStore, useHandsStore } from "src/store";
 
-import { useCardSetup } from "src/hooks";
+import { useHandGenerator } from "src/hooks";
 
 export const Hand: FC = () => {
-  const { deck } = useGameDeckStore();
-  const { hand, removeCardFromHand } = useGameHandStore();
+  const { playerDeck } = useDecksStore();
+  const { hand, removeCardFromHand } = useHandsStore();
   const { addPlayerBoardCard } = useBoardCardsStore();
-  const { loading, error, generateHand } = useCardSetup(deck);
+  const { loading, error, generateHand } = useHandGenerator(playerDeck);
 
   useEffect(() => {
-    if (deck.length >= CARDS_IN_HAND && hand.length === 0) {
+    if (playerDeck.length >= CARDS_IN_HAND && hand.length === 0) {
       generateHand();
     }
-  }, [deck, generateHand]);
+  }, [playerDeck, generateHand]);
 
   if (loading) return <LoadingMessageStyled>Loading...</LoadingMessageStyled>;
 

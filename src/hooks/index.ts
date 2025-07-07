@@ -1,3 +1,3 @@
-export * from "./useCardSetup";
+export * from "./useHandGenerator";
 export * from "./useCardSetHTTPMethod";
 export * from "./useRedirect";
