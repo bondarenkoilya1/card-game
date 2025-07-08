@@ -5,11 +5,17 @@ import { HandsStoreProps } from "src/types";
 
 export const useHandsStore = create<HandsStoreProps>()(
   devtools((set) => ({
-    hand: [],
-    setHand: (newCards) => set({ hand: newCards }),
-    removeCardFromHand: (cardId) =>
+    playerHand: [],
+    setPlayerHand: (newCards) => set({ playerHand: newCards }),
+    removeCardFromPlayerHand: (cardId) =>
       set((state) => ({
-        hand: state.hand.filter((card) => card._id !== cardId)
+        playerHand: state.playerHand.filter((card) => card._id !== cardId)
+      })),
+    botHand: [],
+    setBotHand: (newCards) => set({ botHand: newCards }),
+    removeCardFromBotHand: (cardId) =>
+      set((state) => ({
+        botHand: state.botHand.filter((card) => card._id !== cardId)
       }))
   }))
 );

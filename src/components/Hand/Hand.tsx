@@ -15,21 +15,21 @@ import { useHandGenerator } from "src/hooks";
 
 export const Hand: FC = () => {
   const { playerDeck } = useDecksStore();
-  const { hand, removeCardFromHand } = useHandsStore();
+  const { playerHand, removeCardFromPlayerHand } = useHandsStore();
   const { addPlayerBoardCard } = useBoardCardsStore();
   const { loading, error, generateHand } = useHandGenerator(playerDeck);
 
   useEffect(() => {
-    if (playerDeck.length >= CARDS_IN_HAND && hand.length === 0) {
+    if (playerDeck.length >= CARDS_IN_HAND && playerHand.length === 0) {
       generateHand();
     }
   }, [playerDeck, generateHand]);
 
   if (loading) return <LoadingMessageStyled>Loading...</LoadingMessageStyled>;
 
-  const addCardToBoard = (card: CardProps) => {
+  const makeMove = (card: CardProps) => {
     addPlayerBoardCard(card);
-    removeCardFromHand(card._id);
+    removeCardFromPlayerHand(card._id);
   };
 
   return (
@@ -38,14 +38,9 @@ export const Hand: FC = () => {
 
       <TitleStyled>Your Hand</TitleStyled>
       <CardRow type="hand">
-        {hand &&
-          hand.map((card: CardProps) => (
-            <Card
-              card={card}
-              location="board"
-              onClick={() => addCardToBoard(card)}
-              key={uuidv4()}
-            />
+        {playerHand &&
+          playerHand.map((card: CardProps) => (
+            <Card card={card} location="board" onClick={() => makeMove(card)} key={uuidv4()} />
           ))}
       </CardRow>
     </HandStyled>

@@ -10,7 +10,7 @@ import { useDecksStore, useHandsStore } from "src/store";
 
 export const useHandGenerator = (cards: CardProps[]) => {
   const { playerDeck, setPlayerDeck } = useDecksStore();
-  const { setHand } = useHandsStore();
+  const { setPlayerHand } = useHandsStore();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -30,7 +30,7 @@ export const useHandGenerator = (cards: CardProps[]) => {
       const remainingCards = playerDeck.filter((_, index) => !arrayOfUniqueNumbers.includes(index));
 
       setPlayerDeck(remainingCards);
-      setHand(selectedCards);
+      setPlayerHand(selectedCards);
     } catch (error) {
       setError(validateError(error));
       console.error(error);
