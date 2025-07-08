@@ -9,15 +9,13 @@ import "./prototypes";
 /* Card set – All cards available in the game for a faction.
    Deck – The specific set of cards a player builds before a match.
    Hand – The cards a player currently holds in a round. */
-export const App = () => {
-  return (
-    <>
-      <Global styles={GlobalStyle} />
-      {renderHeader()}
-      <Outlet />
-    </>
-  );
-};
+export const App = () => (
+  <>
+    <Global styles={GlobalStyle} />
+    {renderHeader()}
+    <Outlet />
+  </>
+);
 
 // TODO: Fast navigation during development. Will be killed
 function renderHeader() {

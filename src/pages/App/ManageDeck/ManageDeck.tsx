@@ -9,16 +9,16 @@ import { Button, Card, CardRow } from "src/components";
 
 import { CardProps } from "src/types";
 
-import { useCardSetsStore, useGameDeckStore } from "src/store";
+import { useCardSetsStore, useDecksStore } from "src/store";
 
-import { useCardSetHTTPMethod, useCardSetup, useRedirect } from "src/hooks";
+import { useCardSetHTTPMethod, useHandGenerator, useRedirect } from "src/hooks";
 
 export const ManageDeck = () => {
   const navigate = useNavigate();
   const { cardSetSlug } = useParams();
   const { fetchCardSets } = useCardSetHTTPMethod();
   const { cardSets, setSelectedCardSetName } = useCardSetsStore();
-  const { deck, addCardToDeck, removeCardFromDeck } = useGameDeckStore();
+  const { playerDeck, addCardToPlayerDeck, removeCardFromPlayerDeck } = useDecksStore();
 
   useEffect(() => {
     fetchCardSets();
@@ -36,12 +36,11 @@ export const ManageDeck = () => {
     return null;
   }
 
-  const { availableCards, generateHand } = useCardSetup(currentCardSet.cards ?? []);
+  const { availableCards } = useHandGenerator(currentCardSet.cards ?? []);
 
   const handleStartGameButton = () => {
     navigate("/play");
     setSelectedCardSetName(currentCardSet.cardSetName);
-    generateHand();
   };
 
   const renderCardRow = (cards: CardProps[], action: "add" | "remove") => (
@@ -52,7 +51,9 @@ export const ManageDeck = () => {
             location="deck"
             key={card._id}
             card={card}
-            onClick={() => (action === "add" ? addCardToDeck(card) : removeCardFromDeck(card._id))}
+            onClick={() =>
+              action === "add" ? addCardToPlayerDeck(card) : removeCardFromPlayerDeck(card._id)
+            }
           />
         ))}
     </CardRow>
@@ -63,12 +64,12 @@ export const ManageDeck = () => {
       <TitleStyled>Manage deck</TitleStyled>
       <DecksContainerStyled>
         {renderCardRow(availableCards, "add")}
-        {renderCardRow(deck, "remove")}
+        {renderCardRow(playerDeck, "remove")}
       </DecksContainerStyled>
       {/* TODO: Temporary decision to use Button instead of Link */}
       <Button
         onClick={handleStartGameButton}
-        disabled={deck.length < CARDS_IN_HAND}
+        disabled={playerDeck.length < CARDS_IN_HAND}
         style={{ margin: "40px auto 0 auto" }}>
         Play with this card set
       </Button>

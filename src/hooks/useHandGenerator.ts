@@ -6,31 +6,31 @@ import { CardProps } from "src/types";
 
 import { pickUniqueRandomNumbers, validateError } from "src/utils";
 
-import { useGameDeckStore, useGameHandStore } from "src/store";
+import { useDecksStore, useHandsStore } from "src/store";
 
-export const useCardSetup = (cards: CardProps[]) => {
-  const { deck, setDeck } = useGameDeckStore();
-  const { setHand } = useGameHandStore();
+export const useHandGenerator = (cards: CardProps[]) => {
+  const { playerDeck, setPlayerDeck } = useDecksStore();
+  const { setPlayerHand } = useHandsStore();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const availableCards = useMemo(() => {
-    return cards.filter((card) => !deck.some((deckCard) => deckCard._id === card._id));
-  }, [cards, deck]);
+    return cards.filter((card) => !playerDeck.some((deckCard) => deckCard._id === card._id));
+  }, [cards, playerDeck]);
 
   const generateHand = () => {
     setLoading(true);
     setError(null);
 
     try {
-      const cardsQuantity = deck.length;
+      const cardsQuantity = playerDeck.length;
       const arrayOfUniqueNumbers = pickUniqueRandomNumbers(CARDS_IN_HAND, cardsQuantity);
 
-      const selectedCards = arrayOfUniqueNumbers.map((index) => deck[index]);
-      const remainingCards = deck.filter((_, index) => !arrayOfUniqueNumbers.includes(index));
+      const selectedCards = arrayOfUniqueNumbers.map((index) => playerDeck[index]);
+      const remainingCards = playerDeck.filter((_, index) => !arrayOfUniqueNumbers.includes(index));
 
-      setDeck(remainingCards);
-      setHand(selectedCards);
+      setPlayerDeck(remainingCards);
+      setPlayerHand(selectedCards);
     } catch (error) {
       setError(validateError(error));
       console.error(error);
