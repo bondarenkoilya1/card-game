@@ -36,12 +36,11 @@ export const ManageDeck = () => {
     return null;
   }
 
-  const { availableCards, generateHand } = useHandGenerator(currentCardSet.cards ?? []);
+  const { availableCards } = useHandGenerator(currentCardSet.cards ?? []);
 
   const handleStartGameButton = () => {
     navigate("/play");
     setSelectedCardSetName(currentCardSet.cardSetName);
-    generateHand();
   };
 
   const renderCardRow = (cards: CardProps[], action: "add" | "remove") => (
