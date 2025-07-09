@@ -31,7 +31,7 @@ export const ManageCardSet = () => {
 
   useEffect(() => setSelectedCardSet(cardSets[0] || null), [cardSets]);
 
-  const handleSelect = (cardSetName: string) => {
+  const handleCardSetSelect = (cardSetName: string) => {
     const matchingCardSet = findCardSetByName(cardSets, cardSetName);
     setSelectedCardSet(matchingCardSet || null);
   };
@@ -70,7 +70,7 @@ export const ManageCardSet = () => {
       <div style={{ display: "flex", alignItems: "center" }}>
         <Dropdown buttonText="Select card set">
           {cardSets.map(({ cardSetName }) => (
-            <DropdownItem key={cardSetName} onClick={() => handleSelect(cardSetName)}>
+            <DropdownItem key={cardSetName} onClick={() => handleCardSetSelect(cardSetName)}>
               {cardSetName}
             </DropdownItem>
           ))}

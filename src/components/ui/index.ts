@@ -3,7 +3,6 @@ export * from "./CardRow";
 export * from "./CardList";
 export * from "./CardSetInfo";
 export * from "./CardSetOption";
-export * from "./CardSetOptionsList";
 export * from "./Button";
 export * from "./RadioButton";
 export * from "./Image";

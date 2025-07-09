@@ -1,12 +1,12 @@
 import { FC } from "react";
 
-import { OptionListStyled } from "./styled";
+import { OptionListStyled } from "./styled.ts";
 
 import { CardSetOption } from "src/components";
 
 import { CardSetsProp } from "src/types";
 
-export const CardSetOptionsList: FC<CardSetsProp> = ({ cardSets }) => {
+export const CardSetOptionList: FC<CardSetsProp> = ({ cardSets }) => {
   return (
     <OptionListStyled>
       {cardSets &&
