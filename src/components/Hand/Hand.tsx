@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import { HandStyled, LoadingMessageStyled, TitleStyled } from "./styled";
@@ -15,9 +15,12 @@ import { useHandGenerator } from "src/hooks";
 
 export const Hand: FC = () => {
   const { playerDeck } = useDecksStore();
-  const { playerHand, removeCardFromPlayerHand } = useHandsStore();
-  const { addPlayerBoardCard } = useBoardCardsStore();
+  const { playerHand, removeCardFromPlayerHand, botHand, removeCardFromBotHand } = useHandsStore();
+  const { addPlayerBoardCard, addBotBoardCard } = useBoardCardsStore();
   const { loading, error, generateHand } = useHandGenerator("player");
+
+  // Should be true on every start so it's not in the store
+  const [isMoving, setIsMoving] = useState(true);
 
   useEffect(() => {
     if (playerDeck.length >= CARDS_IN_HAND && playerHand.length === 0) generateHand();
@@ -25,10 +28,25 @@ export const Hand: FC = () => {
 
   if (loading) return <LoadingMessageStyled>Loading...</LoadingMessageStyled>;
 
+  // TODO: Bring out everything below
   const makeMove = (card: CardProps) => {
-    addPlayerBoardCard(card);
-    removeCardFromPlayerHand(card._id);
+    if (isMoving) {
+      addPlayerBoardCard(card);
+      removeCardFromPlayerHand(card._id);
+      setIsMoving(false);
+    }
   };
+
+  // TODO: Artificial timeout
+  useEffect(() => {
+    if (!isMoving) {
+      setTimeout(() => {
+        addBotBoardCard(botHand[0]);
+        removeCardFromBotHand(botHand[0]._id);
+        setIsMoving(true);
+      }, 1000);
+    }
+  }, [isMoving]);
 
   return (
     <HandStyled>
