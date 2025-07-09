@@ -1,36 +1,37 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 import { CARDS_IN_HAND } from "src/constants";
 
-import { CardProps } from "src/types";
+import { Boards } from "src/types";
 
 import { pickUniqueRandomNumbers, validateError } from "src/utils";
 
 import { useDecksStore, useHandsStore } from "src/store";
 
-export const useHandGenerator = (cards: CardProps[]) => {
-  const { playerDeck, setPlayerDeck } = useDecksStore();
-  const { setPlayerHand } = useHandsStore();
+export const useHandGenerator = (owner: Boards) => {
+  const { playerDeck, setPlayerDeck, botDeck, setBotDeck } = useDecksStore();
+  const { setPlayerHand, setBotHand } = useHandsStore();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const availableCards = useMemo(() => {
-    return cards.filter((card) => !playerDeck.some((deckCard) => deckCard._id === card._id));
-  }, [cards, playerDeck]);
+  const isPlayer = owner === "player";
+  const deck = isPlayer ? playerDeck : botDeck;
+  const setDeck = isPlayer ? setPlayerDeck : setBotDeck;
+  const setHand = isPlayer ? setPlayerHand : setBotHand;
 
   const generateHand = () => {
     setLoading(true);
     setError(null);
 
     try {
-      const cardsQuantity = playerDeck.length;
+      const cardsQuantity = deck.length;
       const arrayOfUniqueNumbers = pickUniqueRandomNumbers(CARDS_IN_HAND, cardsQuantity);
 
-      const selectedCards = arrayOfUniqueNumbers.map((index) => playerDeck[index]);
-      const remainingCards = playerDeck.filter((_, index) => !arrayOfUniqueNumbers.includes(index));
+      const selectedCards = arrayOfUniqueNumbers.map((index) => deck[index]);
+      const remainingCards = deck.filter((_, index) => !arrayOfUniqueNumbers.includes(index));
 
-      setPlayerDeck(remainingCards);
-      setPlayerHand(selectedCards);
+      setDeck(remainingCards);
+      setHand(selectedCards);
     } catch (error) {
       setError(validateError(error));
       console.error(error);
@@ -40,7 +41,6 @@ export const useHandGenerator = (cards: CardProps[]) => {
   };
 
   return {
-    availableCards,
     loading,
     error,
     generateHand
