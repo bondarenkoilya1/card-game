@@ -11,7 +11,7 @@ import { CardProps } from "src/types";
 
 import { useCardSetsStore, useDecksStore } from "src/store";
 
-import { useCardSetHTTPMethod, useHandGenerator, useRedirect } from "src/hooks";
+import { useCardSetHTTPMethod, useRedirect } from "src/hooks";
 
 export const ManageDeck = () => {
   const navigate = useNavigate();
@@ -36,7 +36,11 @@ export const ManageDeck = () => {
     return null;
   }
 
-  const { availableCards } = useHandGenerator(currentCardSet.cards ?? []);
+  const outOfDeckCards = useMemo(() => {
+    return currentCardSet.cards.filter(
+      (card) => !playerDeck.some((deckCard) => deckCard._id === card._id)
+    );
+  }, [currentCardSet.cards, playerDeck]);
 
   const handleStartGameButton = () => {
     navigate("/play");
@@ -63,7 +67,7 @@ export const ManageDeck = () => {
     <ManageDeckStyled>
       <TitleStyled>Manage deck</TitleStyled>
       <DecksContainerStyled>
-        {renderCardRow(availableCards, "add")}
+        {renderCardRow(outOfDeckCards, "add")}
         {renderCardRow(playerDeck, "remove")}
       </DecksContainerStyled>
       {/* TODO: Temporary decision to use Button instead of Link */}

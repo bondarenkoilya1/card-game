@@ -17,7 +17,7 @@ export const Hand: FC = () => {
   const { playerDeck } = useDecksStore();
   const { playerHand, removeCardFromPlayerHand } = useHandsStore();
   const { addPlayerBoardCard } = useBoardCardsStore();
-  const { loading, error, generateHand } = useHandGenerator(playerDeck);
+  const { loading, error, generateHand } = useHandGenerator();
 
   useEffect(() => {
     if (playerDeck.length >= CARDS_IN_HAND && playerHand.length === 0) {
