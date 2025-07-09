@@ -17,12 +17,10 @@ export const Hand: FC = () => {
   const { playerDeck } = useDecksStore();
   const { playerHand, removeCardFromPlayerHand } = useHandsStore();
   const { addPlayerBoardCard } = useBoardCardsStore();
-  const { loading, error, generateHand } = useHandGenerator();
+  const { loading, error, generateHand } = useHandGenerator("player");
 
   useEffect(() => {
-    if (playerDeck.length >= CARDS_IN_HAND && playerHand.length === 0) {
-      generateHand();
-    }
+    if (playerDeck.length >= CARDS_IN_HAND && playerHand.length === 0) generateHand();
   }, [playerDeck, generateHand]);
 
   if (loading) return <LoadingMessageStyled>Loading...</LoadingMessageStyled>;
