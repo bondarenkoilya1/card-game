@@ -2,15 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import { App } from "src/App";
 
-import {
-  AdminPanel,
-  Game,
-  Main,
-  ManageCardSet,
-  ManageDeck,
-  PickSet,
-  UploadCardSet
-} from "src/pages";
+import { Game, Main, ManageDeck, PickSet } from "src/pages";
 
 // TODO: Here will be a few more options such as errorElement, loader
 export const router = createBrowserRouter([
@@ -35,13 +27,14 @@ export const router = createBrowserRouter([
         element: <ManageDeck />
       }
     ]
-  },
-  {
-    path: "admin-panel",
-    element: <AdminPanel />,
-    children: [
-      { index: true, element: <ManageCardSet /> },
-      { path: "upload", element: <UploadCardSet /> }
-    ]
   }
+  // Is not ready to be used
+  // {
+  //   path: "admin-panel",
+  //   element: <AdminPanel />,
+  //   children: [
+  //     { index: true, element: <ManageCardSet /> },
+  //     { path: "upload", element: <UploadCardSet /> }
+  //   ]
+  // }
 ]);

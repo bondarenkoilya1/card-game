@@ -14,14 +14,14 @@ export const Dropdown: FC<DropdownProps> = ({ buttonText, children }) => {
   const toggleDropdown = () => setIsOpen((isOpen) => !isOpen);
 
   useEffect(() => {
-    const handler = (event: MouseEvent) => {
+    const closeDropdown = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node))
         setIsOpen(false);
     };
 
-    document.addEventListener("click", handler);
+    document.addEventListener("click", closeDropdown);
 
-    return () => document.removeEventListener("click", handler);
+    return () => document.removeEventListener("click", closeDropdown);
   }, []);
 
   return (

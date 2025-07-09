@@ -1,4 +1,5 @@
 import { useEffect, useMemo } from "react";
+import { Link } from "react-router-dom";
 
 import { ContainerStyles, GamePageStyled } from "./styled";
 import { ContainerStyled } from "src/styled";
@@ -50,6 +51,9 @@ export const Game = () => {
   return (
     <GamePageStyled>
       <ContainerStyled style={ContainerStyles}>
+        <Link to="/" style={{ marginTop: "20px", textTransform: "uppercase", fontWeight: "700" }}>
+          Home page
+        </Link>
         <Board boardCards={botBoardCards} score={botScore} setScore={setBotScore} boardType="bot" />
         <Board
           boardCards={playerBoardCards}

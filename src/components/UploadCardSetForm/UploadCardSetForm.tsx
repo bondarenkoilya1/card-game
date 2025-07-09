@@ -95,6 +95,7 @@ export const UploadCardSetForm = () => {
 
     const currentCard = { name: cardName, type: selectedCardType, points: cardPoints };
 
+    // @ts-ignore todo: create new type for this one
     setCardsToUpload([...cardsToUpload, currentCard]);
     resetAddCardForm();
   };
