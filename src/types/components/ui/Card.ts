@@ -9,7 +9,7 @@ export type CardProps = {
   type: CardType;
   // TODO: check if such card is not already in a row
   speciality?: Speciality;
-  points?: number;
+  points: number;
   onClick?: () => void;
 };
 

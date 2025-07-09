@@ -19,7 +19,7 @@ export const Hand: FC = () => {
   const { addPlayerBoardCard, addBotBoardCard } = useBoardCardsStore();
   const { loading, error, generateHand } = useHandGenerator("player");
 
-  // Should be true on every start so it's not in the store
+  // Should be true on every game start so it's not in the store
   const [isMoving, setIsMoving] = useState(true);
 
   useEffect(() => {

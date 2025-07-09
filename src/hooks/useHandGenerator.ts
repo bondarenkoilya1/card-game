@@ -28,10 +28,11 @@ export const useHandGenerator = (owner: Boards) => {
       const arrayOfUniqueNumbers = pickUniqueRandomNumbers(CARDS_IN_HAND, cardsQuantity);
 
       const selectedCards = arrayOfUniqueNumbers.map((index) => deck[index]);
+      const sortedDescSelectedCards = [...selectedCards].sort((a, b) => b.points - a.points);
       const remainingCards = deck.filter((_, index) => !arrayOfUniqueNumbers.includes(index));
 
       setDeck(remainingCards);
-      setHand(selectedCards);
+      setHand(sortedDescSelectedCards);
     } catch (error) {
       setError(validateError(error));
       console.error(error);
