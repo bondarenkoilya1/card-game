@@ -4,11 +4,11 @@ import { css } from "@emotion/react";
 
 import styled from "@emotion/styled";
 
-export const OptionContainerStyled = styled.li`
+export const ContainerStyled = styled.li`
   margin-bottom: 1.5%;
 `;
 
-export const OptionStyled = styled(Link)<{ cardsetname: string }>`
+export const CardSetOptionStyled = styled(Link)<{ cardsetname: string }>`
   display: block;
   border: 1px solid #000;
   background-color: #fff;
@@ -21,14 +21,14 @@ export const OptionStyled = styled(Link)<{ cardsetname: string }>`
   /* TODO: Card set name is kinda long string, but at the moment I have no idea how to replace it without adding new object fields
        Maybe create those styles as something global like "OptionForestNationStyled", "OptionAggressiveWarriorsStyled" */
 
-  ${({ cardsetname }) => cardsetname === "Elements of War" && OptionAggressiveNationStyled}
-  ${({ cardsetname }) => cardsetname === "Forged Legion" && OptionForestNationStyled}
-  ${({ cardsetname }) => cardsetname === "Iron Regiment" && OptionTradeNationStyled}
-  ${({ cardsetname }) => cardsetname === "Macedonian Phalanx" && OptionDefensiveNationStyled}
-  ${({ cardsetname }) => cardsetname === "Steelborn Division" && OptionMercenaryNationStyled}
+  ${({ cardsetname }) => cardsetname === "Elements of War" && AggressiveNationStyled}
+  ${({ cardsetname }) => cardsetname === "Forged Legion" && ForestNationStyled}
+  ${({ cardsetname }) => cardsetname === "Iron Regiment" && TradeNationStyled}
+  ${({ cardsetname }) => cardsetname === "Macedonian Phalanx" && DefensiveNationStyled}
+  ${({ cardsetname }) => cardsetname === "Steelborn Division" && MercenaryNationStyled}
 `;
 
-export const OptionTitleStyled = styled.h2`
+export const TitleStyled = styled.h2`
   font-size: 32px;
   text-transform: uppercase;
   text-align: center;
@@ -36,7 +36,7 @@ export const OptionTitleStyled = styled.h2`
 `;
 
 // TODO: The word "nation" may not be correct here; Current names are temporary
-const OptionAggressiveNationStyled = css`
+const AggressiveNationStyled = css`
   background-color: #ea7575;
   color: #fff;
 
@@ -45,7 +45,7 @@ const OptionAggressiveNationStyled = css`
   }
 `;
 
-const OptionForestNationStyled = css`
+const ForestNationStyled = css`
   background-color: #4d986d;
   color: #fff;
 
@@ -54,7 +54,7 @@ const OptionForestNationStyled = css`
   }
 `;
 
-const OptionTradeNationStyled = css`
+const TradeNationStyled = css`
   background-color: #e1df4c;
   color: #fff;
 
@@ -63,7 +63,7 @@ const OptionTradeNationStyled = css`
   }
 `;
 
-const OptionDefensiveNationStyled = css`
+const DefensiveNationStyled = css`
   background-color: #8585ff;
   color: #fff;
 
@@ -72,7 +72,7 @@ const OptionDefensiveNationStyled = css`
   }
 `;
 
-const OptionMercenaryNationStyled = css`
+const MercenaryNationStyled = css`
   background-color: #77756e;
   color: #fff;
 

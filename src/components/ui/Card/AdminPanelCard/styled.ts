@@ -7,21 +7,21 @@ export const AdminPanelCardStyled = styled.li`
   padding: 20px;
 `;
 
-export const AdminPanelCardPropertiesStyled = styled.ul``;
+export const PropertiesStyled = styled.ul``;
 
-export const AdminPanelCardTitleStyled = styled.h3`
+export const TitleStyled = styled.h3`
   font-weight: 700;
   text-align: center;
   margin-bottom: 20px;
 `;
 
-export const AdminPanelCardPointsStyled = styled.li`
+export const PointsStyled = styled.li`
   & > span {
     font-weight: 700;
   }
 `;
 
-export const AdminPanelCardTypeStyled = styled.li`
+export const TypeStyled = styled.li`
   & > span {
     text-transform: capitalize;
     font-weight: 700;

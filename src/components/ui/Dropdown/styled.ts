@@ -9,14 +9,14 @@ export const DropdownStyled = styled.div`
   width: fit-content;
 `;
 
-const DropdownButtonOpenedStyles = css`
+const ButtonOpenedStyles = css`
   border: 2px solid rgb(147, 197, 253);
 `;
 
-export const DropdownButtonStyled = styled(Button)<{ isOpen: boolean }>`
+export const ButtonStyled = styled(Button)<{ isOpen: boolean }>`
   box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
   border: 2px solid transparent;
   font-size: 14px;
 
-  ${({ isOpen }) => isOpen && DropdownButtonOpenedStyles}
+  ${({ isOpen }) => isOpen && ButtonOpenedStyles}
 `;

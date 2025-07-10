@@ -1,11 +1,11 @@
 import { FC } from "react";
 
 import {
-  AdminPanelCardPointsStyled,
-  AdminPanelCardPropertiesStyled,
   AdminPanelCardStyled,
-  AdminPanelCardTitleStyled,
-  AdminPanelCardTypeStyled
+  PointsStyled,
+  PropertiesStyled,
+  TitleStyled,
+  TypeStyled
 } from "./styled";
 
 import { CardWrapperProps } from "src/types";
@@ -15,17 +15,17 @@ export const AdminPanelCard: FC<CardWrapperProps> = ({ card, onClick }) => {
 
   return (
     <AdminPanelCardStyled onClick={onClick}>
-      <AdminPanelCardPropertiesStyled>
-        <AdminPanelCardTitleStyled>{name}</AdminPanelCardTitleStyled>
+      <PropertiesStyled>
+        <TitleStyled>{name}</TitleStyled>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <AdminPanelCardPointsStyled>
+          <PointsStyled>
             <span>{points}</span> points
-          </AdminPanelCardPointsStyled>
-          <AdminPanelCardTypeStyled>
+          </PointsStyled>
+          <TypeStyled>
             <span>{type}</span> unit
-          </AdminPanelCardTypeStyled>
+          </TypeStyled>
         </div>
-      </AdminPanelCardPropertiesStyled>
+      </PropertiesStyled>
     </AdminPanelCardStyled>
   );
 };

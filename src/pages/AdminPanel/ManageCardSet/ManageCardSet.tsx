@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
 import {
-  ManageCardSetRetryButtonStyled,
-  ManageCardSetRetryContainerStyled,
-  ManageCardSetRetryTextStyled,
   ManageCardSetStyled,
-  ManageCardSetSwitchButtonStyled,
-  SectionManageCardSetStyled
+  RetryButtonStyled,
+  RetryContainerStyled,
+  RetryTextStyled,
+  SectionStyled,
+  SwitchButtonStyled
 } from "./styled";
 
 import { Dropdown, DropdownItem, Error as ErrorComponent } from "src/components";
@@ -55,18 +55,18 @@ export const ManageCardSet = () => {
     return (
       <>
         {/* TODO: Later make its UI more noticeable  */}
-        <ManageCardSetRetryContainerStyled>
-          <ManageCardSetRetryTextStyled>Card set did not load?</ManageCardSetRetryTextStyled>
-          <ManageCardSetRetryButtonStyled variant="tertiary" onClick={fetchCardSets}>
+        <RetryContainerStyled>
+          <RetryTextStyled>Card set did not load?</RetryTextStyled>
+          <RetryButtonStyled variant="tertiary" onClick={fetchCardSets}>
             Try again
-          </ManageCardSetRetryButtonStyled>
-        </ManageCardSetRetryContainerStyled>
+          </RetryButtonStyled>
+        </RetryContainerStyled>
         <ErrorComponent unspecifiedErrorMessage={`${error}. Try again or contact support`} />
       </>
     );
 
   return (
-    <SectionManageCardSetStyled>
+    <SectionStyled>
       <div style={{ display: "flex", alignItems: "center" }}>
         <Dropdown buttonText="Select card set">
           {cardSets.map(({ cardSetName }) => (
@@ -75,19 +75,19 @@ export const ManageCardSet = () => {
             </DropdownItem>
           ))}
         </Dropdown>
-        <ManageCardSetSwitchButtonStyled
+        <SwitchButtonStyled
           variant="tertiary"
           style={{ margin: "0 20px" }}
           onClick={() => switchCardSet("prev")}
           disabled={isPrevButtonDisabled}>
           {"<"} Previous
-        </ManageCardSetSwitchButtonStyled>
-        <ManageCardSetSwitchButtonStyled
+        </SwitchButtonStyled>
+        <SwitchButtonStyled
           variant="tertiary"
           onClick={() => switchCardSet("next")}
           disabled={isNextButtonDisabled}>
           Next {">"}
-        </ManageCardSetSwitchButtonStyled>
+        </SwitchButtonStyled>
       </div>
       <ManageCardSetStyled>
         <CardSet
@@ -97,6 +97,6 @@ export const ManageCardSet = () => {
           key={selectedCardSet._id}
         />
       </ManageCardSetStyled>
-    </SectionManageCardSetStyled>
+    </SectionStyled>
   );
 };

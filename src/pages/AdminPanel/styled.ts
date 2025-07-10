@@ -6,7 +6,7 @@ export const AdminPanelStyled = styled.section`
   margin-left: ${({ theme }) => theme.elementsSizes.sidebarWidth}%;
 `;
 
-export const AdminPanelTitleStyled = styled.h1`
+export const TitleStyled = styled.h1`
   font-size: 18px;
   font-weight: 700;
   border-bottom: 1px solid lightgray;
@@ -16,7 +16,7 @@ export const AdminPanelTitleStyled = styled.h1`
   text-transform: uppercase;
 `;
 
-export const AdminPanelContainerStyled = styled.div`
+export const ContainerStyled = styled.div`
   max-width: 95%;
   margin: 0 auto;
 `;

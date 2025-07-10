@@ -12,11 +12,11 @@ export const DominateStyled = styled.div`
   background-color: #000;
 `;
 
-export const DominateContainerStyled = styled.div`
+export const ContainerStyled = styled.div`
   margin-left: 150px;
 `;
 
-export const DominateTitleStyled = styled.h2`
+export const TitleStyled = styled.h2`
   color: ${({ theme }) => theme.colors.red["400"]};
   font-size: 102px;
   font-weight: 700;
@@ -25,7 +25,7 @@ export const DominateTitleStyled = styled.h2`
   text-transform: uppercase;
 `;
 
-export const DominateDescriptionStyled = styled.p`
+export const DescriptionStyled = styled.p`
   color: #c0c0c0;
   font-size: 24px;
   text-align: center;

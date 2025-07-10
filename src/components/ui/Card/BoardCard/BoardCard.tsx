@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { CardNameStyled, CardStyled } from "../styled";
+import { CardStyled, NameStyled } from "../styled";
 
 import { CardWrapperProps } from "src/types";
 
@@ -9,14 +9,14 @@ export const BoardCard: FC<CardWrapperProps> = ({ card, onClick, location }) => 
 
   return (
     <CardStyled location={location} onClick={onClick}>
-      <CardNameStyled>{name}</CardNameStyled>
-      {/*<CardDescriptionStyled>{description}</CardDescriptionStyled>*/}
-      {/*<CardTypeStyled>*/}
-      {/*  Type: <CardTextHighlighted>{type}</CardTextHighlighted>*/}
-      {/*</CardTypeStyled>*/}
-      {/*<CardPointsStyled>*/}
-      {/*  Points: <CardTextHighlighted> {points}</CardTextHighlighted>*/}
-      {/*</CardPointsStyled>*/}
+      <NameStyled>{name}</NameStyled>
+      {/*<DescriptionStyled>{description}</DescriptionStyled>*/}
+      {/*<TypeStyled>*/}
+      {/*  Type: <HighlightedTextStyled>{type}</HighlightedTextStyled>*/}
+      {/*</TypeStyled>*/}
+      {/*<PointsStyled>*/}
+      {/*  Points: <HighlightedTextStyled> {points}</HighlightedTextStyled>*/}
+      {/*</PointsStyled>*/}
     </CardStyled>
   );
 };

@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { TextFieldContainerStyled, TextFieldLabelStyled, TextFieldStyled } from "./styled";
+import { ContainerStyled, LabelStyled, TextFieldStyled } from "./styled";
 
 import { TextFieldProps } from "src/types";
 
@@ -15,8 +15,8 @@ export const TextField: FC<TextFieldProps> = ({
   ...attrs
 }) => {
   return (
-    <TextFieldContainerStyled className={className}>
-      {labelText && <TextFieldLabelStyled htmlFor={id}>{labelText}</TextFieldLabelStyled>}
+    <ContainerStyled className={className}>
+      {labelText && <LabelStyled htmlFor={id}>{labelText}</LabelStyled>}
       <TextFieldStyled
         id={id}
         type={type}
@@ -25,6 +25,6 @@ export const TextField: FC<TextFieldProps> = ({
         onChange={onChange}
         {...attrs}
       />
-    </TextFieldContainerStyled>
+    </ContainerStyled>
   );
 };

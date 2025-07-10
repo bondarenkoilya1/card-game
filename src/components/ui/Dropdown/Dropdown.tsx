@@ -1,6 +1,6 @@
 import { FC, useEffect, useRef, useState } from "react";
 
-import { DropdownButtonStyled, DropdownStyled } from "./styled";
+import { ButtonStyled, DropdownStyled } from "./styled";
 
 import { DropdownContent } from "src/components";
 
@@ -26,9 +26,9 @@ export const Dropdown: FC<DropdownProps> = ({ buttonText, children }) => {
 
   return (
     <DropdownStyled ref={dropdownRef}>
-      <DropdownButtonStyled variant="secondary" isOpen={isOpen} onClick={toggleDropdown}>
+      <ButtonStyled variant="secondary" isOpen={isOpen} onClick={toggleDropdown}>
         {buttonText}
-      </DropdownButtonStyled>
+      </ButtonStyled>
       <DropdownContent isOpen={isOpen}>{children}</DropdownContent>
     </DropdownStyled>
   );

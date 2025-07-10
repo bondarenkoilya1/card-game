@@ -24,7 +24,7 @@ export const Hand: FC = () => {
 
   useEffect(() => {
     if (playerDeck.length >= CARDS_IN_HAND && playerHand.length === 0) generateHand();
-  }, [playerDeck, generateHand]);
+  }, [playerDeck]);
 
   if (loading) return <LoadingMessageStyled>Loading...</LoadingMessageStyled>;
 

@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { OptionListStyled } from "./styled.ts";
+import { CardSetOptionListStyled } from "./styled";
 
 import { CardSetOption } from "src/components";
 
@@ -8,7 +8,7 @@ import { CardSetsProp } from "src/types";
 
 export const CardSetOptionList: FC<CardSetsProp> = ({ cardSets }) => {
   return (
-    <OptionListStyled>
+    <CardSetOptionListStyled>
       {cardSets &&
         cardSets.map((cardSet) => (
           <CardSetOption
@@ -17,6 +17,6 @@ export const CardSetOptionList: FC<CardSetsProp> = ({ cardSets }) => {
             href={cardSet.slug}
           />
         ))}
-    </OptionListStyled>
+    </CardSetOptionListStyled>
   );
 };

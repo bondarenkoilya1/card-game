@@ -16,7 +16,7 @@ export const LearnStyled = styled.div`
   border-right: 3px solid #000;
 `;
 
-export const LearnTitleStyled = styled.h2`
+export const TitleStyled = styled.h2`
   color: ${({ theme }) => theme.colors.blue["400"]};
   font-size: 102px;
   font-weight: 700;
@@ -25,14 +25,14 @@ export const LearnTitleStyled = styled.h2`
   text-transform: uppercase;
 `;
 
-export const LearnDescriptionStyled = styled.p`
+export const DescriptionStyled = styled.p`
   color: #494444;
   font-size: 24px;
   text-align: center;
   margin: 20px auto 0 auto;
 `;
 
-export const LearnButtonStyled = styled(Button)`
+export const ButtonStyled = styled(Button)`
   border: 3px solid #fff;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   text-transform: uppercase;

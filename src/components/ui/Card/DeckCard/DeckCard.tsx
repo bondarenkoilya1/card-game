@@ -1,12 +1,6 @@
 import { FC } from "react";
 
-import {
-  CardNameStyled,
-  CardPointsStyled,
-  CardStyled,
-  CardTextHighlighted,
-  CardTypeStyled
-} from "../styled";
+import { CardStyled, HighlightedTextStyled, NameStyled, PointsStyled, TypeStyled } from "../styled";
 
 import { CardWrapperProps } from "src/types";
 
@@ -15,14 +9,14 @@ export const DeckCard: FC<CardWrapperProps> = ({ card, onClick, location }) => {
 
   return (
     <CardStyled onClick={onClick} location={location}>
-      <CardNameStyled>{name}</CardNameStyled>
-      {/*<CardDescriptionStyled>{description}</CardDescriptionStyled>*/}
-      <CardPointsStyled>
-        <CardTextHighlighted> {points}</CardTextHighlighted> points
-      </CardPointsStyled>
-      <CardTypeStyled>
-        <CardTextHighlighted>{type}</CardTextHighlighted> unit
-      </CardTypeStyled>
+      <NameStyled>{name}</NameStyled>
+      {/*<DescriptionStyled>{description}</DescriptionStyled>*/}
+      <PointsStyled>
+        <HighlightedTextStyled> {points}</HighlightedTextStyled> points
+      </PointsStyled>
+      <TypeStyled>
+        <HighlightedTextStyled>{type}</HighlightedTextStyled> unit
+      </TypeStyled>
     </CardStyled>
   );
 };
