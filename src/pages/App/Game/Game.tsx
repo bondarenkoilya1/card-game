@@ -43,7 +43,7 @@ export const Game = () => {
 
   useEffect(() => {
     if (botDeck.length >= CARDS_IN_HAND && botHand.length === 0) generateHand();
-  }, [botDeck, generateHand]);
+  }, [botDeck]);
 
   return (
     <GamePageStyled>
