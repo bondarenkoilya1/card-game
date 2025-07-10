@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { RadioButtonContainerStyled, RadioButtonLabelStyled, RadioButtonStyled } from "./styled";
+import { ContainerStyled, LabelStyled, RadioButtonStyled } from "./styled";
 
 import { RadioButtonProps } from "src/types";
 
@@ -14,8 +14,8 @@ export const RadioButton: FC<RadioButtonProps> = ({
   ...attrs
 }) => {
   return (
-    <RadioButtonContainerStyled>
-      <RadioButtonLabelStyled htmlFor={id}>{labelText}</RadioButtonLabelStyled>
+    <ContainerStyled>
+      <LabelStyled htmlFor={id}>{labelText}</LabelStyled>
       <RadioButtonStyled
         type="radio"
         name={name}
@@ -25,6 +25,6 @@ export const RadioButton: FC<RadioButtonProps> = ({
         onChange={onChange}
         {...attrs}
       />
-    </RadioButtonContainerStyled>
+    </ContainerStyled>
   );
 };

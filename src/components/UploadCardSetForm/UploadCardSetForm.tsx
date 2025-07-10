@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 
 import {
+  AdditionalBlockStyled,
   BlockWithMarginTopStyled,
-  UploadCardSetFormAdditionalBlockStyled,
-  UploadCardSetFormButtonStyles,
-  UploadCardSetFormContainerStyled,
-  UploadCardSetFormMainBlockStyled,
-  UploadCardSetFormOptionBlockStyled,
-  UploadCardSetFormStyled,
-  UploadCardSetFormTextStyled,
-  UploadCardSetFormTitleStyled
+  ButtonStyles,
+  ContainerStyled,
+  MainBlockStyled,
+  OptionBlockStyled,
+  TextStyled,
+  TitleStyled,
+  UploadCardSetFormStyled
 } from "./styled";
 import styled from "@emotion/styled";
 
@@ -29,7 +29,7 @@ type AnswerType = "yes" | "no";
 
 const answers: AnswerType[] = ["yes", "no"];
 
-const UploadCardSetFormButtonStyled = styled(Button)(UploadCardSetFormButtonStyles);
+const UploadCardSetFormButtonStyled = styled(Button)(ButtonStyles);
 
 export const UploadCardSetForm = () => {
   const {
@@ -101,10 +101,10 @@ export const UploadCardSetForm = () => {
   };
 
   return (
-    <UploadCardSetFormContainerStyled>
-      <UploadCardSetFormTitleStyled>Upload card set</UploadCardSetFormTitleStyled>
+    <ContainerStyled>
+      <TitleStyled>Upload card set</TitleStyled>
       <UploadCardSetFormStyled onSubmit={handleSubmitForm}>
-        <UploadCardSetFormMainBlockStyled>
+        <MainBlockStyled>
           <TextField
             id="card-set-name__input"
             labelText="Card set name"
@@ -113,10 +113,8 @@ export const UploadCardSetForm = () => {
             value={cardSetName}
             onChange={(event) => setSpecificFormDataField("cardSetName", event.currentTarget.value)}
           />
-          <UploadCardSetFormOptionBlockStyled>
-            <UploadCardSetFormTextStyled>
-              Do you want to add some cards on start?
-            </UploadCardSetFormTextStyled>
+          <OptionBlockStyled>
+            <TextStyled>Do you want to add some cards on start?</TextStyled>
             <RadioButtonList>
               {answers.map((answer) => (
                 <RadioButton
@@ -130,14 +128,14 @@ export const UploadCardSetForm = () => {
                 />
               ))}
             </RadioButtonList>
-          </UploadCardSetFormOptionBlockStyled>
-        </UploadCardSetFormMainBlockStyled>
+          </OptionBlockStyled>
+        </MainBlockStyled>
 
         {hasCardsOnUpload && (
-          <UploadCardSetFormAdditionalBlockStyled>
-            <UploadCardSetFormTextStyled style={{ textAlign: "center" }}>
+          <AdditionalBlockStyled>
+            <TextStyled style={{ textAlign: "center" }}>
               I want to add a card with the following properties:
-            </UploadCardSetFormTextStyled>
+            </TextStyled>
             <BlockWithMarginTopStyled marginTop={20}>
               <TextField
                 id="card-name__input"
@@ -150,10 +148,9 @@ export const UploadCardSetForm = () => {
                 }
               />
             </BlockWithMarginTopStyled>
-            <UploadCardSetFormTextStyled
-              style={{ marginTop: "20px", display: "flex", justifyContent: "center" }}>
+            <TextStyled style={{ marginTop: "20px", display: "flex", justifyContent: "center" }}>
               Card type
-            </UploadCardSetFormTextStyled>
+            </TextStyled>
             <RadioButtonList>
               {CARD_TYPES.map((cardType) => (
                 <RadioButton
@@ -186,12 +183,12 @@ export const UploadCardSetForm = () => {
               onClick={handleAddCardToUpload}>
               Add new card to this card set
             </Button>
-          </UploadCardSetFormAdditionalBlockStyled>
+          </AdditionalBlockStyled>
         )}
         <UploadCardSetFormButtonStyled type="submit" disabled={!cardSetName.trim()}>
           Upload card set
         </UploadCardSetFormButtonStyled>
       </UploadCardSetFormStyled>
-    </UploadCardSetFormContainerStyled>
+    </ContainerStyled>
   );
 };

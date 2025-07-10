@@ -1,20 +1,20 @@
 import { BsFillLightningChargeFill as LightningIcon } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-import { LearnButtonStyled, LearnDescriptionStyled, LearnStyled, LearnTitleStyled } from "./styled";
+import { ButtonStyled, DescriptionStyled, LearnStyled, TitleStyled } from "./styled";
 
 export const Learn = () => {
   return (
     <LearnStyled>
-      <LearnTitleStyled>Train</LearnTitleStyled>
-      <LearnDescriptionStyled>
+      <TitleStyled>Train</TitleStyled>
+      <DescriptionStyled>
         Discover your skill level by starting with easy bots. <br />
         Master the game and challenge the veterans!
-      </LearnDescriptionStyled>
+      </DescriptionStyled>
       <Link to="/pick-set">
-        <LearnButtonStyled hasIcon="onLeft" icon={LightningIcon}>
+        <ButtonStyled hasIcon="onLeft" icon={LightningIcon}>
           Choose your card set
-        </LearnButtonStyled>
+        </ButtonStyled>
       </Link>
     </LearnStyled>
   );

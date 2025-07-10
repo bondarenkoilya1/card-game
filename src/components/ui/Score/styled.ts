@@ -5,6 +5,6 @@ export const ScoreStyled = styled.span`
   font-weight: 700;
 `;
 
-export const ScoreHighlightedStyled = styled.strong`
+export const HighlightedTextStyled = styled.strong`
   color: #d75f5f;
 `;

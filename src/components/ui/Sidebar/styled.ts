@@ -14,32 +14,32 @@ export const SidebarStyled = styled.aside`
   padding: 60px 30px 30px 30px;
 `;
 
-export const SidebarTitleStyled = styled.h2`
+export const TitleStyled = styled.h2`
   font-size: 28px;
   text-transform: uppercase;
   text-align: center;
   font-weight: 700;
 `;
 
-export const SidebarListStyled = styled.ul`
+export const ListStyled = styled.ul`
   display: flex;
   flex-direction: column;
   margin-top: 40px;
 `;
 
-export const SidebarSectionStyled = styled.li``;
+export const SectionStyled = styled.li``;
 
-export const SidebarSectionTitleStyled = styled.h4`
+export const SectionTitleStyled = styled.h4`
   font-size: 18px;
   border-bottom: 1px solid #605a5a;
   padding-bottom: 4px;
 `;
 
-export const SidebarInternalListStyled = styled.ul`
+export const InternalListStyled = styled.ul`
   display: flex;
   flex-direction: column;
 `;
 
-export const SidebarInternalListItemStyled = styled.li`
+export const InternalListItemStyled = styled.li`
   margin-top: 10px;
 `;

@@ -7,7 +7,6 @@ import { ButtonProps, JSXElement } from "src/types";
 
 /* The task is not so complicated to create new files.
    I'll do different button variants in one file for now */
-
 export const Button: FC<ButtonProps> = ({
   className,
   children,

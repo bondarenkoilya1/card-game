@@ -2,24 +2,27 @@ import { css } from "@emotion/react";
 
 import styled from "@emotion/styled";
 
-export const UploadCardSetFormContainerStyled = styled.div`
+export const UploadCardSetFormStyled = styled.form``;
+
+export const ContainerStyled = styled.div`
   border: 2px solid #4b6ef5;
   border-radius: 12px;
   width: 22%;
   overflow: hidden;
 `;
 
-export const UploadCardSetFormMainBlockStyled = styled.div`
+export const MainBlockStyled = styled.div`
   padding: 20px;
 `;
-export const UploadCardSetFormAdditionalBlockStyled = styled.div`
+
+export const AdditionalBlockStyled = styled.div`
   margin-top: 20px;
   width: 100%;
   background-color: rgba(75, 110, 245, 0.25);
   padding: 20px;
 `;
 
-export const UploadCardSetFormTitleStyled = styled.form`
+export const TitleStyled = styled.form`
   font-size: 24px;
   text-transform: uppercase;
   display: flex;
@@ -28,13 +31,11 @@ export const UploadCardSetFormTitleStyled = styled.form`
   padding: 20px 20px 0 20px;
 `;
 
-export const UploadCardSetFormStyled = styled.form``;
-
-export const UploadCardSetFormTextStyled = styled.p`
+export const TextStyled = styled.p`
   font-size: 18px;
 `;
 
-export const UploadCardSetFormOptionBlockStyled = styled.div`
+export const OptionBlockStyled = styled.div`
   background-color: #fdfdfd;
   border: 2px solid #4b6ef5;
   border-radius: 12px;
@@ -44,7 +45,7 @@ export const UploadCardSetFormOptionBlockStyled = styled.div`
   text-align: center;
 `;
 
-export const UploadCardSetFormButtonStyles = css`
+export const ButtonStyles = css`
   background-color: #5c7aff;
   color: #fff;
   text-transform: uppercase;

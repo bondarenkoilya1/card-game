@@ -1,20 +1,15 @@
-import {
-  DominateContainerStyled,
-  DominateDescriptionStyled,
-  DominateStyled,
-  DominateTitleStyled
-} from "./styled";
+import { ContainerStyled, DescriptionStyled, DominateStyled, TitleStyled } from "./styled";
 
 export const Dominate = () => {
   return (
     <DominateStyled>
-      <DominateContainerStyled>
-        <DominateTitleStyled>Dominate</DominateTitleStyled>
-        <DominateDescriptionStyled>
+      <ContainerStyled>
+        <TitleStyled>Dominate</TitleStyled>
+        <DescriptionStyled>
           Face the strongest. <br />
           Try to stay in the top 10 for at least two days!
-        </DominateDescriptionStyled>
-      </DominateContainerStyled>
+        </DescriptionStyled>
+      </ContainerStyled>
     </DominateStyled>
   );
 };

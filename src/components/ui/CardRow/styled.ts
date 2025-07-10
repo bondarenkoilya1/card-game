@@ -15,10 +15,10 @@ export const CardRowStyled = styled.ul<{ type: RowType }>`
   overflow: hidden;
   overflow-x: auto;
 
-  ${({ type }) => type === "deck" && CardRowDeckStyles}
+  ${({ type }) => type === "deck" && DeckStyles}
 `;
 
-export const CardRowDeckStyles = css`
+export const DeckStyles = css`
   height: 100%;
   flex-wrap: wrap;
   margin-top: 20px;

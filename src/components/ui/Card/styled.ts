@@ -29,30 +29,30 @@ const DeckCardStyles = css`
   height: 300px;
 `;
 
-export const CardNameStyled = styled.h3`
+export const NameStyled = styled.h3`
   font-weight: 400;
   font-size: 12px;
   color: #000;
 `;
 
-export const CardDescriptionStyled = styled.p`
+export const DescriptionStyled = styled.p`
   color: darkred;
 `;
 
-export const CardTypeStyled = styled.p`
+export const TypeStyled = styled.p`
   position: absolute;
 
   bottom: 10px;
   left: 10px;
 `;
 
-export const CardPointsStyled = styled.p`
+export const PointsStyled = styled.p`
   position: absolute;
   top: 10px;
   right: 10px;
 `;
 
-export const CardTextHighlighted = styled.span`
+export const HighlightedTextStyled = styled.span`
   font-weight: 600;
   color: darkred;
 `;

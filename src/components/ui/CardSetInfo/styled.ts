@@ -12,18 +12,18 @@ export const CardSetInfoStyled = styled.div`
   border-radius: 4px;
 `;
 
-export const CardSetInfoTitleStyled = styled.div`
+export const InfoTitleStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
-export const CardSetInfoNameStyled = styled.h4`
+export const InfoNameStyled = styled.h4`
   font-weight: 500;
   font-size: 24px;
 `;
 
-export const CardSetInfoIDStyled = styled.span`
+export const InfoIDStyled = styled.span`
   font-size: 10px;
   text-transform: uppercase;
   color: darkgrey;
@@ -31,14 +31,14 @@ export const CardSetInfoIDStyled = styled.span`
   cursor: pointer;
 `;
 
-export const CardSetInfoFormStyled = styled.form`
+export const InfoFormStyled = styled.form`
   margin-top: 14px;
   display: flex;
   justify-content: space-between;
   align-items: stretch;
 `;
 
-export const CardSetInfoUpdateButtonStyled = styled(Button)`
+export const InfoUpdateButtonStyled = styled(Button)`
   font-size: 14px;
   padding: 5px 10px;
   width: 25%;
@@ -47,18 +47,18 @@ export const CardSetInfoUpdateButtonStyled = styled(Button)`
   border-left: none;
 `;
 
-export const CardSetInfoTextFieldStyled = styled(TextField)`
+export const InfoTextFieldStyled = styled(TextField)`
   width: 75%;
 `;
 
-export const CardSetInfoDeleteButtonStyled = styled(Button)`
+export const InfoDeleteButtonStyled = styled(Button)`
   width: 100%;
   margin-top: 14px;
   background-color: #b73636;
   border-color: #7a1111;
 `;
 
-export const CardSetInfoQuantityStyled = styled.p`
+export const InfoQuantityStyled = styled.p`
   margin-top: 14px;
 
   & span {
