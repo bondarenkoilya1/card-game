@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { DecksContainerStyled, ManageDeckStyled, TitleStyled } from "./styled";
@@ -24,10 +24,7 @@ export const ManageDeck = () => {
     fetchCardSets();
   }, []);
 
-  const currentCardSet = useMemo(
-    () => cardSets.find((cardSet) => cardSet.slug === cardSetSlug) || null,
-    [cardSets, cardSetSlug]
-  );
+  const currentCardSet = cardSets.find((cardSet) => cardSet.slug === cardSetSlug) || null;
 
   useRedirect(!currentCardSet, "/pick-set");
 
@@ -36,11 +33,9 @@ export const ManageDeck = () => {
     return null;
   }
 
-  const outOfDeckCards = useMemo(() => {
-    return currentCardSet.cards.filter(
-      (card) => !playerDeck.some((deckCard) => deckCard._id === card._id)
-    );
-  }, [currentCardSet.cards, playerDeck]);
+  const outOfDeckCards = currentCardSet.cards.filter(
+    (card) => !playerDeck.some((deckCard) => deckCard._id === card._id)
+  );
 
   const handleStartGameButton = () => {
     navigate("/play");

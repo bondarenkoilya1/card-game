@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { ContainerStyles, GamePageStyled } from "./styled";
@@ -33,10 +33,7 @@ export const Game = () => {
     fetchCardSets();
   }, []);
 
-  const currentCardSet = useMemo(
-    () => findCardSetByName(cardSets, selectedCardSetName),
-    [cardSets, selectedCardSetName]
-  );
+  const currentCardSet = findCardSetByName(cardSets, selectedCardSetName);
 
   useRedirect(!currentCardSet, "/pick-set");
 
