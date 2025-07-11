@@ -4,6 +4,8 @@ import { Global } from "@emotion/react";
 
 import { GlobalStyle } from "src/styled";
 
+import { Header } from "src/layout";
+
 import "./prototypes";
 
 /* Card set – All cards available in the game for a faction.
@@ -12,6 +14,7 @@ import "./prototypes";
 export const App = () => (
   <>
     <Global styles={GlobalStyle} />
+    <Header />
     <Outlet />
   </>
 );
