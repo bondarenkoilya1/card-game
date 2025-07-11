@@ -29,7 +29,8 @@ export const CardSetInfo: FC<CardSetInfoProps> = ({
     setInputValue(event.target.value);
 
   const handleSubmit = () => {
-    inputValue && updateCardSet(id, "cardSetName", inputValue);
+    if (!inputValue) throw new Error("You should enter new card set name.");
+    updateCardSet(id, "cardSetName", inputValue);
   };
 
   return (
