@@ -1,3 +1,8 @@
 import { SidebarSectionProps } from "src/types";
 
-export type NavigationProps = Record<string, SidebarSectionProps[]>;
+export type NavigationItemProps = {
+  title: string;
+  url: string;
+};
+
+export type SidebarNavigationProps = Record<string, SidebarSectionProps[]>;

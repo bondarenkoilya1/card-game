@@ -5,7 +5,7 @@ import { Global } from "@emotion/react";
 import { AdminPanelStyled, ContainerStyled, TitleStyled } from "./styled";
 import { GlobalStyle } from "src/styled";
 
-import { NAVIGATION_ITEMS } from "src/constants";
+import { SIDEBAR_NAVIGATION_ITEMS } from "src/constants";
 
 import { Sidebar } from "src/components";
 
@@ -14,7 +14,7 @@ export const AdminPanel = () => {
     <>
       <Global styles={GlobalStyle} />
       {/**/}
-      <Sidebar title="Card game" components={NAVIGATION_ITEMS.adminPanel} />
+      <Sidebar title="Card game" components={SIDEBAR_NAVIGATION_ITEMS.adminPanel} />
       <AdminPanelStyled>
         <ContainerStyled>
           <TitleStyled>Admin panel</TitleStyled>
