@@ -38,6 +38,9 @@ export const ManageDeck = () => {
   );
 
   const handleStartGameButton = () => {
+    if (playerDeck.length < CARDS_IN_HAND)
+      throw new Error(`You should have at least ${CARDS_IN_HAND} cards in your deck.`);
+
     navigate("/play");
     setSelectedCardSetName(currentCardSet.cardSetName);
   };

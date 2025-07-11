@@ -41,6 +41,11 @@ export const ManageCardSet = () => {
   const isNextButtonDisabled = selectedCardSetIndex >= cardSets.length - 1;
 
   const switchCardSet = (direction: "prev" | "next") => {
+    if (direction === "prev" && isPrevButtonDisabled)
+      throw new Error("There is no more cards before this one.");
+    if (direction === "next" && isNextButtonDisabled)
+      throw new Error("There is no more cards after this one.");
+
     const newCardSetIndex =
       direction === "prev" ? selectedCardSetIndex - 1 : selectedCardSetIndex + 1;
 
