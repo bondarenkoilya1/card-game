@@ -13,16 +13,19 @@ const updateBoardRow = (board: CardRowType[], newCard: CardProps): CardRowType[]
   );
 
 export const useBoardCardsStore = create<BoardCardsStore>()(
-  devtools((set) => ({
-    playerBoardCards: createEmptyBoard(),
-    addPlayerBoardCard: (newCard) =>
-      set((state) => ({
-        playerBoardCards: updateBoardRow(state.playerBoardCards, newCard)
-      })),
-    botBoardCards: createEmptyBoard(),
-    addBotBoardCard: (newCard) =>
-      set((state) => ({
-        botBoardCards: updateBoardRow(state.botBoardCards, newCard)
-      }))
-  }))
+  devtools(
+    (set) => ({
+      playerBoardCards: createEmptyBoard(),
+      addPlayerBoardCard: (newCard) =>
+        set((state) => ({
+          playerBoardCards: updateBoardRow(state.playerBoardCards, newCard)
+        })),
+      botBoardCards: createEmptyBoard(),
+      addBotBoardCard: (newCard) =>
+        set((state) => ({
+          botBoardCards: updateBoardRow(state.botBoardCards, newCard)
+        }))
+    }),
+    { name: "BoardCardsStore" }
+  )
 );
