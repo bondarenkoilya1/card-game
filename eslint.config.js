@@ -2,6 +2,7 @@ import eslintPluginPrettier from "eslint-plugin-prettier";
 import eslintPluginReact from "eslint-plugin-react";
 import eslintPluginSimpleImportSort from "eslint-plugin-simple-import-sort";
 
+import pluginQuery from "@tanstack/eslint-plugin-query";
 import tsParser from "@typescript-eslint/parser";
 
 export default [
@@ -41,7 +42,8 @@ export default [
     plugins: {
       react: eslintPluginReact,
       prettier: eslintPluginPrettier,
-      "simple-import-sort": eslintPluginSimpleImportSort
+      "simple-import-sort": eslintPluginSimpleImportSort,
+      ...pluginQuery.configs["flat/recommended"]
     },
     settings: {
       react: {
