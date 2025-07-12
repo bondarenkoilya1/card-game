@@ -40,11 +40,9 @@ export const Hand: FC = () => {
   // TODO: Artificial timeout
   useEffect(() => {
     if (!isMoving) {
-      setTimeout(() => {
-        addBotBoardCard(botHand[0]);
-        removeCardFromBotHand(botHand[0]._id);
-        setIsMoving(true);
-      }, 1000);
+      addBotBoardCard(botHand[0]);
+      removeCardFromBotHand(botHand[0]._id);
+      setIsMoving(true);
     }
   }, [isMoving]);
 
