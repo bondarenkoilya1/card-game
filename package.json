@@ -8,7 +8,8 @@
     "dev:all": "concurrently \"bun dev\" \"bun --cwd D:/FrontEnd/Projects/BackEnd/card-game-server dev\"",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "knip": "knip"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -25,6 +26,7 @@
     "@emotion/babel-plugin": "^11.13.5",
     "@eslint/js": "^9.17.0",
     "@redux-devtools/extension": "^3.3.0",
+    "@types/node": "^24.0.13",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@typescript-eslint/eslint-plugin": "^8.19.1",
@@ -43,8 +45,9 @@
     "eslint-plugin-react-refresh": "^0.4.18",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "globals": "^15.14.0",
+    "knip": "^5.61.3",
     "prettier": "^3.4.2",
-    "typescript": "~5.6.2",
+    "typescript": "^5.8.3",
     "typescript-eslint": "^8.18.2",
     "vite": "^6.3.5"
   }
