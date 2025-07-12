@@ -16,6 +16,7 @@ export const useCardSetHTTPMethod = () => {
     try {
       const sets = await fetchItem<CardSetsType>("/card-sets");
       setCardSets(sets);
+      return sets;
     } catch (error) {
       const errorMessage = validateError(error);
       setError(errorMessage);
