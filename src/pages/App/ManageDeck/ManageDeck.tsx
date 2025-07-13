@@ -1,44 +1,38 @@
-import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { DecksContainerStyled, ManageDeckStyled, TitleStyled } from "./styled";
 
 import { CARDS_IN_HAND } from "src/constants";
 
-import { Button, Card, CardRow } from "src/components";
+import { Button, Card, CardRow, ErrorComponent } from "src/components";
 
 import { CardProps } from "src/types";
 
 import { useCardSetsStore, useDecksStore } from "src/store";
 
-import { useCardSetHTTPMethod, useRedirect } from "src/hooks";
+import { useCardSets, useRedirect } from "src/hooks";
 
+// TODO: Protect routes instead of useNavigate hook
 export const ManageDeck = () => {
   const navigate = useNavigate();
   const { cardSetSlug } = useParams();
-  const { fetchCardSets } = useCardSetHTTPMethod();
-  const { cardSets, setSelectedCardSetName } = useCardSetsStore();
+  const { cardSets, isLoading, isError, error } = useCardSets();
+  const { setSelectedCardSetName } = useCardSetsStore();
   const { playerDeck, addCardToPlayerDeck, removeCardFromPlayerDeck } = useDecksStore();
 
-  useEffect(() => {
-    fetchCardSets();
-  }, []);
+  const currentCardSet = cardSets?.find((cardSet) => cardSet.slug === cardSetSlug) || null;
 
-  const currentCardSet = cardSets.find((cardSet) => cardSet.slug === cardSetSlug) || null;
-
-  useRedirect(!currentCardSet, "/pick-set");
-
-  // To prevent execution of code below this statement
-  if (!currentCardSet) {
-    return null;
-  }
+  const shouldRedirect = !isLoading && !isError && !currentCardSet;
+  useRedirect(shouldRedirect, "/pick-set");
+  if (!currentCardSet) return null;
 
   const outOfDeckCards = currentCardSet.cards.filter(
     (card) => !playerDeck.some((deckCard) => deckCard._id === card._id)
   );
 
+  const isDeckCompleted = playerDeck.length >= CARDS_IN_HAND;
   const handleStartGameButton = () => {
-    if (playerDeck.length < CARDS_IN_HAND)
+    if (!isDeckCompleted)
       throw new Error(`You should have at least ${CARDS_IN_HAND} cards in your deck.`);
 
     navigate("/play");
@@ -61,6 +55,9 @@ export const ManageDeck = () => {
     </CardRow>
   );
 
+  if (isLoading) return <p>Loading</p>;
+  if (isError) return <ErrorComponent unspecifiedErrorMessage={error?.message} />;
+
   return (
     <ManageDeckStyled>
       <TitleStyled>Manage deck</TitleStyled>
@@ -68,10 +65,9 @@ export const ManageDeck = () => {
         {renderCardRow(outOfDeckCards, "add")}
         {renderCardRow(playerDeck, "remove")}
       </DecksContainerStyled>
-      {/* TODO: Temporary decision to use Button instead of Link */}
       <Button
         onClick={handleStartGameButton}
-        disabled={playerDeck.length < CARDS_IN_HAND}
+        disabled={!isDeckCompleted}
         style={{ margin: "40px auto 0 auto" }}>
         Play with this card set
       </Button>
