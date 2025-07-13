@@ -7,23 +7,9 @@ import { fetchItem } from "src/api";
 import { useCardSetsStore } from "src/store";
 
 export const useCardSetHTTPMethod = () => {
-  const { setCardSets, setIsLoading, setError } = useCardSetsStore();
+  const { setIsLoading, setError } = useCardSetsStore();
 
-  const fetchCardSets = async () => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const sets = await fetchItem<CardSetsType>("/card-sets");
-      setCardSets(sets);
-      return sets;
-    } catch (error) {
-      const errorMessage = validateError(error);
-      setError(errorMessage);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const fetchCardSets = () => fetchItem<CardSetsType>("/card-sets");
 
   const deleteCardSet = async (cardSetId: string) => {
     setIsLoading(true);
