@@ -4,7 +4,7 @@ import { RouteProps } from "src/types";
 
 export const ROUTES: RouteProps[] = [
   { index: true, element: <Main /> },
-  { path: "play", element: <Game /> },
   { path: "pick-set", element: <PickSet /> },
-  { path: "pick-set/:cardSetSlug", element: <ManageDeck /> }
+  { path: "pick-set/:cardSetSlug", element: <ManageDeck /> },
+  { path: "play", element: <Game /> }
 ];
