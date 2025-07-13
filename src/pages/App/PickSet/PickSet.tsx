@@ -1,8 +1,7 @@
 import { PickSetStyled, TitleStyled } from "./styled";
 import { ContainerStyled } from "src/styled";
 
-import { CardSetOptionList } from "src/components";
-import { Error } from "src/components";
+import { CardSetOptionList, ErrorComponent } from "src/components";
 
 import { useCardSets } from "src/hooks";
 
@@ -15,7 +14,7 @@ export const PickSet = () => {
     <PickSetStyled>
       <ContainerStyled>
         <TitleStyled>Pick your set</TitleStyled>
-        {isError && <Error unspecifiedErrorMessage={error?.message} />}
+        {isError && <ErrorComponent unspecifiedErrorMessage={error?.message} />}
         <CardSetOptionList cardSets={cardSets ?? []} />
       </ContainerStyled>
     </PickSetStyled>

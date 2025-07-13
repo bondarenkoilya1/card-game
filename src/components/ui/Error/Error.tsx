@@ -4,7 +4,7 @@ import { ErrorProps } from "src/types";
 
 import { UnspecifiedError } from "./UnspecifiedError";
 
-export const Error: FC<ErrorProps> = ({ errorCode, unspecifiedErrorMessage }) => {
+export const ErrorComponent: FC<ErrorProps> = ({ errorCode, unspecifiedErrorMessage }) => {
   switch (errorCode) {
     // case "404":
     //   return <></>;

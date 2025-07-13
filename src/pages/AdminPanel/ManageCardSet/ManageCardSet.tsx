@@ -9,7 +9,7 @@ import {
   SwitchButtonStyled
 } from "./styled";
 
-import { Dropdown, DropdownItem, Error as ErrorComponent } from "src/components";
+import { Dropdown, DropdownItem, ErrorComponent } from "src/components";
 import { CardSet } from "src/components/CardSet";
 
 import { CardSetProps } from "src/types";

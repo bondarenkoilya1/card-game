@@ -5,7 +5,7 @@ import { HandStyled, LoadingMessageStyled, TitleStyled } from "./styled";
 
 import { CARDS_IN_HAND } from "src/constants";
 
-import { Card, CardRow, Error } from "src/components";
+import { Card, CardRow, ErrorComponent } from "src/components";
 
 import { CardProps } from "src/types";
 
@@ -19,7 +19,6 @@ export const Hand: FC = () => {
   const { addPlayerBoardCard, addBotBoardCard } = useBoardCardsStore();
   const { loading, error, generateHand } = useHandGenerator("player");
 
-  // Should be true on every game start so it's not in the store
   const [isMoving, setIsMoving] = useState(true);
 
   useEffect(() => {
@@ -48,7 +47,7 @@ export const Hand: FC = () => {
 
   return (
     <HandStyled>
-      {error && <Error unspecifiedErrorMessage={error} />}
+      {error && <ErrorComponent unspecifiedErrorMessage={error} />}
 
       <TitleStyled>Your Hand</TitleStyled>
       <CardRow type="hand">
