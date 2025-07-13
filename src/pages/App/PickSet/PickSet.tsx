@@ -17,20 +17,25 @@ export const PickSet = () => {
     fetchCardSets();
   }, []);
 
-  const query = useQuery({
+  const {
+    data: cardSets,
+    isLoading,
+    isError,
+    error
+  } = useQuery({
     queryKey: ["cardSets"],
     queryFn: fetchCardSets,
     staleTime: 1000 * 60 * 3
   });
 
-  if (query.isLoading) return <p>Loading</p>;
+  if (isLoading) return <p>Loading</p>;
 
   return (
     <PickSetStyled>
       <ContainerStyled>
         <TitleStyled>Pick your set</TitleStyled>
-        {query.isError && <Error unspecifiedErrorMessage={query.error.message} />}
-        <CardSetOptionList cardSets={query.data ?? []} />
+        {isError && <Error unspecifiedErrorMessage={error.message} />}
+        <CardSetOptionList cardSets={cardSets ?? []} />
       </ContainerStyled>
     </PickSetStyled>
   );

@@ -1,4 +1,3 @@
-import { BsFillLightningChargeFill as LightningIcon } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 import { ButtonStyled, DescriptionStyled, LearnStyled, TitleStyled } from "./styled";
@@ -12,9 +11,7 @@ export const Learn = () => {
         Master the game and challenge the veterans!
       </DescriptionStyled>
       <Link to="/pick-set">
-        <ButtonStyled hasIcon="onLeft" icon={LightningIcon}>
-          Choose your card set
-        </ButtonStyled>
+        <ButtonStyled>Choose your card set</ButtonStyled>
       </Link>
     </LearnStyled>
   );

@@ -45,9 +45,9 @@ export const ButtonStyled = styled.button<{ variant: "primary" | "secondary" | "
   }
 `;
 
-export const LeftIconStyled = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 20px;
-`;
+// export const LeftIconStyled = styled.div`
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   margin-right: 20px;
+// `;
