@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 
 import styled from "@emotion/styled";
 
-import { RowType } from "src/types";
+import { RowType } from "./types";
 
 export const CardRowStyled = styled.ul<{ type: RowType }>`
   display: flex;

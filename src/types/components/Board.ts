@@ -1,6 +1,6 @@
 import { PlayerType } from "src/types";
 
-import { CardProps, CardType } from "./ui/Card";
+import { CardProps, CardType } from "../card";
 
 export type RowProps = {
   type: CardType;

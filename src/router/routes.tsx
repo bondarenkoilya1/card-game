@@ -1,6 +1,6 @@
 import { Game, Main, ManageDeck, PickSet } from "src/pages";
 
-import { RouteProps } from "src/types";
+import { RouteProps } from "./types";
 
 export const ROUTES: RouteProps[] = [
   { index: true, element: <Main /> },

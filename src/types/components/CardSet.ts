@@ -1,4 +1,4 @@
-import { CardProps } from "./ui/Card";
+import { CardProps } from "../card";
 
 export type CardSetProps = {
   _id: string;

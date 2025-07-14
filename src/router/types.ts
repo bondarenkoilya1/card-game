@@ -1,4 +1,4 @@
-import { JSXElement } from "./global";
+import { JSXElement } from "src/types";
 
 export type RouteProps = {
   index?: boolean;
