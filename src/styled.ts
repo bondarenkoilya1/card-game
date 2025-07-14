@@ -28,7 +28,7 @@ export const GlobalStyle = css`
 
   #root {
     font-family: "Inter", sans-serif;
-    color: #fff;
+    color: #000;
     background-color: #fff;
   }
 

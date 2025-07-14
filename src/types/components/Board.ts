@@ -1,6 +1,6 @@
-import { CardProps, CardType } from "./ui/Card";
+import { PlayerType } from "src/types";
 
-export type Boards = "player" | "bot";
+import { CardProps, CardType } from "./ui/Card";
 
 export type RowProps = {
   type: CardType;
@@ -11,5 +11,5 @@ export type BoardProps = {
   boardCards: RowProps[];
   score: number;
   setScore: (newScore: number) => void;
-  boardType: Boards;
+  boardType: PlayerType;
 };

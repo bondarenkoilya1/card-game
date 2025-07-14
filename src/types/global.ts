@@ -14,6 +14,8 @@ export type ServerErrorProps = {
   message: string;
 };
 
+export type PlayerType = "player" | "bot";
+
 declare global {
   interface String {
     toCapitalize(): string;
