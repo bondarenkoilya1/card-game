@@ -4,7 +4,7 @@ import { ButtonStyled, DropdownStyled } from "./styled";
 
 import { DropdownContent } from "src/components";
 
-import { DropdownProps } from "src/types";
+import { DropdownProps } from "./types";
 
 export const Dropdown: FC<DropdownProps> = ({ buttonText, children }) => {
   const [isOpen, setIsOpen] = useState(false);

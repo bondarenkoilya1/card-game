@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
-import { DecksStoreProps } from "src/types";
+import { DecksStoreProps } from "./types";
 
 export const useDecksStore = create<DecksStoreProps>()(
   devtools(

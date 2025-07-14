@@ -8,7 +8,9 @@ import { CARD_TYPES } from "src/constants";
 import { Card, CardRow } from "src/components";
 import { CardRowStyles } from "src/components/Board/styled";
 
-import { CardRowListProps, CardType } from "src/types";
+import { CardType } from "src/types";
+
+import { CardRowListProps } from "./types";
 
 // At the moment don't know how to make it universal without removing everything but wrapping div
 export const CardRowList: FC<CardRowListProps> = ({ sort, boardCards }) => {

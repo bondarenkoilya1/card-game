@@ -12,9 +12,9 @@ import {
   InfoUpdateButtonStyled
 } from "./styled";
 
-import { CardSetInfoProps } from "src/types";
-
 import { copyToClipboard } from "src/utils";
+
+import { CardSetInfoProps } from "./types";
 
 export const CardSetInfo: FC<CardSetInfoProps> = ({
   name,

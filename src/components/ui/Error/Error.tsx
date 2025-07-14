@@ -1,7 +1,6 @@
 import { FC } from "react";
 
-import { ErrorProps } from "src/types";
-
+import { ErrorProps } from "./types";
 import { UnspecifiedError } from "./UnspecifiedError";
 
 export const ErrorComponent: FC<ErrorProps> = ({ errorCode, unspecifiedErrorMessage }) => {

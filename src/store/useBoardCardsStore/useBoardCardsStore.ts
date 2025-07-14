@@ -3,11 +3,13 @@ import { devtools } from "zustand/middleware";
 
 import { CARD_TYPES } from "src/constants";
 
-import { BoardCardsStore, CardProps, CardRowType } from "src/types";
+import { CardProps, RowProps } from "src/types";
 
-const createEmptyBoard = (): CardRowType[] => CARD_TYPES.map((type) => ({ type, cards: [] }));
+import { BoardCardsStore } from "./types";
 
-const updateBoardRow = (board: CardRowType[], newCard: CardProps): CardRowType[] =>
+const createEmptyBoard = (): RowProps[] => CARD_TYPES.map((type) => ({ type, cards: [] }));
+
+const updateBoardRow = (board: RowProps[], newCard: CardProps): RowProps[] =>
   board.map((row) =>
     row.type === newCard.type ? { ...row, cards: [...row.cards, newCard] } : row
   );

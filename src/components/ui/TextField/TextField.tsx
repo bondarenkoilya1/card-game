@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { ContainerStyled, LabelStyled, TextFieldStyled } from "./styled";
 
-import { TextFieldProps } from "src/types";
+import { TextFieldProps } from "./types";
 
 export const TextField: FC<TextFieldProps> = ({
   id,

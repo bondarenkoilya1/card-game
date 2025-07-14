@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
-import { ScoresStoreProps } from "src/types";
+import { ScoresStoreProps } from "./types";
 
 export const useScoresStore = create<ScoresStoreProps>()(
   devtools(

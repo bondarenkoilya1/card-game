@@ -1,4 +1,4 @@
-import { CardSetNameProp, CardSetsType, ServerErrorProps } from "src/types";
+import { CardSetNameProp, CardSetProps, ServerErrorProps } from "src/types";
 
 import { validateError } from "src/utils";
 
@@ -9,7 +9,7 @@ import { useCardSetsStore } from "src/store";
 export const useCardSetHTTPMethod = () => {
   const { setIsLoading, setError } = useCardSetsStore();
 
-  const fetchCardSets = () => fetchItem<CardSetsType>("/card-sets");
+  const fetchCardSets = () => fetchItem<CardSetProps[]>("/card-sets");
 
   const deleteCardSet = async (cardSetId: string) => {
     setIsLoading(true);

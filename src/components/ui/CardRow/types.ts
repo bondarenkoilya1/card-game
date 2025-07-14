@@ -1,6 +1,4 @@
-import { Children, CSS } from "src/types";
-
-import { CardType } from "./Card";
+import { CardType, Children, CSS } from "src/types";
 
 export type RowType = CardType | "hand" | "deck";
 

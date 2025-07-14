@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { ContainerStyled, LabelStyled, RadioButtonStyled } from "./styled";
 
-import { RadioButtonProps } from "src/types";
+import { RadioButtonProps } from "./types";
 
 export const RadioButton: FC<RadioButtonProps> = ({
   id,

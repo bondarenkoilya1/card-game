@@ -1,4 +1,4 @@
-import { CardType, NavigationItemProps, SidebarNavigationProps } from "src/types";
+import { CardType, GroupedNavigationSectionProps, NavigationItemProps } from "src/types";
 
 export const CARDS_IN_HAND = 10;
 export const CARDS_IN_DECK = 15;
@@ -11,7 +11,7 @@ export const NAVIGATION_ITEMS: NavigationItemProps[] = [
   { title: "Play", url: "/play" }
 ];
 
-export const SIDEBAR_NAVIGATION_ITEMS: SidebarNavigationProps = {
+export const SIDEBAR_NAVIGATION_ITEMS: GroupedNavigationSectionProps = {
   adminPanel: [
     {
       title: "Card management",

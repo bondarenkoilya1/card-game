@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { CardSetOptionStyled, ContainerStyled, TitleStyled } from "./styled";
 
-import { CardSetOptionProps } from "src/types";
+import { CardSetOptionProps } from "./types";
 
 export const CardSetOption: FC<CardSetOptionProps> = ({ cardSetName, href }) => {
   return (

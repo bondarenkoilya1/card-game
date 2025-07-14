@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
-import { HandsStoreProps } from "src/types";
+import { HandsStoreProps } from "./types";
 
 export const useHandsStore = create<HandsStoreProps>()(
   devtools(
