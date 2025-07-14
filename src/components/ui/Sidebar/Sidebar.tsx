@@ -13,7 +13,6 @@ import {
 } from "./styled";
 
 import { NavigationItemProps, NavigationSectionProps } from "src/types";
-
 import { SidebarProps } from "./types";
 
 export const Sidebar: FC<SidebarProps> = ({ title, components }) => {

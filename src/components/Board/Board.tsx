@@ -5,9 +5,9 @@ import { BoardStyled } from "./styled";
 import { Score } from "src/components";
 
 import { CardProps, SortVariants } from "src/types";
+import { BoardProps } from "./types";
 
 import { CardRowList } from "./CardRowList";
-import { BoardProps } from "./types";
 
 const getCardPoints = (card: CardProps) => card.points || 0;
 
