@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
-import { FormDataProps, UploadCardSetStoreProps } from "src/types";
+import { FormDataProps, UploadCardSetStoreProps } from "./types";
 
 const initialFormData: FormDataProps = {
   cardSetName: "",
