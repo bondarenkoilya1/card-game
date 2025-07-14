@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import { HandStyled, LoadingMessageStyled, TitleStyled } from "./styled";
@@ -9,41 +9,19 @@ import { Card, CardRow, ErrorComponent } from "src/components";
 
 import { CardProps } from "src/types";
 
-import { useBoardCardsStore, useDecksStore, useHandsStore } from "src/store";
+import { useDecksStore, useHandsStore } from "src/store";
 
-import { useHandGenerator } from "src/hooks";
+import { useHandGenerator, useMove } from "src/hooks";
 
 export const Hand: FC = () => {
   const { playerDeck } = useDecksStore();
-  const { playerHand, removeCardFromPlayerHand, botHand, removeCardFromBotHand } = useHandsStore();
-  const { addPlayerBoardCard, addBotBoardCard } = useBoardCardsStore();
+  const { playerHand } = useHandsStore();
   const { loading, error, generateHand } = useHandGenerator("player");
-
-  const [isMoving, setIsMoving] = useState(true);
+  const { makeMove } = useMove("bot");
 
   useEffect(() => {
     if (playerDeck.length >= CARDS_IN_HAND && playerHand.length === 0) generateHand();
   }, [playerDeck]);
-
-  if (loading) return <LoadingMessageStyled>Loading...</LoadingMessageStyled>;
-
-  // TODO: Bring out everything below
-  const makeMove = (card: CardProps) => {
-    if (isMoving) {
-      addPlayerBoardCard(card);
-      removeCardFromPlayerHand(card._id);
-      setIsMoving(false);
-    }
-  };
-
-  // TODO: Artificial timeout
-  useEffect(() => {
-    if (!isMoving) {
-      addBotBoardCard(botHand[0]);
-      removeCardFromBotHand(botHand[0]._id);
-      setIsMoving(true);
-    }
-  }, [isMoving]);
 
   return (
     <HandStyled>
@@ -51,6 +29,7 @@ export const Hand: FC = () => {
 
       <TitleStyled>Your Hand</TitleStyled>
       <CardRow type="hand">
+        {loading && !playerHand && <LoadingMessageStyled>Loading...</LoadingMessageStyled>}
         {playerHand &&
           playerHand.map((card: CardProps) => (
             <Card card={card} location="board" onClick={() => makeMove(card)} key={uuidv4()} />
