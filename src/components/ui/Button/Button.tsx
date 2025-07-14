@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { ButtonStyled } from "./styled";
 
-import { ButtonProps } from "src/types";
+import { ButtonProps } from "./types";
 
 /* The task is not so complicated to create new files.
    I'll do different button variants in one file for now */

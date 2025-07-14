@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { UnspecifiedErrorStyled } from "./styled";
 
-import { UnspecifiedErrorProps } from "src/types";
+import { UnspecifiedErrorProps } from "../types";
 
 export const UnspecifiedError: FC<UnspecifiedErrorProps> = ({ errorMessage }) => {
   return (
