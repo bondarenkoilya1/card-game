@@ -4,9 +4,10 @@ import { BoardStyled } from "./styled";
 
 import { Score } from "src/components";
 
-import { BoardProps, CardProps, SortVariants } from "src/types";
+import { CardProps, SortVariants } from "src/types";
 
 import { CardRowList } from "./CardRowList";
+import { BoardProps } from "./types";
 
 const getCardPoints = (card: CardProps) => card.points || 0;
 

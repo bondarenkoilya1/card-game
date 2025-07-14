@@ -2,13 +2,13 @@ import { useEffect } from "react";
 
 import { CARDS_IN_HAND } from "src/constants";
 
-import { CardSetsType } from "src/types";
+import { CardSetProps } from "src/types";
 
 import { useDecksStore, useHandsStore } from "src/store";
 
 import { useHandGenerator } from "src/hooks/useHandGenerator.ts";
 
-export const useBotCards = (cardSets: CardSetsType | undefined) => {
+export const useBotCards = (cardSets: CardSetProps[] | undefined) => {
   const { botDeck, setBotDeck } = useDecksStore();
   const { botHand } = useHandsStore();
   const { generateHand } = useHandGenerator("bot");

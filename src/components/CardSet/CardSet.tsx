@@ -4,7 +4,7 @@ import { CardListContainerStyled, CardSetStyled } from "./styled";
 
 import { CardList, CardSetInfo } from "src/components";
 
-import { CardSetWrapperProps } from "src/types";
+import { CardSetWrapperProps } from "./types";
 
 export const CardSet: FC<CardSetWrapperProps> = ({ set, deleteCardSet, updateCardSet }) => {
   return (
