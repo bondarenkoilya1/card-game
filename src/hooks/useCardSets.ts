@@ -2,11 +2,9 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
 import { transferMinutesToMs } from "src/utils";
 
-import { useCardSetHTTPMethod } from "./useCardSetHTTPMethod";
+import { fetchCardSets } from "src/api";
 
 export const useCardSets = () => {
-  const { fetchCardSets } = useCardSetHTTPMethod();
-
   const {
     data: cardSets,
     isLoading,

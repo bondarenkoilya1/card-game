@@ -10,19 +10,18 @@ import {
 } from "./styled";
 
 import { Dropdown, DropdownItem, ErrorComponent } from "src/components";
-import { CardSet } from "src/components/CardSet";
 
+// import { CardSet } from "src/components/CardSet";
 import { CardSetProps } from "src/types";
 
 import { findCardSetByName } from "src/utils";
 
-import { useCardSetsStore } from "src/store";
+import { fetchCardSets } from "src/api";
 
-import { useCardSetHTTPMethod } from "src/hooks";
+import { useCardSetsStore } from "src/store";
 
 export const ManageCardSet = () => {
   const { cardSets, isLoading, error } = useCardSetsStore();
-  const { fetchCardSets, deleteCardSet, updateCardSet } = useCardSetHTTPMethod();
   const [selectedCardSet, setSelectedCardSet] = useState<CardSetProps | null>(null);
 
   useEffect(() => {
@@ -95,12 +94,13 @@ export const ManageCardSet = () => {
         </SwitchButtonStyled>
       </div>
       <ManageCardSetStyled>
-        <CardSet
-          set={selectedCardSet}
-          deleteCardSet={deleteCardSet}
-          updateCardSet={updateCardSet}
-          key={selectedCardSet._id}
-        />
+        // TODO: Cannot be used. Refactor with useMutate (react query)
+        {/*<CardSet*/}
+        {/*  set={selectedCardSet}*/}
+        {/*  // deleteCardSet={deleteCardSet}*/}
+        {/*  // updateCardSet={updateCardSet}*/}
+        {/*  key={selectedCardSet._id}*/}
+        {/*/>*/}
       </ManageCardSetStyled>
     </SectionStyled>
   );
