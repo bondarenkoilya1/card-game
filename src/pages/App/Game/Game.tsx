@@ -16,7 +16,6 @@ export const Game = () => {
   const { cardSets, isLoading, isError, error } = useCardSets();
 
   const currentCardSet = findCardSetByName(cardSets || [], selectedCardSetName);
-
   useBotCards(cardSets ?? []);
 
   const shouldRedirect = !isLoading && !isError && !currentCardSet;

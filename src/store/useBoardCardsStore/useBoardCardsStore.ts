@@ -4,7 +4,6 @@ import { devtools } from "zustand/middleware";
 import { CARD_TYPES } from "src/constants";
 
 import { CardProps, RowProps } from "src/types";
-
 import { BoardCardsStore } from "./types";
 
 const createEmptyBoard = (): RowProps[] => CARD_TYPES.map((type) => ({ type, cards: [] }));
