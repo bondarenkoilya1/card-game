@@ -16,8 +16,6 @@ const ignoredFiles = [
   "jsconfig.json",
   "**/*.min.js",
   "**/*.map.js",
-  "**/*.test.js",
-  "**/*.test.ts",
   "**/*.spec.ts",
   "**/.env*"
 ];
