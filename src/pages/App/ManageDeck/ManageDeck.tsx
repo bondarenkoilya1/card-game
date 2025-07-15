@@ -8,7 +8,7 @@ import { Button, Card, CardRow, ErrorComponent } from "src/components";
 
 import { CardProps } from "src/types";
 
-import { useCardSetsStore, useDecksStore } from "src/store";
+import { useDecksStore } from "src/store";
 
 import { useCardSets, useRedirect } from "src/hooks";
 
@@ -17,8 +17,8 @@ export const ManageDeck = () => {
   const navigate = useNavigate();
   const { cardSetSlug } = useParams();
   const { cardSets, isLoading, isError, error } = useCardSets();
-  const { setSelectedCardSetName } = useCardSetsStore();
-  const { playerDeck, addCardToPlayerDeck, removeCardFromPlayerDeck } = useDecksStore();
+  const { setSelectedCardSetName, playerDeck, addCardToPlayerDeck, removeCardFromPlayerDeck } =
+    useDecksStore();
 
   const currentCardSet = cardSets?.find((cardSet) => cardSet.slug === cardSetSlug) || null;
 
@@ -35,8 +35,8 @@ export const ManageDeck = () => {
     if (!isDeckCompleted)
       throw new Error(`You should have at least ${CARDS_IN_HAND} cards in your deck.`);
 
-    navigate("/play");
     setSelectedCardSetName(currentCardSet.cardSetName);
+    navigate("/play");
   };
 
   const renderCardRow = (cards: CardProps[], action: "add" | "remove") => (

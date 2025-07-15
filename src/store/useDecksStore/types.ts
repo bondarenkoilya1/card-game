@@ -1,6 +1,8 @@
 import { CardProps } from "src/types";
 
 export type DecksStoreProps = {
+  selectedCardSetName: string;
+  setSelectedCardSetName: (newCardSetName: string) => void;
   playerDeck: CardProps[];
   setPlayerDeck: (cards: CardProps[]) => void;
   addCardToPlayerDeck: (newCard: CardProps) => void;

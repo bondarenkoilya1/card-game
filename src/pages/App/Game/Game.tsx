@@ -5,12 +5,12 @@ import { Board, ErrorComponent, Hand } from "src/components";
 
 import { findCardSetByName } from "src/utils";
 
-import { useBoardCardsStore, useCardSetsStore, useScoresStore } from "src/store";
+import { useBoardCardsStore, useDecksStore, useScoresStore } from "src/store";
 
 import { useBotCards, useCardSets, useRedirect } from "src/hooks";
 
 export const Game = () => {
-  const { selectedCardSetName } = useCardSetsStore();
+  const { selectedCardSetName } = useDecksStore();
   const { playerScore, setPlayerScore, botScore, setBotScore } = useScoresStore();
   const { playerBoardCards, botBoardCards } = useBoardCardsStore();
   const { cardSets, isLoading, isError, error } = useCardSets();
