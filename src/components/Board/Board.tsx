@@ -19,16 +19,16 @@ export const Board: FC<BoardProps> = ({ boardCards, score, setScore, boardType }
     if (currentScore !== score) setScore(currentScore);
   }, [boardCards, setScore]);
 
-  const settings: Record<"player" | "bot", { owner: string; sort: SortVariants }> = {
-    player: { owner: "You", sort: "normal" },
-    bot: { owner: "Bot", sort: "reverse" }
+  const settings: Record<"player" | "bot", { participant: string; sort: SortVariants }> = {
+    player: { participant: "You", sort: "normal" },
+    bot: { participant: "Bot", sort: "reverse" }
   };
-  const { owner, sort } = settings[boardType];
+  const { participant, sort } = settings[boardType];
 
   return (
     <BoardStyled>
       <CardRowList sort={sort} boardCards={boardCards} />
-      <Score owner={owner} score={score} />
+      <Score participant={participant} score={score} />
     </BoardStyled>
   );
 };

@@ -1,4 +1,4 @@
 export type ScoreProps = {
-  owner: string;
+  participant: string;
   score: number;
 };
