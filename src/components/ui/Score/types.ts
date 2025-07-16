@@ -1,4 +1,3 @@
-export type ScoreProps = {
-  owner: string;
-  score: number;
-};
+import { OutsideStylesProp, ScoreProp } from "src/types";
+
+export type ScoreProps = ScoreProp & OutsideStylesProp;

@@ -2,19 +2,19 @@ import { useState } from "react";
 
 import { CARDS_IN_HAND } from "src/constants";
 
-import { PlayerType } from "src/types";
+import { ParticipantType } from "src/types";
 
 import { pickUniqueRandomNumbers, validateError } from "src/utils";
 
 import { useDecksStore, useHandsStore } from "src/store";
 
-export const useHandGenerator = (owner: PlayerType) => {
+export const useHandGenerator = (participant: ParticipantType) => {
   const { playerDeck, setPlayerDeck, botDeck, setBotDeck } = useDecksStore();
   const { setPlayerHand, setBotHand } = useHandsStore();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const isPlayer = owner === "player";
+  const isPlayer = participant === "player";
   const deck = isPlayer ? playerDeck : botDeck;
   const setDeck = isPlayer ? setPlayerDeck : setBotDeck;
   const setHand = isPlayer ? setPlayerHand : setBotHand;
