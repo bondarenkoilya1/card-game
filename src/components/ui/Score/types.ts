@@ -1,4 +1,3 @@
-export type ScoreProps = {
-  participant: string;
-  score: number;
-};
+import { OutsideStylesProp, ScoreProp } from "src/types";
+
+export type ScoreProps = ScoreProp & OutsideStylesProp;

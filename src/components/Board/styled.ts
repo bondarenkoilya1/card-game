@@ -5,6 +5,8 @@ import styled from "@emotion/styled";
 export const BoardStyled = styled.div`
   width: 100%;
   margin-top: 5%;
+  display: flex;
+  align-items: flex-start;
 `;
 
 export const CardRowStyles = css`
