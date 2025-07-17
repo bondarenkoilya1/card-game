@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 
-import { DecksContainerStyled, ManageDeckStyled, TitleStyled } from "./styled";
+import { DecksContainerStyled, ManageDeckStyled, SubtitleStyled, TitleStyled } from "./styled";
 
 import { CARDS_IN_HAND } from "src/constants";
 
@@ -60,7 +60,8 @@ export const ManageDeck = () => {
 
   return (
     <ManageDeckStyled>
-      <TitleStyled>Manage deck</TitleStyled>
+      <TitleStyled>{currentCardSet?.cardSetName}</TitleStyled>
+      <SubtitleStyled>Manage deck</SubtitleStyled>
       <DecksContainerStyled>
         {renderCardRow(outOfDeckCards, "add")}
         {renderCardRow(playerDeck, "remove")}
