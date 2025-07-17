@@ -20,5 +20,11 @@ declare global {
   }
 }
 
-export type PlayerType = "player" | "bot";
+export type ParticipantType = "player" | "bot";
 export type SortVariants = "normal" | "reverse";
+export type ScoreProp = {
+  score: number;
+};
+export type OutsideStylesProp = {
+  outsideStyles?: CSS;
+};
