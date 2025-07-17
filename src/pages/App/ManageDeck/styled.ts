@@ -10,7 +10,12 @@ export const TitleStyled = styled.h2`
   font-size: 32px;
   text-transform: uppercase;
   font-weight: 700;
-  margin-bottom: 40px;
+`;
+
+export const SubtitleStyled = styled.h1`
+  font-size: 18px;
+  text-align: center;
+  margin-top: 20px;
 `;
 
 export const DecksContainerStyled = styled.div`
