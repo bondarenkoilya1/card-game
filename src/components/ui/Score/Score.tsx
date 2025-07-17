@@ -4,10 +4,10 @@ import { HighlightedTextStyled, ScoreStyled } from "./styled";
 
 import { ScoreProps } from "./types";
 
-export const Score: FC<ScoreProps> = ({ owner, score }) => {
+export const Score: FC<ScoreProps> = ({ score, outsideStyles }) => {
   return (
-    <ScoreStyled>
-      {owner} have <HighlightedTextStyled>{score}</HighlightedTextStyled> points
+    <ScoreStyled css={outsideStyles}>
+      <HighlightedTextStyled>{score}</HighlightedTextStyled> points
     </ScoreStyled>
   );
 };

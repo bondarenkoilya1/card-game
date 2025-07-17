@@ -2,9 +2,9 @@ import { FC, useEffect } from "react";
 
 import { BoardStyled } from "./styled";
 
-import { Score } from "src/components";
+import { ParticipantCard } from "src/components";
 
-import { CardProps, SortVariants } from "src/types";
+import { CardProps, ParticipantType, SortVariants } from "src/types";
 import { BoardProps } from "./types";
 
 import { CardRowList } from "./CardRowList";
@@ -19,16 +19,16 @@ export const Board: FC<BoardProps> = ({ boardCards, score, setScore, boardType }
     if (currentScore !== score) setScore(currentScore);
   }, [boardCards, setScore]);
 
-  const settings: Record<"player" | "bot", { owner: string; sort: SortVariants }> = {
-    player: { owner: "You", sort: "normal" },
-    bot: { owner: "Bot", sort: "reverse" }
+  const settings: Record<ParticipantType, { participant: string; sort: SortVariants }> = {
+    player: { participant: "You", sort: "normal" },
+    bot: { participant: "Bot", sort: "reverse" }
   };
-  const { owner, sort } = settings[boardType];
+  const { participant, sort } = settings[boardType];
 
   return (
     <BoardStyled>
+      <ParticipantCard participant={participant} score={score} />
       <CardRowList sort={sort} boardCards={boardCards} />
-      <Score owner={owner} score={score} />
     </BoardStyled>
   );
 };
