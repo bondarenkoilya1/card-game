@@ -1,4 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { DecksContainerStyled, ManageDeckStyled, SubtitleStyled, TitleStyled } from "./styled";
 
@@ -23,7 +24,9 @@ export const ManageDeck = () => {
   const currentCardSet = cardSets?.find((cardSet) => cardSet.slug === cardSetSlug) || null;
 
   const shouldRedirect = !isLoading && !isError && !currentCardSet;
+  if (shouldRedirect) toast.warning("You should choose existing card set firstly.");
   useRedirect(shouldRedirect, "/pick-set");
+
   if (!currentCardSet) return null;
 
   const outOfDeckCards = currentCardSet.cards.filter(
