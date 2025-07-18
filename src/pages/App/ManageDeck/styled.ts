@@ -1,3 +1,5 @@
+import { css } from "@emotion/react";
+
 import styled from "@emotion/styled";
 
 export const ManageDeckStyled = styled.section`
@@ -20,4 +22,8 @@ export const SubtitleStyled = styled.h1`
 
 export const DecksContainerStyled = styled.div`
   display: flex;
+`;
+
+export const CardRowStyles = css`
+  gap: 10px;
 `;
