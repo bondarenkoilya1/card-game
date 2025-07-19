@@ -19,7 +19,11 @@ export const Game = () => {
   useBotCards(cardSets ?? []);
 
   const shouldRedirect = !isLoading && !isError && !currentCardSet;
-  useRedirect(shouldRedirect, "/pick-set");
+  useRedirect(
+    shouldRedirect,
+    "/pick-set",
+    "You should pick existing card set and set up your deck firstly."
+  );
 
   if (isLoading) return <p>Loading</p>;
   if (isError) return <ErrorComponent unspecifiedErrorMessage={error?.message} />;
