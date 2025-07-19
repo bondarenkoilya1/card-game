@@ -16,8 +16,7 @@ export const useManageDeck = () => {
   const currentCardSet = cardSets?.find((cardSet) => cardSet.slug === cardSetSlug) || null;
 
   const shouldRedirect = !isLoading && !isError && !currentCardSet;
-  if (shouldRedirect) toast.warning("You should choose existing card set firstly.");
-  useRedirect(shouldRedirect, "/pick-set");
+  useRedirect(shouldRedirect, "/pick-set", "You should choose existing card set firstly.");
 
   const outOfDeckCards =
     currentCardSet?.cards.filter(
