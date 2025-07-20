@@ -1,16 +1,11 @@
 import { CardSetNameProp, CardSetProps, ServerErrorProps } from "src/types";
 
-import { fetchItem } from "./default";
+import { fetchItem } from "./fetch";
 
 export const fetchCardSets = () => fetchItem<CardSetProps[]>("/card-sets");
 
-export const deleteCardSet = (cardSetId: string) => {
-  const options = {
-    method: "DELETE"
-  };
-
-  return fetchItem<ServerErrorProps>(`/card-sets/${cardSetId}`, options);
-};
+export const deleteCardSet = (cardSetId: string) =>
+  fetchItem<ServerErrorProps>(`/card-sets/${cardSetId}`, { method: "DELETE" });
 
 export const updateCardSetName = (cardId: string, newCardSetName: string) => {
   const requestHeaders = new Headers();
