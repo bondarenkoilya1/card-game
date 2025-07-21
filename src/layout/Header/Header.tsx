@@ -1,13 +1,15 @@
 import { v4 as uuidv4 } from "uuid";
 
-import { HeaderStyled, ListItemStyled, ListLinkStyled, ListStyled } from "./styled";
+import { HeaderStyled, ListItemStyled, ListLinkStyled, ListStyled, NavStyled } from "./styled";
 
 import { NAVIGATION_ITEMS } from "src/constants";
+
+import { BackToGameDialog } from "src/components/BackToGameDialog";
 
 export const Header = () => {
   return (
     <HeaderStyled>
-      <nav>
+      <NavStyled>
         <ListStyled>
           {NAVIGATION_ITEMS &&
             NAVIGATION_ITEMS.map(({ title, url }) => (
@@ -16,7 +18,9 @@ export const Header = () => {
               </ListItemStyled>
             ))}
         </ListStyled>
-      </nav>
+      </NavStyled>
+      {/* only if the game is started and page is not game */}
+      <BackToGameDialog />
     </HeaderStyled>
   );
 };
