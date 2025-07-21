@@ -9,7 +9,7 @@ export const HeaderStyled = styled.header`
   //  todo: temporarily
   width: 300px;
   margin: 0 auto;
-  box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+  box-shadow: 0 5px 10px 2px rgba(34, 60, 80, 0.2);
   position: absolute;
   z-index: 10;
   top: 0;
