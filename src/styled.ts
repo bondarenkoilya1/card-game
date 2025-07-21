@@ -42,3 +42,5 @@ export const ContainerStyled = styled.div`
   max-width: 1620px;
   margin: 0 auto;
 `;
+
+export const HeaderSize = 60;
