@@ -6,7 +6,7 @@ import {
   TitleStyled
 } from "./styled";
 
-import { Button, Card, CardRow, ErrorComponent } from "src/components";
+import { Button, Card, CardRow, DeckCollector, ErrorComponent } from "src/components";
 
 import { CardProps } from "src/types";
 
@@ -40,8 +40,23 @@ export const ManageDeck = () => {
 
   return (
     <ManageDeckStyled>
-      <TitleStyled>{currentCardSet?.cardSetName}</TitleStyled>
-      <SubtitleStyled>Manage deck</SubtitleStyled>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr auto 1fr",
+          alignItems: "center",
+          width: "100%"
+        }}>
+        <div></div> {/* Empty element for layout balance */}
+        <div>
+          <TitleStyled>{currentCardSet?.cardSetName}</TitleStyled>
+          <SubtitleStyled>Manage deck</SubtitleStyled>
+        </div>
+        <div style={{ justifySelf: "start", marginLeft: "100px" }}>
+          <DeckCollector />
+        </div>
+      </div>
+
       <DecksContainerStyled>
         {renderCardRow(outOfDeckCards, "add")}
         {renderCardRow(playerDeck, "remove")}
