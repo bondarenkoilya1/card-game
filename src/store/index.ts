@@ -3,3 +3,4 @@ export * from "./useDecksStore";
 export * from "./useHandsStore";
 export * from "./useScoresStore";
 export * from "./useBoardCardsStore";
+export * from "./useGameStore";

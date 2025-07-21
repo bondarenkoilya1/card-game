@@ -9,11 +9,14 @@ import {
   TextStyled
 } from "./styled";
 
+import { useGameStore } from "src/store";
+
 export const BackToGameDialog = () => {
   const navigate = useNavigate();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const { isPlaying, setIsPlaying } = useGameStore();
 
-  // TODO: Here toggle dialog on game status change; But not on the game page
+  useEffect(() => setIsDialogOpen(isPlaying), [isPlaying]);
 
   useEffect(() => {
     const closeDialogOnEsc = (event: KeyboardEvent) => {
@@ -32,6 +35,10 @@ export const BackToGameDialog = () => {
 
   const reconnectToGame = () => navigate("/play");
 
+  const abandonGame = () => {
+    setIsPlaying(false);
+  };
+
   if (!isDialogOpen) return null;
 
   return (
@@ -39,7 +46,10 @@ export const BackToGameDialog = () => {
       <TextStyled>You were disconnected from the game.</TextStyled>
       <ButtonContainerStyled>
         <BigButtonStyled onClick={reconnectToGame}>Reconnect</BigButtonStyled>
-        <ButtonStyled variant="tertiary">Abandon</ButtonStyled>
+        {/* Disabled because currently does nothing */}
+        <ButtonStyled variant="tertiary" onClick={abandonGame} disabled>
+          Abandon
+        </ButtonStyled>
       </ButtonContainerStyled>
     </BackToGameDialogStyled>
   );
