@@ -10,12 +10,12 @@ import { useBoardCardsStore, useDecksStore, useScoresStore } from "src/store";
 import { useBotCards, useCardSets, useRedirect } from "src/hooks";
 
 export const Game = () => {
-  const { selectedCardSetName } = useDecksStore();
+  const { playerCardSetName, botCardSetName } = useDecksStore();
   const { playerScore, setPlayerScore, botScore, setBotScore } = useScoresStore();
   const { playerBoardCards, botBoardCards } = useBoardCardsStore();
   const { cardSets, isLoading, isError, error } = useCardSets();
 
-  const currentCardSet = findCardSetByName(cardSets || [], selectedCardSetName);
+  const currentCardSet = findCardSetByName(cardSets || [], playerCardSetName);
   useBotCards(cardSets ?? []);
 
   const shouldRedirect = !isLoading && !isError && !currentCardSet;
@@ -31,12 +31,19 @@ export const Game = () => {
   return (
     <GamePageStyled>
       <ContainerStyled style={ContainerStyles}>
-        <Board boardCards={botBoardCards} score={botScore} setScore={setBotScore} boardType="bot" />
+        <Board
+          boardCards={botBoardCards}
+          score={botScore}
+          setScore={setBotScore}
+          boardType="bot"
+          cardSetName={botCardSetName}
+        />
         <Board
           boardCards={playerBoardCards}
           score={playerScore}
           setScore={setPlayerScore}
           boardType="player"
+          cardSetName={playerCardSetName}
         />
         {currentCardSet && currentCardSet.cards.length > 0 && <Hand />}
       </ContainerStyled>

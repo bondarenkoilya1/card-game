@@ -8,6 +8,7 @@ export const ParticipantCardStyled = styled.div`
   border-radius: 6px;
   padding: 26px;
   height: 200px; // todo temporarily
+  width: 160px;
   text-align: center;
   margin-right: 30px;
   display: flex;
@@ -18,6 +19,10 @@ export const TitleStyled = styled.h5`
   text-transform: uppercase;
   font-size: 18px;
   font-weight: 700;
+`;
+
+export const TextStyled = styled.p`
+  margin-top: 20px;
 `;
 
 export const ScoreStyles = css`

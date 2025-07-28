@@ -5,4 +5,5 @@ export type BoardProps = {
   score: number;
   setScore: (newScore: number) => void;
   boardType: ParticipantType;
+  cardSetName: string;
 };

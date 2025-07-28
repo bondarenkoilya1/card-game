@@ -11,7 +11,7 @@ export const useManageDeck = () => {
   const navigate = useNavigate();
   const { cardSetSlug } = useParams();
   const { cardSets, isLoading, isError, error } = useCardSets();
-  const { setSelectedCardSetName, playerDeck } = useDecksStore();
+  const { setPlayerCardSetName, playerDeck } = useDecksStore();
   const { setIsPlaying } = useGameStore();
 
   const currentCardSet = cardSets?.find((cardSet) => cardSet.slug === cardSetSlug) || null;
@@ -34,7 +34,7 @@ export const useManageDeck = () => {
     }
 
     if (currentCardSet) {
-      setSelectedCardSetName(currentCardSet.cardSetName);
+      setPlayerCardSetName(currentCardSet.cardSetName);
       setIsPlaying(true);
       navigate("/play");
     }
