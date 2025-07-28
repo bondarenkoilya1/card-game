@@ -1,11 +1,13 @@
+import { useEffect } from "react";
+
 import { ContainerStyles, GamePageStyled } from "./styled";
 import { ContainerStyled } from "src/styled";
 
 import { Board, ErrorComponent, Hand } from "src/components";
 
-import { findCardSetByName } from "src/utils";
+import { defineWinner, findCardSetByName } from "src/utils";
 
-import { useBoardCardsStore, useDecksStore, useScoresStore } from "src/store";
+import { useBoardCardsStore, useDecksStore, useHandsStore, useScoresStore } from "src/store";
 
 import { useBotCards, useCardSets, useRedirect } from "src/hooks";
 
@@ -14,6 +16,7 @@ export const Game = () => {
   const { playerScore, setPlayerScore, botScore, setBotScore } = useScoresStore();
   const { playerBoardCards, botBoardCards } = useBoardCardsStore();
   const { cardSets, isLoading, isError, error } = useCardSets();
+  const { playerHand, botHand } = useHandsStore();
 
   const currentCardSet = findCardSetByName(cardSets || [], playerCardSetName);
   useBotCards(cardSets ?? []);
@@ -24,6 +27,13 @@ export const Game = () => {
     "/pick-set",
     "You should pick existing card set and set up your deck firstly."
   );
+
+  useEffect(() => {
+    const playerBoardHasCards = playerBoardCards.some(({ cards }) => cards.length > 0);
+    if (playerHand.length === 0 && botHand.length === 0 && playerBoardHasCards) {
+      defineWinner("You", playerScore, "Bot", botScore);
+    }
+  }, [playerHand, botHand]);
 
   if (isLoading) return <p>Loading</p>;
   if (isError) return <ErrorComponent unspecifiedErrorMessage={error?.message} />;
