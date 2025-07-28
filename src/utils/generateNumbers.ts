@@ -1,4 +1,4 @@
-const generateRandomNumber = (max: number) => Math.floor(Math.random() * max);
+export const generateRandomNumber = (max: number) => Math.floor(Math.random() * max);
 
 export const pickUniqueRandomNumbers = (quantity: number, maxRange: number) => {
   if (quantity > maxRange) {

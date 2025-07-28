@@ -6,8 +6,10 @@ import { DecksStoreProps } from "./types";
 export const useDecksStore = create<DecksStoreProps>()(
   devtools(
     (set) => ({
-      selectedCardSetName: "",
-      setSelectedCardSetName: (newCardSetName) => set({ selectedCardSetName: newCardSetName }),
+      playerCardSetName: "",
+      setPlayerCardSetName: (newCardSetName) => set({ playerCardSetName: newCardSetName }),
+      botCardSetName: "",
+      setBotCardSetName: (newCardSetName) => set({ botCardSetName: newCardSetName }),
       playerDeck: [],
       setPlayerDeck: (newCards) => set({ playerDeck: newCards }),
       addCardToPlayerDeck: (newCard) =>

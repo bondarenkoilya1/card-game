@@ -11,7 +11,7 @@ import { CardRowList } from "./CardRowList";
 
 const getCardPoints = (card: CardProps) => card.points || 0;
 
-export const Board: FC<BoardProps> = ({ boardCards, score, setScore, boardType }) => {
+export const Board: FC<BoardProps> = ({ boardCards, score, setScore, boardType, cardSetName }) => {
   useEffect(() => {
     const allCards: CardProps[] = boardCards.flatMap((row) => row.cards);
     const currentScore = allCards.reduce((total, card) => total + getCardPoints(card), 0);
@@ -27,7 +27,7 @@ export const Board: FC<BoardProps> = ({ boardCards, score, setScore, boardType }
 
   return (
     <BoardStyled>
-      <ParticipantCard participant={participant} score={score} />
+      <ParticipantCard participant={participant} score={score} cardSetName={cardSetName} />
       <CardRowList sort={sort} boardCards={boardCards} />
     </BoardStyled>
   );
