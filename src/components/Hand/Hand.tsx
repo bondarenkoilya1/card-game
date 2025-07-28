@@ -17,7 +17,8 @@ export const Hand: FC = () => {
   const { playerDeck } = useDecksStore();
   const { playerHand } = useHandsStore();
   const { loading, error, generateHand } = useHandGenerator("player");
-  const { makeMove } = useMove("bot");
+  // TODO: Choose first turn owner randomly
+  const { makeMove } = useMove("player");
 
   useEffect(() => {
     if (playerDeck.length >= CARDS_IN_HAND && playerHand.length === 0) generateHand();
