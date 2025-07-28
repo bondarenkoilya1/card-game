@@ -5,3 +5,4 @@ export * from "./Board";
 export * from "./CardSet";
 export * from "./UploadCardSetForm";
 export * from "./DeckCollector";
+export * from "./BackToGameDialog";
