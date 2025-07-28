@@ -8,9 +8,9 @@ export const ContainerStyled = styled.li`
   margin-bottom: 1.5%;
 `;
 
-export const CardSetOptionStyled = styled(Link)<{ cardsetname: string }>`
+export const CardSetOptionStyled = styled(Link)<{ name: string }>`
   display: block;
-  border: 1px solid #000;
+  box-shadow: 0 2px 10px 2px rgba(34, 60, 80, 0.2);
   background-color: #fff;
   color: #000;
   border-radius: 6px;
@@ -21,11 +21,11 @@ export const CardSetOptionStyled = styled(Link)<{ cardsetname: string }>`
   /* TODO: Card set name is kinda long string, but at the moment I have no idea how to replace it without adding new object fields
        Maybe create those styles as something global like "OptionForestNationStyled", "OptionAggressiveWarriorsStyled" */
 
-  ${({ cardsetname }) => cardsetname === "Elements of War" && AggressiveNationStyled}
-  ${({ cardsetname }) => cardsetname === "Forged Legion" && ForestNationStyled}
-  ${({ cardsetname }) => cardsetname === "Iron Regiment" && TradeNationStyled}
-  ${({ cardsetname }) => cardsetname === "Macedonian Phalanx" && DefensiveNationStyled}
-  ${({ cardsetname }) => cardsetname === "Steelborn Division" && MercenaryNationStyled}
+  ${({ name }) => name === "Elements of War" && AggressiveNationStyled}
+  ${({ name }) => name === "Forged Legion" && ForestNationStyled}
+  ${({ name }) => name === "Iron Regiment" && TradeNationStyled}
+  ${({ name }) => name === "Macedonian Phalanx" && DefensiveNationStyled}
+  ${({ name }) => name === "Steelborn Division" && MercenaryNationStyled}
 `;
 
 export const TitleStyled = styled.h2`
@@ -50,7 +50,7 @@ const ForestNationStyled = css`
   color: #fff;
 
   & > h2 {
-    color: #104f2b;
+    color: #094824;
   }
 `;
 
