@@ -3,10 +3,13 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { HeaderSize } from "src/styled";
 
+import { Button } from "src/components";
+
 export const ManageDeckStyled = styled.section`
   color: #000;
   margin-top: 40px;
   padding-top: ${HeaderSize}px;
+  padding-bottom: 100px;
 `;
 
 export const TitleStyled = styled.h2`
@@ -28,4 +31,14 @@ export const DecksContainerStyled = styled.div`
 
 export const CardRowStyles = css`
   gap: 10px;
+  overflow: visible;
+`;
+
+export const ButtonStyled = styled(Button)`
+  box-shadow: 0 5px 10px 2px rgba(34, 60, 80, 0.2);
+  width: 160px;
+
+  &:disabled {
+    border: none;
+  }
 `;

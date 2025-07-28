@@ -1,4 +1,5 @@
 import {
+  ButtonStyled,
   CardRowStyles,
   DecksContainerStyled,
   ManageDeckStyled,
@@ -6,7 +7,7 @@ import {
   TitleStyled
 } from "./styled";
 
-import { Button, Card, CardRow, DeckCollector, ErrorComponent } from "src/components";
+import { Card, CardRow, DeckCollector, ErrorComponent } from "src/components";
 
 import { CardProps } from "src/types";
 
@@ -61,12 +62,12 @@ export const ManageDeck = () => {
         {renderCardRow(outOfDeckCards, "add")}
         {renderCardRow(playerDeck, "remove")}
       </DecksContainerStyled>
-      <Button
+      <ButtonStyled
         onClick={startGame}
         disabled={!isDeckCompleted}
         style={{ margin: "40px auto 0 auto" }}>
-        Play with this card set
-      </Button>
+        Play
+      </ButtonStyled>
     </ManageDeckStyled>
   );
 };

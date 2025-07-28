@@ -32,14 +32,13 @@ export const ButtonStyled = styled.button<{ variant: "primary" | "secondary" | "
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  user-select: none;
 
   ${({ variant }) => variant === "primary" && FilledButtonStyles}
   ${({ variant }) => variant === "secondary" && OutlinedButtonStyles}
     ${({ variant }) => variant === "tertiary" && LinkedButtonStyles}
-  
-  
     &[disabled] {
-    background-color: #989898;
+    background-color: #7a7a7a;
     opacity: 0.5;
     cursor: not-allowed;
   }

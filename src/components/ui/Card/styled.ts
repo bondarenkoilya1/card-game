@@ -8,6 +8,7 @@ import { CardLocation } from "src/types";
 export const CardStyled = styled.li<{ location: CardLocation }>`
   background-color: #fff;
   border: 2px solid #000;
+  box-shadow: 0 5px 10px 2px rgba(34, 60, 80, 0.2);
   border-radius: 12px;
   padding: 4px;
   width: 75px;
