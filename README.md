@@ -3,14 +3,14 @@
 This is card game project built using React and Typescript. 
 My goal here is to explore and apply new features of language and related technologies.
 
-> [!TIP]
+> [!NOTE]
 > You can try it yourself on [this website](https://modern-card-game-react.vercel.app/)
 
-> [!IMPORTANT]  
-> Backend for this project takes place in [another repository](https://github.com/bondarenkoilya1/card-game-server)
+## Backend (Node.js)
+Backend for this project takes place in [another repository](https://github.com/bondarenkoilya1/card-game-server)
 
-> [!NOTE]
-> Project has a planning board, which can be viewed [here](https://github.com/users/bondarenkoilya1/projects/4)
+## Task management
+Project has a planning board, which can be viewed [here](https://github.com/users/bondarenkoilya1/projects/4)
 
 ## How to Run This Project
 
