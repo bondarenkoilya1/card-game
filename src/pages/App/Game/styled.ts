@@ -3,7 +3,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { HeaderSize } from "src/styled";
 
-import woodImage from "../../../assets/photos/wood.jpg";
+import woodImage from "../../../assets/photos/wood.webp";
 
 export const GamePageStyled = styled.div`
   background-color: #3a0707;

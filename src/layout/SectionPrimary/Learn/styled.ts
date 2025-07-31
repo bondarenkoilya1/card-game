@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 import { Button } from "src/components";
 
-import youngManPhoto from "../../../assets/photos/sectionPrimary/young-man.png";
+import youngManPhoto from "../../../assets/photos/sectionPrimary/young-man.webp";
 
 // TODO: maybe export to global styles
 export const LearnStyled = styled.div`
