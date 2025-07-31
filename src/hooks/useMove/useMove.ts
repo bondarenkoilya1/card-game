@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 
 import { CardProps, ParticipantType } from "src/types";
 
-import { useBoardCardsStore, useHandsStore } from "src/store";
+import { useBoardCardsStore, useBotHand, useHandsActions } from "src/store";
 
 export const useMove = (firstTurn: ParticipantType) => {
-  const { removeCardFromPlayerHand, botHand, removeCardFromBotHand } = useHandsStore();
+  // temp comment
+  const botHand = useBotHand();
+  const { removeCardFromPlayerHand, removeCardFromBotHand } = useHandsActions();
   const { addPlayerBoardCard, addBotBoardCard } = useBoardCardsStore();
   const [currentTurn, setCurrentTurn] = useState<ParticipantType>(firstTurn);
 

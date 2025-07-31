@@ -1,10 +1,14 @@
 import { CardProps } from "src/types";
 
-export type HandsStoreProps = {
-  playerHand: CardProps[];
+type HandsActionsType = {
   setPlayerHand: (cards: CardProps[]) => void;
   removeCardFromPlayerHand: (cardId: string) => void;
-  botHand: CardProps[];
   setBotHand: (cards: CardProps[]) => void;
   removeCardFromBotHand: (cardId: string) => void;
+};
+
+export type HandsStoreProps = {
+  playerHand: CardProps[];
+  botHand: CardProps[];
+  actions: HandsActionsType;
 };
