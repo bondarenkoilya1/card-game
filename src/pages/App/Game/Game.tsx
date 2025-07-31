@@ -7,9 +7,10 @@ import { findCardSetByName } from "src/utils";
 
 import {
   useBotBoardCards,
+  useBotCardSetName,
   useBotScore,
-  useDecksStore,
   usePlayerBoardCards,
+  usePlayerCardSetName,
   usePlayerScore,
   useScoresActions
 } from "src/store";
@@ -17,7 +18,8 @@ import {
 import { useBotCards, useCardSets, useDefineWinner, useRedirect } from "src/hooks";
 
 export const Game = () => {
-  const { playerCardSetName, botCardSetName } = useDecksStore();
+  const playerCardSetName = usePlayerCardSetName();
+  const botCardSetName = useBotCardSetName();
   const playerScore = usePlayerScore();
   const botScore = useBotScore();
   const { setPlayerScore, setBotScore } = useScoresActions();

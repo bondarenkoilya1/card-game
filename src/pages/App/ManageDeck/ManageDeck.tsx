@@ -11,12 +11,13 @@ import { Card, CardRow, DeckCollector, ErrorComponent } from "src/components";
 
 import { CardProps } from "src/types";
 
-import { useDecksStore } from "src/store";
+import { useDecksActions, usePlayerDeck } from "src/store";
 
 import { useManageDeck } from "src/hooks";
 
 export const ManageDeck = () => {
-  const { playerDeck, addCardToPlayerDeck, removeCardFromPlayerDeck } = useDecksStore();
+  const playerDeck = usePlayerDeck();
+  const { addCardToPlayerDeck, removeCardFromPlayerDeck } = useDecksActions();
   const { currentCardSet, outOfDeckCards, isDeckCompleted, isLoading, isError, error, startGame } =
     useManageDeck();
 

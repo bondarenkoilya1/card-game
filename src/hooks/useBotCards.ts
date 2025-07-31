@@ -6,13 +6,14 @@ import { CardSetProps } from "src/types";
 
 import { generateRandomNumber } from "src/utils";
 
-import { useBotHand, useDecksStore } from "src/store";
+import { useBotDeck, useBotHand, useDecksActions } from "src/store";
 
 import { useHandGenerator } from "src/hooks/useHandGenerator.ts";
 
 // TODO: Name is unclear
 export const useBotCards = (cardSets: CardSetProps[] | undefined) => {
-  const { botDeck, setBotDeck, setBotCardSetName } = useDecksStore();
+  const botDeck = useBotDeck();
+  const { setBotDeck, setBotCardSetName } = useDecksActions();
   const botHand = useBotHand();
   const { generateHand } = useHandGenerator("bot");
 
