@@ -13,20 +13,26 @@ const updateBoardRow = (board: RowProps[], newCard: CardProps): RowProps[] =>
     row.type === newCard.type ? { ...row, cards: [...row.cards, newCard] } : row
   );
 
-export const useBoardCardsStore = create<BoardCardsStore>()(
+const useBoardCardsStore = create<BoardCardsStore>()(
   devtools(
     (set) => ({
       playerBoardCards: createEmptyBoard(),
-      addPlayerBoardCard: (newCard) =>
-        set((state) => ({
-          playerBoardCards: updateBoardRow(state.playerBoardCards, newCard)
-        })),
       botBoardCards: createEmptyBoard(),
-      addBotBoardCard: (newCard) =>
-        set((state) => ({
-          botBoardCards: updateBoardRow(state.botBoardCards, newCard)
-        }))
+      actions: {
+        addPlayerBoardCard: (newCard) =>
+          set((state) => ({
+            playerBoardCards: updateBoardRow(state.playerBoardCards, newCard)
+          })),
+        addBotBoardCard: (newCard) =>
+          set((state) => ({
+            botBoardCards: updateBoardRow(state.botBoardCards, newCard)
+          }))
+      }
     }),
     { name: "BoardCardsStore" }
   )
 );
+
+export const usePlayerBoardCards = () => useBoardCardsStore((state) => state.playerBoardCards);
+export const useBotBoardCards = () => useBoardCardsStore((state) => state.botBoardCards);
+export const useBoardCardsActions = () => useBoardCardsStore((state) => state.actions);

@@ -5,9 +5,13 @@ export type CardRowType = {
   cards: CardProps[];
 };
 
+type BoardsCardsActionsType = {
+  addPlayerBoardCard: (newCard: CardProps) => void;
+  addBotBoardCard: (newCard: CardProps) => void;
+};
+
 export type BoardCardsStore = {
   playerBoardCards: CardRowType[];
-  addPlayerBoardCard: (newCard: CardProps) => void;
   botBoardCards: CardRowType[];
-  addBotBoardCard: (newCard: CardProps) => void;
+  actions: BoardsCardsActionsType;
 };
