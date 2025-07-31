@@ -28,7 +28,7 @@ export const useHandGenerator = (participant: ParticipantType) => {
       const arrayOfUniqueNumbers = pickUniqueRandomNumbers(CARDS_IN_HAND, cardsQuantity);
 
       const selectedCards = arrayOfUniqueNumbers.map((index) => deck[index]);
-      const sortedDescSelectedCards = [...selectedCards].sort((a, b) => b.points - a.points);
+      const sortedDescSelectedCards = selectedCards.toSorted((a, b) => b.points - a.points);
       const remainingCards = deck.filter((_, index) => !arrayOfUniqueNumbers.includes(index));
 
       setDeck(remainingCards);
