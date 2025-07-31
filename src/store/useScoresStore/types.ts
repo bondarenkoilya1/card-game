@@ -1,8 +1,12 @@
 type ScoreSetterProp = (newScore: number) => void;
 
+type ScoresActionsType = {
+  setPlayerScore: ScoreSetterProp;
+  setBotScore: ScoreSetterProp;
+};
+
 export type ScoresStoreProps = {
   playerScore: number;
-  setPlayerScore: ScoreSetterProp;
   botScore: number;
-  setBotScore: ScoreSetterProp;
+  actions: ScoresActionsType;
 };

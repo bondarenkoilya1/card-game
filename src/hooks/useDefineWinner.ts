@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-import { useBoardCardsStore, useHandsStore, useScoresStore } from "src/store";
+import { useBoardCardsStore, useBotScore, useHandsStore, usePlayerScore } from "src/store";
 
 export const useDefineWinner = () => {
   const { playerHand, botHand } = useHandsStore();
   const { playerBoardCards } = useBoardCardsStore();
-  const { playerScore, botScore } = useScoresStore();
+  const playerScore = usePlayerScore();
+  const botScore = useBotScore();
   const [hasGameEnded, setHasGameEnded] = useState(false);
 
   useEffect(() => {
