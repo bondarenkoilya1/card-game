@@ -10,6 +10,7 @@ import { useDecksStore, useHandsStore } from "src/store";
 
 import { useHandGenerator } from "src/hooks/useHandGenerator.ts";
 
+// TODO: Name is unclear
 export const useBotCards = (cardSets: CardSetProps[] | undefined) => {
   const { botDeck, setBotDeck, setBotCardSetName } = useDecksStore();
   const { botHand } = useHandsStore();
