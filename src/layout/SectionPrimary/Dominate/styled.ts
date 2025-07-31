@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-import oldManPhoto from "../../../assets/photos/sectionPrimary/old-man.png";
+import oldManPhoto from "../../../assets/photos/sectionPrimary/old-man.webp";
 
 export const DominateStyled = styled.div`
   width: 50%;
