@@ -13,10 +13,7 @@ export const PickSet = () => {
       <PickSetStyled>
         <ContainerStyled>
           {isLoading && (
-            <p>
-              Loading... (The DataBase may be sleeping. Please, wait for 5 seconds and try to reload
-              your page)
-            </p>
+            <p>Loading... (The DataBase may be sleeping. Please, wait for 15 seconds)</p>
           )}
         </ContainerStyled>
       </PickSetStyled>
