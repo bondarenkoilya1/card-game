@@ -1,4 +1,8 @@
+type GameActionsType = {
+  setIsPlaying: (newStatus: boolean) => void;
+};
+
 export type GameStoreProps = {
   isPlaying: boolean;
-  setIsPlaying: (newStatus: boolean) => void;
+  actions: GameActionsType;
 };

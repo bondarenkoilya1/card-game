@@ -6,12 +6,13 @@ import { CARDS_IN_HAND } from "src/constants";
 
 import { pickUniqueRandomNumbers } from "src/utils";
 
-import { useDecksStore } from "src/store";
+import { useDecksActions, usePlayerDeck } from "src/store";
 
 import { useManageDeck } from "src/hooks";
 
 export const DeckCollector = () => {
-  const { playerDeck, setPlayerDeck } = useDecksStore();
+  const playerDeck = usePlayerDeck();
+  const { setPlayerDeck } = useDecksActions();
   const { currentCardSet, startGame } = useManageDeck();
   const [shouldStart, setShouldStart] = useState(false);
 

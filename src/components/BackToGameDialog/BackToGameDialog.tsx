@@ -9,12 +9,13 @@ import {
   TextStyled
 } from "./styled";
 
-import { useGameStore } from "src/store";
+import { useGameActions, useGameStatus } from "src/store";
 
 export const BackToGameDialog = () => {
   const navigate = useNavigate();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const { isPlaying, setIsPlaying } = useGameStore();
+  const isPlaying = useGameStatus();
+  const { setIsPlaying } = useGameActions();
 
   useEffect(() => setIsDialogOpen(isPlaying), [isPlaying]);
 

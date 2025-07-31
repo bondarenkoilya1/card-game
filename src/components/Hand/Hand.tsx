@@ -9,13 +9,13 @@ import { Card, CardRow, ErrorComponent } from "src/components";
 
 import { CardProps } from "src/types";
 
-import { useDecksStore, useHandsStore } from "src/store";
+import { usePlayerDeck, usePlayerHand } from "src/store";
 
 import { useHandGenerator, useMove } from "src/hooks";
 
 export const Hand: FC = () => {
-  const { playerDeck } = useDecksStore();
-  const { playerHand } = useHandsStore();
+  const playerDeck = usePlayerDeck();
+  const playerHand = usePlayerHand();
   const { loading, error, generateHand } = useHandGenerator("player");
   // TODO: Choose first turn owner randomly
   const { makeMove } = useMove("player");

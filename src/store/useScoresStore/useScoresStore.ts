@@ -3,14 +3,20 @@ import { devtools } from "zustand/middleware";
 
 import { ScoresStoreProps } from "./types";
 
-export const useScoresStore = create<ScoresStoreProps>()(
+const useScoresStore = create<ScoresStoreProps>()(
   devtools(
     (set) => ({
       playerScore: 0,
-      setPlayerScore: (newScore) => set({ playerScore: newScore }),
       botScore: 0,
-      setBotScore: (newScore) => set({ botScore: newScore })
+      actions: {
+        setPlayerScore: (newScore) => set({ playerScore: newScore }),
+        setBotScore: (newScore) => set({ botScore: newScore })
+      }
     }),
     { name: "ScoresStore" }
   )
 );
+
+export const usePlayerScore = () => useScoresStore((state) => state.playerScore);
+export const useBotScore = () => useScoresStore((state) => state.botScore);
+export const useScoresActions = () => useScoresStore((state) => state.actions);

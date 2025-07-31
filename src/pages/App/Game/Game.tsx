@@ -5,14 +5,26 @@ import { Board, ErrorComponent, Hand } from "src/components";
 
 import { findCardSetByName } from "src/utils";
 
-import { useBoardCardsStore, useDecksStore, useScoresStore } from "src/store";
+import {
+  useBotBoardCards,
+  useBotCardSetName,
+  useBotScore,
+  usePlayerBoardCards,
+  usePlayerCardSetName,
+  usePlayerScore,
+  useScoresActions
+} from "src/store";
 
 import { useBotCards, useCardSets, useDefineWinner, useRedirect } from "src/hooks";
 
 export const Game = () => {
-  const { playerCardSetName, botCardSetName } = useDecksStore();
-  const { playerScore, setPlayerScore, botScore, setBotScore } = useScoresStore();
-  const { playerBoardCards, botBoardCards } = useBoardCardsStore();
+  const playerCardSetName = usePlayerCardSetName();
+  const botCardSetName = useBotCardSetName();
+  const playerScore = usePlayerScore();
+  const botScore = useBotScore();
+  const { setPlayerScore, setBotScore } = useScoresActions();
+  const playerBoardCards = usePlayerBoardCards();
+  const botBoardCards = useBotBoardCards();
   const { cardSets, isLoading, isError, error } = useCardSets();
 
   const currentCardSet = findCardSetByName(cardSets || [], playerCardSetName);

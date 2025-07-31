@@ -6,11 +6,13 @@ import { ParticipantType } from "src/types";
 
 import { pickUniqueRandomNumbers, validateError } from "src/utils";
 
-import { useDecksStore, useHandsStore } from "src/store";
+import { useBotDeck, useDecksActions, useHandsActions, usePlayerDeck } from "src/store";
 
 export const useHandGenerator = (participant: ParticipantType) => {
-  const { playerDeck, setPlayerDeck, botDeck, setBotDeck } = useDecksStore();
-  const { setPlayerHand, setBotHand } = useHandsStore();
+  const playerDeck = usePlayerDeck();
+  const botDeck = useBotDeck();
+  const { setPlayerDeck, setBotDeck } = useDecksActions();
+  const { setPlayerHand, setBotHand } = useHandsActions();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 

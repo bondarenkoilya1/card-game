@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 import { CARDS_IN_HAND } from "src/constants";
 
-import { useDecksStore, useGameStore } from "src/store";
+import { useDecksActions, useGameActions, usePlayerDeck } from "src/store";
 
 import { useCardSets, useRedirect } from "src/hooks";
 
@@ -11,8 +11,9 @@ export const useManageDeck = () => {
   const navigate = useNavigate();
   const { cardSetSlug } = useParams();
   const { cardSets, isLoading, isError, error } = useCardSets();
-  const { setPlayerCardSetName, playerDeck } = useDecksStore();
-  const { setIsPlaying } = useGameStore();
+  const playerDeck = usePlayerDeck();
+  const { setPlayerCardSetName } = useDecksActions();
+  const { setIsPlaying } = useGameActions();
 
   const currentCardSet = cardSets?.find((cardSet) => cardSet.slug === cardSetSlug) || null;
 
