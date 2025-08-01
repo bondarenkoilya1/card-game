@@ -11,6 +11,8 @@ const initialFormData: FormDataProps = {
 };
 
 // TODO: bring error and loading functionality to utils to avoid repeating
+
+// Refactor to atomic selectors, actions object
 export const useUploadCardSetStore = create<UploadCardSetStoreProps>()(
   devtools(
     (set) => ({

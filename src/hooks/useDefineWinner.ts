@@ -18,18 +18,17 @@ export const useDefineWinner = () => {
   const [hasGameEnded, setHasGameEnded] = useState(false);
 
   useEffect(() => {
+    if (hasGameEnded) return;
+
     const playerBoardHasCards = playerBoardCards.some(({ cards }) => cards.length > 0);
+    const playerAndBotHaveEmptyHands = playerHand.length === 0 && botHand.length === 0;
 
-    if (playerHand.length === 0 && botHand.length === 0 && playerBoardHasCards && !hasGameEnded) {
+    if (playerBoardHasCards && playerAndBotHaveEmptyHands) {
       setHasGameEnded(true);
-    }
-  }, [playerHand, botHand, playerBoardCards, hasGameEnded]);
-
-  useEffect(() => {
-    if (hasGameEnded) {
       defineWinner(playerScore, botScore);
+      // here reset all: decks, hands, sets, scores
     }
-  }, [hasGameEnded]);
+  }, [playerHand.length, botHand.length]);
 };
 
 function defineWinner(playerScore: number, botScore: number) {
