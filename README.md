@@ -1,3 +1,5 @@
+UPD: Проект не поддерживается, в силу своей бесполезности окружающему миру.
+
 # CARD GAME (REACT, TYPESCRIPT)
 
 This is card game project built using React and Typescript. 
